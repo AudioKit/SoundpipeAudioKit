@@ -10,6 +10,10 @@ extension XCTestCase {
 }
 
 let validatedMD5s: [String: String] = [
+    "-[AmplitudeTapTests testDefault]": "e732ff601fd8b47b3bdb6c4aa65cb7f1",
+    "-[AmplitudeTapTests testLeftStereoMode]": "e732ff601fd8b47b3bdb6c4aa65cb7f1",
+    "-[AmplitudeTapTests testPeakAnalysisMode]": "e732ff601fd8b47b3bdb6c4aa65cb7f1",
+    "-[AmplitudeTapTests testRightStereoMode]": "e732ff601fd8b47b3bdb6c4aa65cb7f1",
     "-[AmplitudeEnvelopeTests testAttack]": "d854eb2e2033f57db8eaece7352158a1",
     "-[AmplitudeEnvelopeTests testDecay]": "049f077cfac89eb544bba6386ef3cd41",
     "-[AmplitudeEnvelopeTests testDefault]": "2a0becc83d69bbf8635ab21c2e53bbe3",
@@ -45,6 +49,9 @@ let validatedMD5s: [String: String] = [
     "-[DynamicOscillatorTests testGetWavetableValues]": "33fc3ddee3e17226ddfc976f080b7e00",
     "-[DynamicOscillatorTests testWavetableUpdateHandler]": "33fc3ddee3e17226ddfc976f080b7e00",
     "-[DynamicsProcessorTests testDefault]": "70fa0fb4d94ccb4a36fdd55be270d0e8",
+    "-[FFTTapTests testBasic]": "68d1550a306b253f9d4c18cda0824d3a",
+    "-[FFTTapTests testWithoutNormalization]": "68d1550a306b253f9d4c18cda0824d3a",
+    "-[FFTTapTests testWithZeroPadding]": "68d1550a306b253f9d4c18cda0824d3a",
     "-[FlatFrequencyResponseReverbTests testLoopDuration]": "b52e5fe292fae790c8ebf997347774a3",
     "-[MetalBarTests testDefault]": "581849d96fa6f62daeba2534c2efc17c",
     "-[OscillatorAutomationTests testNewAutomationAmplitude]": "de84a09903129c3c22cc035cfd53ff05",
