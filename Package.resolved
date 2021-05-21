@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKit",
         "state": {
           "branch": "develop",
-          "revision": "7d0aa6a866b02d640d3979c75f3f2501fe69b953",
+          "revision": "95365b1878798f75ef72d191abc4fc034342f8af",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/AudioKit/Soundpipe",
         "state": {
           "branch": "main",
-          "revision": "0ec5832d824f6ba572bb07daa589c8fd69fc4c8f",
+          "revision": "43303e916d9aa6e384568b07a86ed5a62d04491e",
           "version": null
         }
       }
