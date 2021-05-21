@@ -3,6 +3,7 @@
 import AudioKit
 import XCTest
 import CAudioKit
+import SoundpipeAudioKit
 import AVFoundation
 
 class OscillatorAutomationTests: XCTestCase {
