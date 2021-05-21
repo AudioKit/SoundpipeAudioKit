@@ -52,5 +52,6 @@ let validatedMD5s: [String: String] = [
     "-[OscillatorAutomationTests testNewAutomationFrequency]": "5c8c218d2c21e8c436493bb09a80a47a",
     "-[OscillatorAutomationTests testNewAutomationMultiple]": "c1840e8045b8d976ca0aaddb984da4c5",
     "-[PhaseLockedVocoderTests testDefault]": "d3522d2e9cad9467740cbcb3624887f2",
+    "-[PitchTapTests testBasic]": "db6a903846a19d9e06066391308ee7ff",
     "-[PluckedStringTests testDefault]": "9e2d3aa3b50fa53a43b798901f0cb0e5",
 ]

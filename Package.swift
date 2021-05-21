@@ -32,6 +32,9 @@ let package = Package(
             name: "SoundpipeAudioKitTests",
             dependencies: ["SoundpipeAudioKit"],
             resources: [.copy("TestResources/")]),
+        .testTarget(
+            name: "CSoundpipeAudioKitTests",
+            dependencies: ["CSoundpipeAudioKit"]),
     ],
     cxxLanguageStandard: .cxx14
 )
