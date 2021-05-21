@@ -1,0 +1,49 @@
+# GitHub Actions for SoundpipeAudioKit: includes builds, tests and releases
+name: CI
+
+on: [push, pull_request]
+env:
+  XCODE_VER: 12.4
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        xcode_version: ['12.4']
+    runs-on: macos-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
+    steps:
+      - name: Check out SoundpipeAudioKit
+        uses: actions/checkout@v2
+      - name: Build SoundpipeAudioKit
+        run: |
+          set -euo pipefail
+          swift package clean
+          swift build --sanitize="address"
+      - name: Run Tests (ASAN)
+        run: |
+          set -euo pipefail
+          xcodebuild -scheme SoundpipeAudioKit -enableAddressSanitizer YES test | xcpretty
+
+  # Generate Wiki docs on release
+  docs:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out SoundpipeAudioKit
+        uses: actions/checkout@v2
+      - name: Generate Documentation
+        uses: SwiftDocOrg/swift-doc@master
+        with:
+          inputs: "Sources"
+          module-name: SoundpipeAudioKit
+          output: "Documentation"
+      - name: Upload Documentation to Wiki
+        uses: SwiftDocOrg/github-wiki-publish-action@v1
+        with:
+          path: "Documentation"
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+
