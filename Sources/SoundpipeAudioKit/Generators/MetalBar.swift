@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Physical model approximating the sound of a struck metal bar
 /// 

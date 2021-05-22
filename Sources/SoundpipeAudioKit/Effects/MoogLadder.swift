@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Moog Ladder is an new digital implementation of the Moog ladder filter 
 /// based on the work of Antti Huovilainen, described in the paper 

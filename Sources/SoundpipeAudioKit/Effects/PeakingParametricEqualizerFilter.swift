@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// This is an implementation of Zoelzer's parametric equalizer filter.
 public class PeakingParametricEqualizerFilter: Node {

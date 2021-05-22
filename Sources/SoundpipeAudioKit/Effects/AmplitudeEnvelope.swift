@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Triggerable classic ADSR envelope
 public class AmplitudeEnvelope: Node, Gated {

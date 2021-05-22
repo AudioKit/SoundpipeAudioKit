@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// This is was built using the JC reverb implentation found in FAUST.
 /// According to the source code, the specifications for this implementation were

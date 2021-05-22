@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Reads from the table sequentially and repeatedly at given frequency.
 /// Linear interpolation is applied for table look up from internal phase values.

@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// This is an oscillator with linear interpolation that is capable of morphing
 /// between an arbitrary number of wavetables.

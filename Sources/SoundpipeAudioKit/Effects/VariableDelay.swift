@@ -3,6 +3,7 @@
 
 import AVFoundation
 import AudioKit
+import AudioKitEX
 import CSoundpipeAudioKit
 
 /// A delay line with cubic interpolation.

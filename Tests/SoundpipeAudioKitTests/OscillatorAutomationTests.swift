@@ -2,7 +2,7 @@
 
 import AudioKit
 import XCTest
-import CAudioKit
+import CAudioKitEX
 import SoundpipeAudioKit
 import AVFoundation
 

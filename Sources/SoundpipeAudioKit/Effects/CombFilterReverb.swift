@@ -3,6 +3,7 @@
 
 import AVFoundation
 import AudioKit
+import AudioKitEX
 import CSoundpipeAudioKit
 
 /// This filter reiterates input with an echo density determined by loopDuration.

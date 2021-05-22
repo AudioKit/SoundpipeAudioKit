@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// A first-order recursive low-pass filter with variable frequency response.
 public class ToneFilter: Node {

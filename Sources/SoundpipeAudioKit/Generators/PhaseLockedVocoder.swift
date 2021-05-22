@@ -1,8 +1,9 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
 import AVFoundation
-import CAudioKit
 import AudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// This is a phase locked vocoder. It has the ability to play back an audio
 /// file loaded into an ftable like a sampler would. Unlike a typical sampler,

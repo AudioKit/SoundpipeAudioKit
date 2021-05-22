@@ -5,7 +5,7 @@ import SoundpipeAudioKit
 import XCTest
 import AudioKit
 import SoundpipeAudioKit
-import CAudioKit
+import CAudioKitEX
 import AVFoundation
 
 class DynamicOscillatorTests: XCTestCase {

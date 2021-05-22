@@ -2,7 +2,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Balanceable Mix between two signals, usually used for a dry signal and wet signal
 ///

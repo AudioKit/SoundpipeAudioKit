@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Emulation of the Roland TB-303 filter
 public class RolandTB303Filter: Node {

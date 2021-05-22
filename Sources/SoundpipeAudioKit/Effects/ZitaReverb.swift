@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// 8 FDN stereo zitareverb algorithm, imported from Faust.
 public class ZitaReverb: Node {

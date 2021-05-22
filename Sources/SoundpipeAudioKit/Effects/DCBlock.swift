@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Implements the DC blocking filter Y[i] = X[i] - X[i-1] + (igain * Y[i-1])  
 /// Based on work by Perry Cook.

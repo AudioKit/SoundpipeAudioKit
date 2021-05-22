@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// An automatic wah effect, ported from Guitarix via Faust.
 public class AutoWah: Node {

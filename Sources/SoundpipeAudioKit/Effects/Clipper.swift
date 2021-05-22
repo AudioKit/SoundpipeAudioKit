@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Clips a signal to a predefined limit, in a "soft" manner, using one of three methods.
 public class Clipper: Node {

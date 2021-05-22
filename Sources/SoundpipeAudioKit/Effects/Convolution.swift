@@ -2,6 +2,7 @@
 
 import AVFoundation
 import AudioKit
+import AudioKitEX
 import CSoundpipeAudioKit
 
 /// This module will perform partitioned convolution on an input signal using an

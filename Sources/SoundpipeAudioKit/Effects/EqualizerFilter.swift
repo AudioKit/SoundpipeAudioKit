@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// A 2nd order tunable equalization filter that provides a
 /// peak/notch filter for building parametric/graphic equalizers.

@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Analogue model of the Korg 35 Lowpass Filter
 public class KorgLowPassFilter: Node {

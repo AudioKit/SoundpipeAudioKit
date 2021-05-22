@@ -3,6 +3,7 @@
 
 import AVFoundation
 import AudioKit
+import AudioKitEX
 import CSoundpipeAudioKit
 
 /// This filter reiterates the input with an echo density determined by loop time. The attenuation rate is
