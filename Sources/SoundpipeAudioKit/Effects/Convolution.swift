@@ -2,7 +2,7 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import CSoundpipeAudioKit
 
 /// This module will perform partitioned convolution on an input signal using an
 /// ftable as an impulse response.

@@ -2,7 +2,7 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import CSoundpipeAudioKit
 
 /// Tap to do pitch tracking on any node.
 /// start() will add the tap, and stop() will remove it.

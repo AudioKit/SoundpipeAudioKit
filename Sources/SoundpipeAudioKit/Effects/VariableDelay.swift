@@ -3,7 +3,7 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import CSoundpipeAudioKit
 
 /// A delay line with cubic interpolation.
 public class VariableDelay: Node {

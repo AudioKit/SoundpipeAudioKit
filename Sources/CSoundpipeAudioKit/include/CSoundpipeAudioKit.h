@@ -1,8 +1,15 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
-#ifndef CSoundpipeAudioKit_h
-#define CSoundpipeAudioKit_h
+#pragma once
 
-// CSoundpipeAudioKit has no public interface. It registers DSP kernels automatically.
+#import "SoundpipeDSPBase.h"
 
-#endif /* CSoundpipeAudioKit_h */
+// Analysis
+#import "PitchTracker.h"
+
+// Custom interop
+AK_API void akCombFilterReverbSetLoopDuration(DSPRef dsp, float duration);
+AK_API void akConvolutionSetPartitionLength(DSPRef dsp, int length);
+AK_API void akFlatFrequencyResponseSetLoopDuration(DSPRef dsp, float duration);
+AK_API void akOperationSetSporth(DSPRef dspRef, const char *sporth);
+AK_API void akVariableDelaySetMaximumTime(DSPRef dsp, float maximumTime);

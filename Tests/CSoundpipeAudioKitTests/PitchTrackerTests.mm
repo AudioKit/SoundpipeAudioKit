@@ -1,6 +1,6 @@
 
 #import <XCTest/XCTest.h>
-#import <CAudioKit.h>
+#import <CSoundpipeAudioKit.h>
 
 @interface PitchTrackerTests : XCTestCase
 

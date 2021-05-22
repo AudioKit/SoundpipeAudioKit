@@ -3,7 +3,7 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import CSoundpipeAudioKit
 
 /// This filter reiterates input with an echo density determined by loopDuration.
 /// The attenuation rate is independent and is determined by reverbDuration, the
