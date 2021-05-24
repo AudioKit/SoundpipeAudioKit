@@ -1,4 +1,4 @@
-// Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
+// Copyright AudioKit. All Rights Reserved.
 
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
