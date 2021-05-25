@@ -16,18 +16,33 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/AudioKit/Soundpipe", .branch("main")),
+        .package(url: "https://github.com/AudioKit/KissFFT", .branch("main")),
         .package(url: "https://github.com/AudioKit/AudioKit", .branch("develop")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
+        .target(name: "Soundpipe",
+                dependencies: ["KissFFT"],
+                exclude: [
+                    "lib/kissfft/COPYING",
+                    "lib/kissfft/README",
+                    "lib/inih/LICENSE.txt",
+                ],
+                publicHeadersPath: "include",
+                cSettings: [
+                    .headerSearchPath("lib/kissfft"),
+                    .headerSearchPath("lib/inih"),
+                    .headerSearchPath("Sources/soundpipe/lib/inih"),
+                    .headerSearchPath("modules"),
+                    .headerSearchPath("external")
+                ]),
         .target(
             name: "SoundpipeAudioKit",
             dependencies: ["AudioKit", "CSoundpipeAudioKit"]),
         .target(
             name: "CSoundpipeAudioKit",
-            dependencies: ["AudioKit", "Soundpipe"]),
+            dependencies: ["AudioKit",  "Soundpipe"]),
         .testTarget(
             name: "SoundpipeAudioKitTests",
             dependencies: ["SoundpipeAudioKit"],
