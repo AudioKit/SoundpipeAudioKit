@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKit",
         "state": {
           "branch": "develop",
-          "revision": "fc70381cebdf13015038bd35a1d282f9b22e710d",
+          "revision": "cbb314ea2300b47209abb176dd21572d6058a1e1",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/AudioKit/KissFFT",
         "state": {
           "branch": "main",
-          "revision": "949c9e023f7ed29418d8cd686d0632bf206dc136",
+          "revision": "dd0636e151724b8ba2e0908eba4d99a6ff24d00c",
           "version": null
         }
       }
