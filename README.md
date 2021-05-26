@@ -1,4 +1,4 @@
-# SoundpipeAudioKit
+# Soundpipe AudioKit
 
 [![Build Status](https://github.com/AudioKit/SoundpipeAudioKit/workflows/CI/badge.svg)](https://github.com/AudioKit/SoundpipeAudioKit/actions?query=workflow%3ACI)
 [![License](https://img.shields.io/github/license/AudioKit/SoundpipeAudioKit)](https://github.com/AudioKit/SoundpipeAudioKit/blob/main/LICENSE)
