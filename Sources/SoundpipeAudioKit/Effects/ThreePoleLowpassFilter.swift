@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// 3-pole (18 db/oct slope) Low-Pass filter with resonance and tanh distortion.
 public class ThreePoleLowpassFilter: Node {

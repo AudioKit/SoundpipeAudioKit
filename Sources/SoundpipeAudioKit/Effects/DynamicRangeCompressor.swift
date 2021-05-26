@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Dynamic range compressor from Faust
 public class DynamicRangeCompressor: Node {

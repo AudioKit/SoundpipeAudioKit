@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// The output for reson appears to be very hot, so take caution when using this module.
 public class ResonantFilter: Node {

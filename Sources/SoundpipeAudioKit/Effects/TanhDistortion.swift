@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Distortion using a modified hyperbolic tangent function.
 public class TanhDistortion: Node {

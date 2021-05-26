@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Casio-style phase distortion with "pivot point" on the X axis
 /// This module is designed to emulate the classic phase distortion synthesis technique.

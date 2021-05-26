@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// AKStringResonator passes the input through a network composed of comb, 
 /// low-pass and all-pass filters, similar to the one used in some versions of the 

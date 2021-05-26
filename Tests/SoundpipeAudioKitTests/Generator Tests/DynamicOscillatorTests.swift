@@ -5,7 +5,7 @@ import SoundpipeAudioKit
 import XCTest
 import AudioKit
 import SoundpipeAudioKit
-import CAudioKit
+import CAudioKitEX
 import AVFoundation
 
 class DynamicOscillatorTests: XCTestCase {
@@ -83,7 +83,7 @@ class DynamicOscillatorTests: XCTestCase {
         oscillator.start()
         let audio = engine.startTest(totalDuration: 1.0)
         audio.append(engine.render(duration: 0.5))
-        oscillator.setWaveTable(waveform: Table(.square))
+        oscillator.setWaveform(Table(.square))
         audio.append(engine.render(duration: 0.5))
         testMD5(audio)
     }
@@ -91,7 +91,7 @@ class DynamicOscillatorTests: XCTestCase {
     func testGetWavetableValues() {
         let engine = AudioEngine()
         let oscillator = DynamicOscillator(waveform: Table(.square), frequency: 400)
-        let floats = oscillator.getWavetableValues()
+        let floats = oscillator.getWaveformValues()
         XCTAssertEqual(floats, Table(.square).content)
         engine.output = oscillator
         oscillator.start()
@@ -104,13 +104,13 @@ class DynamicOscillatorTests: XCTestCase {
         let engine = AudioEngine()
         var floats: [Float] = []
         let oscillator = DynamicOscillator(waveform: Table(.square), frequency: 400)
-        oscillator.wavetableUpdateHandler = { newFloats in
+        oscillator.setWaveformUpdateHandler { newFloats in
             floats = newFloats
         }
         engine.output = oscillator
         oscillator.start()
         let audio = engine.startTest(totalDuration: 1.0)
-        oscillator.setWaveTable(waveform: Table(.square))
+        oscillator.setWaveform(Table(.square))
         audio.append(engine.render(duration: 1.0))
         XCTAssertEqual(floats, Table(.square).content)
         testMD5(audio)

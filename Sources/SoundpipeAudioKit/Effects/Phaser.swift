@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// This is a stereo phaser, generated from Faust code taken from the Guitarix project.
 public class Phaser: Node {

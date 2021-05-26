@@ -3,12 +3,13 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Reads from the table sequentially and repeatedly at given frequency.
 /// Linear interpolation is applied for table look up from internal phase values.
 ///
-public class DynamicOscillator: Node {
+public class DynamicOscillator: DynamicWaveformNode {
     
     /// Connected nodes
     public var connections: [Node] { [] }
@@ -19,7 +20,7 @@ public class DynamicOscillator: Node {
     fileprivate var waveform: Table?
 
     /// Callback whten the wavetable is updated
-    public var wavetableUpdateHandler: ([Float]) -> Void = { _ in }
+    var waveformUpdateHandler: ([Float]) -> Void = { _ in }
 
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
@@ -99,20 +100,24 @@ public class DynamicOscillator: Node {
         
     }
     
-    // MARK: - Public Methods
+    // MARK: - Protocol methods
 
     /// Sets the wavetable of the oscillator node
-    ///
-    /// - Parameters:
-    ///   - waveform: The waveform of oscillation
-    public func setWaveTable(waveform: Table) {
+    /// - Parameter waveform: The waveform of oscillation
+    public func setWaveform(_ waveform: Table) {
         au.setWavetable(waveform.content)
         self.waveform = waveform
-        wavetableUpdateHandler(waveform.content)
+        waveformUpdateHandler(waveform.content)
     }
 
     /// Gets the floating point values stored in the oscillator's wavetable
-    public func getWavetableValues() -> [Float] {
+    public func getWaveformValues() -> [Float] {
         return waveform?.content ?? []
+    }
+    
+    /// Set the waveform change handler
+    /// - Parameter handler: Closure with an array of floats as the argument
+    public func setWaveformUpdateHandler(_ handler: @escaping ([Float]) -> Void) {
+        waveformUpdateHandler = handler
     }
 }

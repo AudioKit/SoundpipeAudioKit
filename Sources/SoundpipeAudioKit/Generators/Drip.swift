@@ -3,7 +3,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// Physical model of the sound of dripping water. 
 /// When triggered, it will produce a droplet of water.

@@ -2,7 +2,8 @@
 
 import AVFoundation
 import AudioKit
-import CAudioKit
+import AudioKitEX
+import CAudioKitEX
 
 /// This node outputs a version of the audio source, amplitude-modified so
 /// that its rms power is equal to that of the comparator audio source. Thus a
