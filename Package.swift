@@ -5,17 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "SoundpipeAudioKit",
-    platforms: [
-        .macOS(.v10_14), .iOS(.v13), .tvOS(.v13)
-    ],
-    products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "SoundpipeAudioKit",
-            targets: ["SoundpipeAudioKit"]),
-    ],
+    platforms: [.macOS(.v10_14), .iOS(.v13), .tvOS(.v13)],
+    products: [.library(name: "SoundpipeAudioKit", targets: ["SoundpipeAudioKit"])],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/AudioKit/KissFFT", .branch("main")),
         .package(url: "https://github.com/AudioKit/AudioKit", .branch("develop")),
     ],
@@ -24,32 +16,16 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(name: "Soundpipe",
                 dependencies: ["KissFFT"],
-                exclude: [
-                    "lib/kissfft/COPYING",
-                    "lib/kissfft/README",
-                    "lib/inih/LICENSE.txt",
-                ],
-                publicHeadersPath: "include",
                 cSettings: [
-                    .headerSearchPath("lib/kissfft"),
                     .headerSearchPath("lib/inih"),
                     .headerSearchPath("Sources/soundpipe/lib/inih"),
                     .headerSearchPath("modules"),
                     .headerSearchPath("external")
                 ]),
-        .target(
-            name: "SoundpipeAudioKit",
-            dependencies: ["AudioKit", "CSoundpipeAudioKit"]),
-        .target(
-            name: "CSoundpipeAudioKit",
-            dependencies: ["AudioKit",  "Soundpipe"]),
-        .testTarget(
-            name: "SoundpipeAudioKitTests",
-            dependencies: ["SoundpipeAudioKit"],
-            resources: [.copy("TestResources/")]),
-        .testTarget(
-            name: "CSoundpipeAudioKitTests",
-            dependencies: ["CSoundpipeAudioKit"]),
+        .target(name: "SoundpipeAudioKit", dependencies: ["AudioKit", "CSoundpipeAudioKit"]),
+        .target(name: "CSoundpipeAudioKit", dependencies: ["AudioKit",  "Soundpipe"]),
+        .testTarget(name: "SoundpipeAudioKitTests", dependencies: ["SoundpipeAudioKit"], resources: [.copy("TestResources/")]),
+        .testTarget(name: "CSoundpipeAudioKitTests", dependencies: ["CSoundpipeAudioKit"]),
     ],
     cxxLanguageStandard: .cxx14
 )
