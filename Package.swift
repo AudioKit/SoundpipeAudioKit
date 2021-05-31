@@ -16,6 +16,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(name: "Soundpipe",
                 dependencies: ["KissFFT"],
+                exclude: ["lib/inih/LICENSE.txt"],
                 cSettings: [
                     .headerSearchPath("lib/inih"),
                     .headerSearchPath("Sources/soundpipe/lib/inih"),
