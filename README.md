@@ -14,7 +14,7 @@ See the [AudioKit Cookbook](https://github.com/AudioKit/Cookbook/) for examples.
 
 ## Installation
 
-Use Swift Package Manageer and point to the URL: Github URL: https://github.com/AudioKit/SoundpipeAudioKit/
+Use Swift Package Manageer and point to the URL: Github URL: `https://github.com/AudioKit/SoundpipeAudioKit/`
 
 ## Targets
 
@@ -34,10 +34,10 @@ Use Swift Package Manageer and point to the URL: Github URL: https://github.com/
 * [Morphing Oscillator](https://github.com/AudioKit/SoundpipeAudioKit/wiki/MorphingOscillator)
 * [Oscillator](https://github.com/AudioKit/SoundpipeAudioKit/wiki/Oscillator)
 * [PWM Oscillator](https://github.com/AudioKit/SoundpipeAudioKit/wiki/PWMOscillator)
-* [Phase DistortionO scillator](https://github.com/AudioKit/SoundpipeAudioKit/wiki/PhaseDistortionOscillator)
+* [Phase Distortion Oscillator](https://github.com/AudioKit/SoundpipeAudioKit/wiki/PhaseDistortionOscillator)
 * [Phase Locked Vocoder](https://github.com/AudioKit/SoundpipeAudioKit/wiki/PhaseLockedVocoder)
 * [Pink Noise](https://github.com/AudioKit/SoundpipeAudioKit/wiki/PinkNoise)
-* [PluckedS tring](https://github.com/AudioKit/SoundpipeAudioKit/wiki/PluckedString)
+* [Plucked String](https://github.com/AudioKit/SoundpipeAudioKit/wiki/PluckedString)
 * [White Noise](https://github.com/AudioKit/SoundpipeAudioKit/wiki/WhiteNoise)
 * [Vocal Tract](https://github.com/AudioKit/SoundpipeAudioKit/wiki/VocalTract)
 
