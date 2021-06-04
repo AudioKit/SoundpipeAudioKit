@@ -19,7 +19,7 @@ See the [AudioKit Cookbook](https://github.com/AudioKit/Cookbook/) for examples.
 
 ## Installation
 
-Use Swift Package Manageer and point to the URL: `https://github.com/AudioKit/SoundpipeAudioKit/`
+Use Swift Package Manager and point to the URL: `https://github.com/AudioKit/SoundpipeAudioKit/`
 
 ## Targets
 
