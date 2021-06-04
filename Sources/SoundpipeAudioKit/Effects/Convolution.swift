@@ -7,7 +7,6 @@ import CSoundpipeAudioKit
 
 /// This module will perform partitioned convolution on an input signal using an
 /// ftable as an impulse response.
-/// TOOD: This node needs to be tested
 ///
 public class Convolution: Node {
 

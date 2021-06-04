@@ -1,3 +1,6 @@
+<div align=center>
+<img src="https://github.com/AudioKit/Cookbook/raw/main/Cookbook/Cookbook/Assets.xcassets/audiokit-icon.imageset/audiokit-icon.png" width="20%"/>
+
 # Soundpipe AudioKit
 
 [![Build Status](https://github.com/AudioKit/SoundpipeAudioKit/workflows/CI/badge.svg)](https://github.com/AudioKit/SoundpipeAudioKit/actions?query=workflow%3ACI)
@@ -5,6 +8,8 @@
 [![Platform](https://img.shields.io/cocoapods/p/AudioKit)](https://github.com/AudioKit/AudioKit/wiki)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 [![Twitter Follow](https://img.shields.io/twitter/follow/AudioKitPro.svg?style=social)](https://twitter.com/AudioKitPro)
+
+</div>
 
 This extension to AudioKit has the majority of old versions of AudioKit's DSP including oscillators, physical models, filters, reverbs and more.
 
@@ -14,7 +19,7 @@ See the [AudioKit Cookbook](https://github.com/AudioKit/Cookbook/) for examples.
 
 ## Installation
 
-Use Swift Package Manageer and point to the URL: Github URL: `https://github.com/AudioKit/SoundpipeAudioKit/`
+Use Swift Package Manageer and point to the URL: `https://github.com/AudioKit/SoundpipeAudioKit/`
 
 ## Targets
 
