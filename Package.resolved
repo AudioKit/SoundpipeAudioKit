@@ -14,9 +14,9 @@
         "package": "KissFFT",
         "repositoryURL": "https://github.com/AudioKit/KissFFT",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "dd0636e151724b8ba2e0908eba4d99a6ff24d00c",
-          "version": null
+          "version": "1.0.0"
         }
       }
     ]
