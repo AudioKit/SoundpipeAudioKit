@@ -69,4 +69,44 @@ class OscillatorAutomationTests: XCTestCase {
         audio.append(engine.render(duration: 2.0))
         testMD5(audio)
     }
+
+    func testAutomationAfterDelayedConnection() {
+        let engine = AudioEngine()
+        let osc = Oscillator(waveform: Table(.triangle))
+        let osc2 = Oscillator(waveform: Table(.triangle))
+        let mixer = Mixer()
+        let events = [AutomationEvent(targetValue: 1320, startTime: 0.0, rampDuration: 0.5)]
+        engine.output = mixer
+        mixer.addInput(osc)
+        let audio = engine.startTest(totalDuration: 2.0)
+        osc.play()
+        osc.$frequency.automate(events: events)
+        audio.append(engine.render(duration: 1.0))
+        mixer.removeInput(osc)
+        mixer.addInput(osc2)
+        osc2.play()
+        osc2.$frequency.automate(events: events)
+        audio.append(engine.render(duration: 1.0))
+        testMD5(audio)
+    }
+
+
+    func testDelayedAutomation() throws {
+        let engine = AudioEngine()
+        let osc = Oscillator(waveform: Table(.triangle))
+        engine.output = osc
+        osc.amplitude = 0.2
+        osc.start()
+        let audio = engine.startTest(totalDuration: 2.0)
+
+        audio.append(engine.render(duration: 1.0))
+        let events = [AutomationEvent(targetValue: 1320, startTime: 0, rampDuration: 0.1),
+                      AutomationEvent(targetValue: 660, startTime: 0.1, rampDuration: 0.1),
+                      AutomationEvent(targetValue: 1100, startTime: 0.2, rampDuration: 0.1),
+                      AutomationEvent(targetValue: 770, startTime: 0.3, rampDuration: 0.1),
+                      AutomationEvent(targetValue: 880, startTime: 0.4, rampDuration: 0.1)]
+        osc.$frequency.automate(events: events)
+        audio.append(engine.render(duration: 1.0))
+        testMD5(audio)
+    }
 }
