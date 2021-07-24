@@ -108,10 +108,7 @@ public:
     }
 
     void updateTables() {
-
         // Check for new waveforms.
-        int32_t bytes;
-
         auto next = nextWavetable.load();
         if(next != newTable) {
             if(oldTable) { oldTable->done = true; }
