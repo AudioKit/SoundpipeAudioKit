@@ -19,8 +19,8 @@ public class DynamicOscillator: DynamicWaveformNode {
 
     fileprivate var waveform: Table?
 
-    /// Callback whten the wavetable is updated
-    var waveformUpdateHandler: ([Float]) -> Void = { _ in }
+    /// Callback when the wavetable is updated
+    public var waveformUpdateHandler: ([Float]) -> Void = { _ in }
 
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
