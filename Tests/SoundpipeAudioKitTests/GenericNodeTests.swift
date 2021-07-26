@@ -105,7 +105,7 @@ class GenericNodeTests: XCTestCase {
 
     func testGenerators() {
         nodeParameterTest(md5: "91982383233dc367491b40704c803bb8", factory: { BrownianNoise() })
-        nodeParameterTest(md5: "57932788e602736da3895d8dcbb1b4a7", factory: { DynamicOscillator(waveform: Table(.square)) })
+        nodeParameterTest(md5: "4aee27769cfaed6f4abcf6348ac29e95", factory: { DynamicOscillator(waveform: Table(.square)) })
         nodeParameterTest(md5: "d9f942578b818e5028d7040a12721f97", factory: { FMOscillator(waveform: Table(.triangle)) })
         nodeParameterTest(md5: "01072e25418a79c82b58d4bfe69e5375", factory: { MorphingOscillator(waveformArray: waveforms) })
         nodeParameterTest(md5: "ecdc68d433f767140b7f5f61b343ac21", factory: { Oscillator(waveform: Table(.triangle)) })
