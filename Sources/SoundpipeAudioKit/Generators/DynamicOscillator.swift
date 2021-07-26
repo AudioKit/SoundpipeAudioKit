@@ -90,6 +90,8 @@ public class DynamicOscillator: DynamicWaveformNode {
     {
         setupParameters()
         
+        self.stop()
+        
         au.setWavetable(waveform.content)
         
         self.waveform = waveform
