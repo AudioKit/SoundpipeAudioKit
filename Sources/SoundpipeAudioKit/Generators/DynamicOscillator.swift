@@ -102,7 +102,7 @@ public class DynamicOscillator: DynamicWaveformNode {
         
     }
     
-    // MARK: - Protocol methods
+    // MARK: - DynamicWaveformNode Protocol methods
 
     /// Sets the wavetable of the oscillator node
     /// - Parameter waveform: The waveform of oscillation
