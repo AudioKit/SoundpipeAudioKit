@@ -135,6 +135,7 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "768665e4bad0372b7cdcc8be6040621e", factory: { Delay(input) })
         nodeParameterTest(md5: "2b0db813cce8ff7f2180d7a820737000", factory: { Distortion(input) })
         nodeParameterTest(md5: "a245e060a95fa63f70f01633eb00db0b", factory: { DynamicRangeCompressor(input) })
+        nodeParameterTest(md5: "8eca17f8e436de978afc7250edd765fe", factory: { EqualizerFilter(input) })
         nodeParameterTest(md5: "b2eac657e060927cd0b3bfd74817c99e", factory: { FlatFrequencyResponseReverb(input) })
         nodeParameterTest(md5: "a6c3c2cdc02e77c1d71bcab22b70982c", factory: { Panner(input) })
         nodeParameterTest(md5: "95ba7a1fbd8c85c129999d20a0653dfe", factory: { PitchShifter(input) })
