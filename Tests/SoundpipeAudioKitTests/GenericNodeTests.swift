@@ -142,7 +142,7 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "547cc8833929d40042a0a00566cc032f", factory: { RingModulator(input) })
         nodeParameterTest(md5: "56ce31a64d0c7488e814cd16e09ea378", factory: { StringResonator(input) })
         nodeParameterTest(md5: "7ce66baf0b5a272dc83db83f443bd1d8", factory: { TanhDistortion(input) })
-        nodeParameterTest(md5: "bb704255aad8df505d427fea08d57246", factory: { Tremolo(input) })
+        nodeParameterTest(md5: "6a54cda833433325a5bd885c1375c6e2", factory: { Tremolo(input) }, m1MD5: "bb704255aad8df505d427fea08d57246")
         nodeParameterTest(md5: "17b152691ddaca9a74a5ab086db0e546", factory: { VariableDelay(input) })
         nodeParameterTest(md5: "b65a3c67da751b0f1bc6b6d604af1908", factory: { ZitaReverb(input) }, m1MD5: "78f088f0a48ab37c3d5fcfca9c9a8365")
 
