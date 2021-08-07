@@ -65,7 +65,6 @@ public:
             adsr->rel = releaseDurationRamp.getAndStep();
 
             sp_adsr_compute(sp, adsr, &internalTrigger, &amp);
-            printf("%.2f\n", amp);
             outputSample(0, i) = inputSample(0, i) * amp;
             outputSample(1, i) = inputSample(1, i) * amp;
         }
