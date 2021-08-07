@@ -50,6 +50,8 @@ public:
 
         if (status == MIDI_NOTE_ON) {
             internalTrigger = midiEvent.data[2] / 127.0;
+        } else {
+            internalTrigger = 0;
         }
     }
 
