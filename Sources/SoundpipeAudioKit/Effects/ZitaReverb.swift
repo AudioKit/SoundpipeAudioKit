@@ -25,7 +25,7 @@ public class ZitaReverb: Node {
         name: "Delay in ms before reverberation begins.",
         address: akGetParameterAddress("ZitaReverbParameterPredelay"),
         defaultValue: 60.0,
-        range: 0.0 ... 200.0,
+        range: 10.0 ... 100.0,
         unit: .generic)
 
     /// Delay in ms before reverberation begins.
@@ -37,7 +37,7 @@ public class ZitaReverb: Node {
         name: "Crossover frequency separating low and middle frequencies (Hz).",
         address: akGetParameterAddress("ZitaReverbParameterCrossoverFrequency"),
         defaultValue: 200.0,
-        range: 10.0 ... 1_000.0,
+        range: 50.0 ... 1_000.0,
         unit: .hertz)
 
     /// Crossover frequency separating low and middle frequencies (Hz).
@@ -49,7 +49,7 @@ public class ZitaReverb: Node {
         name: "Time (in seconds) to decay 60db in low-frequency band.",
         address: akGetParameterAddress("ZitaReverbParameterLowReleaseTime"),
         defaultValue: 3.0,
-        range: 0.0 ... 10.0,
+        range: 1.0 ... 8.0,
         unit: .seconds)
 
     /// Time (in seconds) to decay 60db in low-frequency band.
@@ -61,7 +61,7 @@ public class ZitaReverb: Node {
         name: "Time (in seconds) to decay 60db in mid-frequency band.",
         address: akGetParameterAddress("ZitaReverbParameterMidReleaseTime"),
         defaultValue: 2.0,
-        range: 0.0 ... 10.0,
+        range: 1.0 ... 8.0,
         unit: .seconds)
 
     /// Time (in seconds) to decay 60db in mid-frequency band.
@@ -73,7 +73,7 @@ public class ZitaReverb: Node {
         name: "Frequency (Hz) at which the high-frequency T60 is half the middle-band's T60.",
         address: akGetParameterAddress("ZitaReverbParameterDampingFrequency"),
         defaultValue: 6_000.0,
-        range: 10.0 ... 22_050.0,
+        range: 1_500.0 ... 47_040.0,
         unit: .hertz)
 
     /// Frequency (Hz) at which the high-frequency T60 is half the middle-band's T60.
@@ -85,7 +85,7 @@ public class ZitaReverb: Node {
         name: "Center frequency of second-order Regalia Mitra peaking equalizer section 1.",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerFrequency1"),
         defaultValue: 315.0,
-        range: 10.0 ... 1_000.0,
+        range: 40.0 ... 2_500.0,
         unit: .hertz)
 
     /// Center frequency of second-order Regalia Mitra peaking equalizer section 1.
@@ -97,7 +97,7 @@ public class ZitaReverb: Node {
         name: "Peak level in dB of second-order Regalia-Mitra peaking equalizer section 1",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerLevel1"),
         defaultValue: 0.0,
-        range: -100.0 ... 10.0,
+        range: -15.0 ... 15.0,
         unit: .generic)
 
     /// Peak level in dB of second-order Regalia-Mitra peaking equalizer section 1
@@ -109,7 +109,7 @@ public class ZitaReverb: Node {
         name: "Center frequency of second-order Regalia Mitra peaking equalizer section 2.",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerFrequency2"),
         defaultValue: 1_500.0,
-        range: 10.0 ... 22_050.0,
+        range: 160.0 ... 1_000.0,
         unit: .hertz)
 
     /// Center frequency of second-order Regalia Mitra peaking equalizer section 2.
@@ -121,7 +121,7 @@ public class ZitaReverb: Node {
         name: "Peak level in dB of second-order Regalia-Mitra peaking equalizer section 2",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerLevel2"),
         defaultValue: 0.0,
-        range: -100.0 ... 10.0,
+        range: -15.0 ... 15.0,
         unit: .generic)
 
     /// Peak level in dB of second-order Regalia-Mitra peaking equalizer section 2
