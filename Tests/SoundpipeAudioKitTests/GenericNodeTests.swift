@@ -131,9 +131,9 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "c9ab35b7818db6a9af4edfbe2cb83927", factory: { CombFilterReverb(input) })
         nodeParameterTest(md5: "1d47a6a4a24667064b747cd6571d0874", factory: { CostelloReverb(input) })
         nodeParameterTest(md5: "6d17509eee0059105454f3cad4499586", factory: { DCBlock(input) })
-        nodeParameterTest(md5: "55d7b2312d921aacf87d92c81bcbc806", factory: { Decimator(input) })
+        nodeParameterTest(md5: "fd4e315defe463bd643dd0c797cfd1f2", factory: { Decimator(input) })
         nodeParameterTest(md5: "768665e4bad0372b7cdcc8be6040621e", factory: { Delay(input) })
-        nodeParameterTest(md5: "2b0db813cce8ff7f2180d7a820737000", factory: { Distortion(input) })
+        nodeParameterTest(md5: "4e240310041e20bdc886dd5eb285e89c", factory: { Distortion(input) })
         nodeParameterTest(md5: "a245e060a95fa63f70f01633eb00db0b", factory: { DynamicRangeCompressor(input) })
         nodeParameterTest(md5: "8eca17f8e436de978afc7250edd765fe", factory: { EqualizerFilter(input) })
         nodeParameterTest(md5: "b2eac657e060927cd0b3bfd74817c99e", factory: { FlatFrequencyResponseReverb(input) })
@@ -144,7 +144,7 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "7ce66baf0b5a272dc83db83f443bd1d8", factory: { TanhDistortion(input) })
         nodeParameterTest(md5: "6a54cda833433325a5bd885c1375c6e2", factory: { Tremolo(input) }, m1MD5: "bb704255aad8df505d427fea08d57246")
         nodeParameterTest(md5: "17b152691ddaca9a74a5ab086db0e546", factory: { VariableDelay(input) })
-        nodeParameterTest(md5: "b65a3c67da751b0f1bc6b6d604af1908", factory: { ZitaReverb(input) }, m1MD5: "78f088f0a48ab37c3d5fcfca9c9a8365")
+        nodeParameterTest(md5: "88abdd2849431c26dab746666fcc7dbc", factory: { ZitaReverb(input) }, m1MD5: "489a410a70b87390bdc84f9f881bd260")
 
     }
 
