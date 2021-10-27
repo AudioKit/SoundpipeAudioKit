@@ -55,6 +55,16 @@ class DryWetMixerTests: XCTestCase {
         audio.append(engine.render(duration: 1.0))
         testMD5(audio)
     }
+
+    func testDryWetInMixerDoesntCrash() {
+        let engine = AudioEngine()
+        let input = Oscillator()
+        let bitcrusher = BitCrusher(input)
+        let dryWet = DryWetMixer(BitCrusher(bitcrusher), bitcrusher)
+
+        let mix = Mixer(input, dryWet)
+        engine.output = mix
+    }
     
     /* Test produces different results on local machine vs CI
     func testDetachWhileHavingAnInputMixer() {
