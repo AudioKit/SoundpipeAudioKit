@@ -2,6 +2,7 @@
 
 #pragma once
 
+#import <Foundation/Foundation.h>
 #include "Interop.h"
 
 typedef struct PitchTracker *PitchTrackerRef;
