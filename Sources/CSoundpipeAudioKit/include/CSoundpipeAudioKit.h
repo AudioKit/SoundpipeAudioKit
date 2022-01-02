@@ -8,7 +8,9 @@
 #import "PitchTracker.h"
 
 // Custom interop
-AK_API void akCombFilterReverbSetLoopDuration(DSPRef dsp, float duration);
-AK_API void akConvolutionSetPartitionLength(DSPRef dsp, int length);
-AK_API void akFlatFrequencyResponseSetLoopDuration(DSPRef dsp, float duration);
-AK_API void akVariableDelaySetMaximumTime(DSPRef dsp, float maximumTime);
+CF_EXTERN_C_BEGIN
+void akCombFilterReverbSetLoopDuration(DSPRef dsp, float duration);
+void akConvolutionSetPartitionLength(DSPRef dsp, int length);
+void akFlatFrequencyResponseSetLoopDuration(DSPRef dsp, float duration);
+void akVariableDelaySetMaximumTime(DSPRef dsp, float maximumTime);
+CF_EXTERN_C_END
