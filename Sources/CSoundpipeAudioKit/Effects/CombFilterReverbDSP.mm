@@ -3,6 +3,7 @@
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
+#include "CSoundpipeAudioKit.h"
 
 enum CombFilterReverbParameter : AUParameterAddress {
     CombFilterReverbParameterReverbDuration,
