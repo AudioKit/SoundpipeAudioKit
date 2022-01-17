@@ -1,5 +1,6 @@
 // Copyright AudioKit. All Rights Reserved.
 
+#include "CSoundpipeAudioKit.h"
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
@@ -63,7 +64,7 @@ public:
     }
 };
 
-AK_API void akCombFilterReverbSetLoopDuration(DSPRef dspRef, float duration) {
+void akCombFilterReverbSetLoopDuration(DSPRef dspRef, float duration) {
     auto dsp = dynamic_cast<CombFilterReverbDSP *>(dspRef);
     assert(dsp);
     dsp->setLoopDuration(duration);

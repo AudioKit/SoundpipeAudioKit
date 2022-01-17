@@ -1,5 +1,6 @@
 // Copyright AudioKit. All Rights Reserved.
 
+#include "CSoundpipeAudioKit.h"
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
@@ -69,7 +70,7 @@ public:
     }
 };
 
-AK_API void akConvolutionSetPartitionLength(DSPRef dsp, int length) {
+void akConvolutionSetPartitionLength(DSPRef dsp, int length) {
     ((ConvolutionDSP*)dsp)->setPartitionLength(length);
 }
 

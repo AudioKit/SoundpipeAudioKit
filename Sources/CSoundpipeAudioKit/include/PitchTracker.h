@@ -2,12 +2,17 @@
 
 #pragma once
 
+#import <Foundation/Foundation.h>
 #include "Interop.h"
+
+CF_EXTERN_C_BEGIN
 
 typedef struct PitchTracker *PitchTrackerRef;
 
-AK_API PitchTrackerRef akPitchTrackerCreate(unsigned int sampleRate, int hopSize, int peakCount);
-AK_API void akPitchTrackerDestroy(PitchTrackerRef);
+PitchTrackerRef akPitchTrackerCreate(unsigned int sampleRate, int hopSize, int peakCount);
+void akPitchTrackerDestroy(PitchTrackerRef);
 
-AK_API void akPitchTrackerAnalyze(PitchTrackerRef tracker, float* frames, unsigned int count);
-AK_API void akPitchTrackerGetResults(PitchTrackerRef tracker, float* trackedAmplitude, float* trackedFrequency);
+void akPitchTrackerAnalyze(PitchTrackerRef tracker, float* frames, unsigned int count);
+void akPitchTrackerGetResults(PitchTrackerRef tracker, float* trackedAmplitude, float* trackedFrequency);
+
+CF_EXTERN_C_END

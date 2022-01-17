@@ -1,5 +1,6 @@
 // Copyright AudioKit. All Rights Reserved.
 
+#include "CSoundpipeAudioKit.h"
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
@@ -71,7 +72,7 @@ public:
     }
 };
 
-AK_API void akVariableDelaySetMaximumTime(DSPRef dspRef, float maximumTime) {
+void akVariableDelaySetMaximumTime(DSPRef dspRef, float maximumTime) {
     auto dsp = dynamic_cast<VariableDelayDSP *>(dspRef);
     assert(dsp);
     dsp->setMaximumTime(maximumTime);
