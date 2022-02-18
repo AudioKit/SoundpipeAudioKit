@@ -64,7 +64,7 @@ int sp_randi_init(sp_data *sp, sp_randi *p)
         p->num2 = sp_randGab;
         p->dfdmax = (p->num2 - p->num1) / SP_FT_MAXLEN * 1.0;
         break;
-    default: /* old behaviour as developped by Gabriel */
+    default: /* old behaviour as developed by Gabriel */
         p->num1 = p->num2 = 0.0;
         p->dfdmax = 0.0;
     }
