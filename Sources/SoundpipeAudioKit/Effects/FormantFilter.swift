@@ -48,13 +48,13 @@ public class FormantFilter: Node {
     /// Specification details for decayDuration
     public static let decayDurationDef = NodeParameterDef(
         identifier: "decayDuration",
-        name: "Impulse reponse decay time (Seconds)",
+        name: "Impulse response decay time (Seconds)",
         address: akGetParameterAddress("FormantFilterParameterDecayDuration"),
         defaultValue: 0.04,
         range: 0.0 ... 0.1,
         unit: .seconds)
 
-    /// Impulse reponse decay time (in seconds)
+    /// Impulse response decay time (in seconds)
     @Parameter(decayDurationDef) public var decayDuration: AUValue
 
     // MARK: - Initialization
@@ -65,7 +65,7 @@ public class FormantFilter: Node {
     ///   - input: Input node to process
     ///   - centerFrequency: Center frequency.
     ///   - attackDuration: Impulse response attack time (in seconds).
-    ///   - decayDuration: Impulse reponse decay time (in seconds)
+    ///   - decayDuration: Impulse response decay time (in seconds)
     ///
     public init(
         _ input: Node,

@@ -56,7 +56,7 @@ public class PitchTap: BaseTap {
         }
     }
 
-    /// Overide this method to handle Tap in derived class
+    /// Override this method to handle Tap in derived class
     /// - Parameters:
     ///   - buffer: Buffer to analyze
     ///   - time: Unused in this case

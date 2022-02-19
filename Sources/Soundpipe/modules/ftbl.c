@@ -162,7 +162,7 @@ int sp_gen_line(sp_data *sp, sp_ftbl *ft, const char *argstring)
         y2 = args->tbl[i + 1];
 
         if(x2 < x1) {
-            fprintf(stderr, "Error: x coordiates must be sequential!\n");
+            fprintf(stderr, "Error: x coordinates must be sequential!\n");
             break;
         }
 
@@ -215,7 +215,7 @@ int sp_gen_xline(sp_data *sp, sp_ftbl *ft, const char *argstring)
         y2 = args->tbl[i + 1];
 
         if(x2 < x1) {
-            fprintf(stderr, "Error: x coordiates must be sequential!\n");
+            fprintf(stderr, "Error: x coordinates must be sequential!\n");
             break;
         }
 

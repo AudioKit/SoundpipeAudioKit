@@ -15,7 +15,7 @@ int sp_thresh_destroy(sp_thresh **p)
 
 int sp_thresh_init(sp_data *sp, sp_thresh *p)
 {
-    /* Initalize variables here. */
+    /* Initialize variables here. */
     p->init = 1;
     p->mode = 0;
     p->prev = 0;
