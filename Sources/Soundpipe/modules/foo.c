@@ -23,7 +23,7 @@ int sp_foo_destroy(sp_foo **p)
 
 int sp_foo_init(sp_data *sp, sp_foo *p)
 {
-    /* Initalize variables here. */
+    /* Initialize variables here. */
     p->bar = 123;
     return SP_OK;
 }

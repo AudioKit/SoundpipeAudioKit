@@ -1,8 +1,8 @@
 /*
  * WPKorg35
  *
- * This is a filter based off of an implemenation the Korg35 filter by Will
- * Pirke. It has been ported from the CCRMA chugin by the same name.
+ * This is a filter based off of an implementation of the Korg35 filter
+ * by Will Pirke. It has been ported from the CCRMA chugin by the same name.
  *
  */
 
