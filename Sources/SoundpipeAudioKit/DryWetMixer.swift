@@ -9,28 +9,24 @@ import CAudioKitEX
 ///
 public class DryWetMixer: Node {
 
-    let input1: Node
-    let input2: Node
+    private let mix: DryWetDualMixer
     
     /// Connected nodes
-    public var connections: [Node] { [input1, input2] }
+    public var connections: [Node] { mix.connections }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(mixer: "dwmx")
+    public var avAudioNode: AVAudioNode { mix.avAudioNode }
 
     // MARK: - Parameters
 
-    /// Specification details for balance
-    public static let balanceDef = NodeParameterDef(
-        identifier: "balance",
-        name: "Balance",
-        address: akGetParameterAddress("DryWetMixerParameterBalance"),
-        defaultValue: 0.5,
-        range: 0.0...1.0,
-        unit: .generic)
-
     /// Balance between input signals
-    @Parameter(balanceDef) public var balance: AUValue
+    public var balance: AUValue {
+        get { mix.wet }
+        set {
+            mix.wet = newValue
+            mix.dry = 1 - newValue
+        }
+    }
 
     /// Initialize this dry wet mixer node
     ///
@@ -39,13 +35,14 @@ public class DryWetMixer: Node {
     ///   - input2: 2nd source
     ///   - balance: Balance Point (0 = all input1, 1 = all input2)
     ///
-    public init(_ input1: Node, _ input2: Node, balance: AUValue = balanceDef.defaultValue) {
-        self.input1 = input1
-        self.input2 = input2
+    public init(_ input1: Node, _ input2: Node, balance: AUValue = 0.5) {
+        self.mix = DryWetDualMixer(input1, input2)
         
         setupParameters()
         
         self.balance = balance
+        self.mix.dry = 1 - balance
+        self.mix.wet = balance
     }
 
     /// Initializer with dry wet labels
