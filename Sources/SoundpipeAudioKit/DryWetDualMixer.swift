@@ -51,7 +51,10 @@ public class DryWetDualMixer: Node {
     ///   - dryAmount: Amount of dry signal
     ///   - wetAmount: Amount of wet signal
     ///
-    public init(_ input1: Node, _ input2: Node, dryAmount: AUValue = dryDef.defaultValue, wetAmount: AUValue = wetDef.defaultValue) {
+    public init(_ input1: Node,
+                _ input2: Node,
+                dryAmount: AUValue = dryDef.defaultValue,
+                wetAmount: AUValue = wetDef.defaultValue) {
         self.input1 = input1
         self.input2 = input2
 
