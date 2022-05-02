@@ -9,7 +9,7 @@ let package = Package(
     products: [.library(name: "SoundpipeAudioKit", targets: ["SoundpipeAudioKit"])],
     dependencies: [
         .package(url: "https://github.com/AudioKit/KissFFT", from: "1.0.0"),
-        .package(url: "https://github.com/AudioKit/AudioKit", from: "5.4.0"),
+        .package(url: "https://github.com/AudioKit/AudioKit", from: "5.4.1"),
         .package(url: "https://github.com/AudioKit/AudioKitEX", from: "5.4.0"),
     ],
     targets: [
