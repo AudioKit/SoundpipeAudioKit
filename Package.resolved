@@ -6,8 +6,17 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKit",
         "state": {
           "branch": null,
-          "revision": "fca2966f95440760c6264aa6368dfb5bf829b2dd",
-          "version": "5.2.2"
+          "revision": "e7f37266dc9200f04a2646b108acae98c87f8e46",
+          "version": "5.4.1"
+        }
+      },
+      {
+        "package": "AudioKitEX",
+        "repositoryURL": "https://github.com/AudioKit/AudioKitEX",
+        "state": {
+          "branch": null,
+          "revision": "b66fb1e2922611ac0c5a7ac5bbe2731f9b5ce38b",
+          "version": "5.4.0"
         }
       },
       {

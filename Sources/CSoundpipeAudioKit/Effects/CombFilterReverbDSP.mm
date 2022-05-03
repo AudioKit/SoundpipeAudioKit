@@ -3,6 +3,7 @@
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
+#include "CSoundpipeAudioKit.h"
 
 enum CombFilterReverbParameter : AUParameterAddress {
     CombFilterReverbParameterReverbDuration,
@@ -63,7 +64,7 @@ public:
     }
 };
 
-AK_API void akCombFilterReverbSetLoopDuration(DSPRef dspRef, float duration) {
+void akCombFilterReverbSetLoopDuration(DSPRef dspRef, float duration) {
     auto dsp = dynamic_cast<CombFilterReverbDSP *>(dspRef);
     assert(dsp);
     dsp->setLoopDuration(duration);

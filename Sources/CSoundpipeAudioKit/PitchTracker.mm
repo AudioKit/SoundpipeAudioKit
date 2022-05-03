@@ -33,19 +33,19 @@ struct PitchTracker {
     float trackedFrequency = 0.0;
 };
 
-AK_API PitchTrackerRef akPitchTrackerCreate(unsigned int sampleRate, int hopSize, int peakCount) {
+PitchTrackerRef akPitchTrackerCreate(unsigned int sampleRate, int hopSize, int peakCount) {
     return new PitchTracker(sampleRate, hopSize, peakCount);
 }
 
-AK_API void akPitchTrackerDestroy(PitchTrackerRef tracker) {
+void akPitchTrackerDestroy(PitchTrackerRef tracker) {
     delete tracker;
 }
 
-AK_API void akPitchTrackerAnalyze(PitchTrackerRef tracker, float* frames, unsigned int count) {
+void akPitchTrackerAnalyze(PitchTrackerRef tracker, float* frames, unsigned int count) {
     tracker->analyze(frames, count);
 }
 
-AK_API void akPitchTrackerGetResults(PitchTrackerRef tracker, float* trackedAmplitude, float* trackedFrequency) {
+void akPitchTrackerGetResults(PitchTrackerRef tracker, float* trackedAmplitude, float* trackedFrequency) {
     *trackedAmplitude = tracker->trackedAmplitude;
     *trackedFrequency = tracker->trackedFrequency;
 }

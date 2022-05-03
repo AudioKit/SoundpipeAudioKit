@@ -9,7 +9,8 @@ let package = Package(
     products: [.library(name: "SoundpipeAudioKit", targets: ["SoundpipeAudioKit"])],
     dependencies: [
         .package(url: "https://github.com/AudioKit/KissFFT", from: "1.0.0"),
-        .package(url: "https://github.com/AudioKit/AudioKit", from: "5.2.0"),
+        .package(url: "https://github.com/AudioKit/AudioKit", from: "5.4.1"),
+        .package(url: "https://github.com/AudioKit/AudioKitEX", from: "5.4.0"),
     ],
     targets: [
         .target(name: "Soundpipe",
@@ -21,8 +22,8 @@ let package = Package(
                     .headerSearchPath("modules"),
                     .headerSearchPath("external")
                 ]),
-        .target(name: "SoundpipeAudioKit", dependencies: ["AudioKit", "CSoundpipeAudioKit"]),
-        .target(name: "CSoundpipeAudioKit", dependencies: ["AudioKit",  "Soundpipe"]),
+        .target(name: "SoundpipeAudioKit", dependencies: ["AudioKit", "AudioKitEX", "CSoundpipeAudioKit"]),
+        .target(name: "CSoundpipeAudioKit", dependencies: ["AudioKit", "AudioKitEX", "Soundpipe"]),
         .testTarget(name: "SoundpipeAudioKitTests", dependencies: ["SoundpipeAudioKit"], resources: [.copy("TestResources/")]),
         .testTarget(name: "CSoundpipeAudioKitTests", dependencies: ["CSoundpipeAudioKit"]),
     ],

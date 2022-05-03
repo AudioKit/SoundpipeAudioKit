@@ -3,6 +3,7 @@
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
+#include "CSoundpipeAudioKit.h"
 #include <vector>
 
 enum ConvolutionParameter : AUParameterAddress {
@@ -69,7 +70,7 @@ public:
     }
 };
 
-AK_API void akConvolutionSetPartitionLength(DSPRef dsp, int length) {
+void akConvolutionSetPartitionLength(DSPRef dsp, int length) {
     ((ConvolutionDSP*)dsp)->setPartitionLength(length);
 }
 

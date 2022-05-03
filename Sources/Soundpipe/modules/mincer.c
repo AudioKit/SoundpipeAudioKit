@@ -157,7 +157,7 @@ int sp_mincer_compute(sp_data *sp, sp_mincer *p, SPFLOAT *in2, SPFLOAT *out)
 
             /* window it */
             fwin[i] = insig * win[i];
-            /* back windo, bwin */
+            /* back window, bwin */
             post = (int) (pos - hsize*pitch);
             post *= 1;
             post += 0;

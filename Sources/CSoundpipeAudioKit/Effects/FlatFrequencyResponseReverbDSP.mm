@@ -3,6 +3,7 @@
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
+#include "CSoundpipeAudioKit.h"
 
 enum FlatFrequencyResponseReverbParameter : AUParameterAddress {
     FlatFrequencyResponseReverbParameterReverbDuration,
@@ -63,7 +64,7 @@ public:
     }
 };
 
-AK_API void akFlatFrequencyResponseSetLoopDuration(DSPRef dspRef, float duration) {
+void akFlatFrequencyResponseSetLoopDuration(DSPRef dspRef, float duration) {
     auto dsp = dynamic_cast<FlatFrequencyResponseReverbDSP *>(dspRef);
     assert(dsp);
     dsp->setLoopDuration(duration);
