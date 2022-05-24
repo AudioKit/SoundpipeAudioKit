@@ -59,7 +59,9 @@ public:
     void reset() override {
         SoundpipeDSPBase::reset();
         if (!isInitialized) return;
+        void *old = zitarev->faust;
         sp_zitarev_init(sp, zitarev);
+        free(old);
     }
 
     void process(FrameRange range) override {
