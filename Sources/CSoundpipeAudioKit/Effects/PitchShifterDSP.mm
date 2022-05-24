@@ -42,8 +42,12 @@ public:
     void reset() override {
         SoundpipeDSPBase::reset();
         if (!isInitialized) return;
+        void *old1 = pshift0->faust;
+        void *old2 = pshift1->faust;
         sp_pshift_init(sp, pshift0);
         sp_pshift_init(sp, pshift1);
+        free(old1);
+        free(old2);
     }
 
     void process(FrameRange range) override {
