@@ -127,6 +127,7 @@ public class Convolution: Node {
                         bufferList.mBuffers.mData?.assumingMemoryBound(to: Float.self)
                     )
                     au.setWavetable(data: data, size: Int(ioNumberFrames))
+                    ExtAudioFileDispose(externalAudioFileRef)
                 } else {
                     // failure
                     theData?.deallocate()
