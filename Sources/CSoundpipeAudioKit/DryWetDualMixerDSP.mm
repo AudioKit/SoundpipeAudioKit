@@ -29,7 +29,6 @@ public:
             for (int channel = 0; channel < channelCount; ++channel) {
                 float dry = inputSample(channel, i);
                 float wet = input2Sample(channel, i);
-                printf("%f %f %f %f \n", dryRamp.getUIValue(), dryAmount, wetAmount, wetRamp.getUIValue());
                 outputSample(channel, i) =  dryAmount * dry + wetAmount * wet;
             }
         }
