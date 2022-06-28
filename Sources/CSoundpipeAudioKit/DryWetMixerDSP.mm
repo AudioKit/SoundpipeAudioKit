@@ -4,37 +4,33 @@
 #include "ParameterRamper.h"
 
 enum DryWetMixerParameter : AUParameterAddress {
-    DryWetMixerParameterDry,
-    DryWetMixerParameterWet,
+    DryWetMixerParameterBalance,
 };
 
 class DryWetMixerDSP : public SoundpipeDSPBase {
 private:
-    ParameterRamper dryRamp;
-    ParameterRamper wetRamp;
+    ParameterRamper balanceRamp;
 
 public:
     DryWetMixerDSP() {
         inputBufferLists.resize(2);
-        parameters[DryWetMixerParameterDry] = &dryRamp;
-        parameters[DryWetMixerParameterWet] = &wetRamp;
+        parameters[DryWetMixerParameterBalance] = &balanceRamp;
     }
 
     void process(FrameRange range) override {
         for (int i : range) {
 
-            float dryAmount = dryRamp.getAndStep();
-            float wetAmount = wetRamp.getAndStep();
+            float balance = balanceRamp.getAndStep();
 
             for (int channel = 0; channel < channelCount; ++channel) {
                 float dry = inputSample(channel, i);
                 float wet = input2Sample(channel, i);
-                outputSample(channel, i) =  dryAmount * dry + wetAmount * wet;
+                outputSample(channel, i) =  (1.0f - balance) * dry + balance * wet;
             }
+
         }
     }
 };
 
 AK_REGISTER_DSP(DryWetMixerDSP, "dwmx")
-AK_REGISTER_PARAMETER(DryWetMixerParameterDry)
-AK_REGISTER_PARAMETER(DryWetMixerParameterWet)
+AK_REGISTER_PARAMETER(DryWetMixerParameterBalance)
