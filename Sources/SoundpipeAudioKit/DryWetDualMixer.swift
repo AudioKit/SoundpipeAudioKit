@@ -16,14 +16,14 @@ public class DryWetDualMixer: Node {
     public var connections: [Node] { [input1, input2] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(mixer: "dwmx")
+    public var avAudioNode = instantiate(mixer: "dwm2")
 
     // MARK: - Parameters
 
     public static let dryDef = NodeParameterDef(
         identifier: "dry",
         name: "Dry Mix",
-        address: akGetParameterAddress("DryWetMixerParameterDry"),
+        address: akGetParameterAddress("DryWetDualMixerParameterDry"),
         defaultValue: 0.5,
         range: 0.0...1.0,
         unit: .generic
@@ -35,7 +35,7 @@ public class DryWetDualMixer: Node {
     public static let wetDef = NodeParameterDef(
         identifier: "wet",
         name: "Wet Mix",
-        address: akGetParameterAddress("DryWetMixerParameterWet"),
+        address: akGetParameterAddress("DryWetDualMixerParameterWet"),
         defaultValue: 0.5,
         range: 0.0...1.0,
         unit: .generic
