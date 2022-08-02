@@ -17,7 +17,7 @@ This extension to AudioKit has the majority of old versions of AudioKit's DSP in
 
 See the [AudioKit Cookbook](https://github.com/AudioKit/Cookbook/) for examples.
 
-## Installation in Xcode 13
+## Installation
 
 You can AudioKit and any of the other AudioKit libraries using Collections
 
