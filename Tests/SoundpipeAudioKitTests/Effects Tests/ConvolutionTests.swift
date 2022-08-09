@@ -45,9 +45,10 @@ class ConvolutionTests: XCTestCase {
         let engine = AudioEngine()
         let player = AudioPlayer()
         
-        let dishURL = Bundle.module.url(forResource: "TestResources/dish", withExtension: "wav")!
+        /// Obtained from the 'Listen HRTF Databse' - http://recherche.ircam.fr/equipes/salles/listen/
+        let hrirURL = Bundle.module.url(forResource: "TestResources/IRC_1002_R_R0195_T000_P000", withExtension: "wav")!
         let convolution = Convolution(player,
-                                      impulseResponseFileURL: dishURL,
+                                      impulseResponseFileURL: hrirURL,
                                       partitionLength: 8_192)
 
         engine.output = convolution
@@ -59,7 +60,6 @@ class ConvolutionTests: XCTestCase {
         audio.append(engine.render(duration: 2.0))
         
         testMD5(audio)
-        
         
     }
 }
