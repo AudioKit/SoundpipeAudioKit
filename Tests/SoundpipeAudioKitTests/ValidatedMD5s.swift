@@ -23,6 +23,7 @@ let validatedMD5s: [String: String] = [
     "-[AmplitudeEnvelopeTests testSustain]": "eab230014d499b2d8c82781d2b645cdc",
     "-[BalancerTests testDefault]": "26e2c62078ee266c120677b7386ab292",
     "-[ConvolutionTests testConvolution]": "d585f94eba7aedafd7987c68af78ff75",
+    "-[ConvolutionTests testStereoConvolution]": "4b7904aebc448fc6d5fbcdefba320b2a",
     "-[DripTests testDampingFactor]": "19a31b71aa62fbc19de4d1a7993482b1",
     "-[DripTests testDefault]": "290084f9fba0a691b12c306571a3fee2",
     "-[DripTests testIntensity]": "a1cf4153c34661d789ef00e0f2886e24",

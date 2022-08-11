@@ -46,7 +46,7 @@ public class Convolution: Node {
         self.readAudioFile()
         self.start()
     }
-
+    
     private func readAudioFile() {
         Exit: do {
             var err: OSStatus = noErr
@@ -77,12 +77,12 @@ public class Convolution: Node {
                 Log("Unsupported Format, channel count is greater than stereo")
                 break Exit
             }
-
+            
             theOutputFormat.mSampleRate = Settings.sampleRate
             theOutputFormat.mFormatID = kAudioFormatLinearPCM
-            theOutputFormat.mFormatFlags = kLinearPCMFormatFlagIsFloat
+            theOutputFormat.mFormatFlags = kLinearPCMFormatFlagIsFloat | kAudioFormatFlagIsNonInterleaved
             theOutputFormat.mBitsPerChannel = UInt32(MemoryLayout<Float>.stride) * 8
-            theOutputFormat.mChannelsPerFrame = 1 // Mono
+            theOutputFormat.mChannelsPerFrame = 1 //theFileFormat.mChannelsPerFrame
             theOutputFormat.mBytesPerFrame = theOutputFormat.mChannelsPerFrame * UInt32(MemoryLayout<Float>.stride)
             theOutputFormat.mFramesPerPacket = 1
             theOutputFormat.mBytesPerPacket = theOutputFormat.mFramesPerPacket * theOutputFormat.mBytesPerFrame
@@ -109,9 +109,10 @@ public class Convolution: Node {
             }
 
             // Read all the data into memory
-            let dataSize = UInt32(theFileLengthInFrames) * theOutputFormat.mBytesPerFrame
+            let dataSize = UInt32(theFileLengthInFrames) * theOutputFormat.mBytesPerFrame * theFileFormat.mChannelsPerFrame
             theData = UnsafeMutablePointer.allocate(capacity: Int(dataSize))
             if theData != nil {
+
                 var bufferList: AudioBufferList = AudioBufferList()
                 bufferList.mNumberBuffers = 1
                 bufferList.mBuffers.mDataByteSize = dataSize
@@ -119,14 +120,20 @@ public class Convolution: Node {
                 bufferList.mBuffers.mData = UnsafeMutableRawPointer(theData)
 
                 // Read the data into an AudioBufferList
-                var ioNumberFrames: UInt32 = UInt32(theFileLengthInFrames)
+                var ioNumberFrames: UInt32 = UInt32(theFileLengthInFrames) * theFileFormat.mChannelsPerFrame
                 err = ExtAudioFileRead(externalAudioFileRef, &ioNumberFrames, &bufferList)
                 if err == noErr {
                     // success
                     let data = UnsafeMutablePointer<Float>(
                         bufferList.mBuffers.mData?.assumingMemoryBound(to: Float.self)
                     )
-                    au.setWavetable(data: data, size: Int(ioNumberFrames))
+
+                    au.setWavetable(data: data, size: Int(ioNumberFrames), index: 0)
+                    
+                    if( theFileFormat.mChannelsPerFrame > 1){
+                        au.setWavetable(data: data! + Int(ioNumberFrames), size: Int(ioNumberFrames), index: 1)
+                    }
+                    
                     ExtAudioFileDispose(externalAudioFileRef)
                 } else {
                     // failure

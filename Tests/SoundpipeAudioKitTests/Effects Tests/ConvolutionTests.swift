@@ -47,6 +47,7 @@ class ConvolutionTests: XCTestCase {
         
         /// Obtained from the 'Listen HRTF Databse' - http://recherche.ircam.fr/equipes/salles/listen/
         let hrirURL = Bundle.module.url(forResource: "TestResources/IRC_1002_R_R0195_T000_P000", withExtension: "wav")!
+
         let convolution = Convolution(player,
                                       impulseResponseFileURL: hrirURL,
                                       partitionLength: 8_192)
