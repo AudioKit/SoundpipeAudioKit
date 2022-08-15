@@ -39,10 +39,11 @@ public:
 
     void init(int channelCount, double sampleRate) override {
         SoundpipeDSPBase::init(channelCount, sampleRate);
-                
-        for(int i = 0; i < irChannels; i++) {Í
+        
+        for(int i = 0; i < irChannels; i++) {
+            int size = wavetable[i].size();
             sp_ftbl_create(sp, &ftbl[i], wavetable[i].size());
-             std::copy(wavetable[i].cbegin(), wavetable[i].cend(), ftbl[i]->tbl);
+            std::copy(wavetable[i].cbegin(), wavetable[i].cend(), ftbl[i]->tbl);
         }
         
         sp_conv_create(&conv0);
