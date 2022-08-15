@@ -1,17 +1,16 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
-import AVFoundation
 import AudioKit
 import AudioKitEX
+import AVFoundation
 import CSoundpipeAudioKit
 
 /// This module will perform partitioned convolution on an input signal using an
 /// ftable as an impulse response.
 ///
 public class Convolution: Node {
-
     let input: Node
-    
+
     /// Connected nodes
     public var connections: [Node] { [input] }
 
@@ -21,7 +20,7 @@ public class Convolution: Node {
     // MARK: - Parameters
 
     fileprivate var impulseResponseFileURL: CFURL
-    fileprivate var partitionLength: Int = 2_048
+    fileprivate var partitionLength: Int = 2048
 
     // MARK: - Initialization
 
@@ -33,107 +32,71 @@ public class Convolution: Node {
     ///
     public init(_ input: Node,
                 impulseResponseFileURL: URL,
-                partitionLength: Int = 2_048
-    ) {
+                partitionLength: Int = 2048)
+    {
         self.input = input
         self.impulseResponseFileURL = impulseResponseFileURL as CFURL
         self.partitionLength = partitionLength
-        
+
         setupParameters()
-        
         akConvolutionSetPartitionLength(au.dsp, Int32(partitionLength))
-        
-        self.readAudioFile()
-        self.start()
+
+        readAudioFile()
+        start()
     }
 
     private func readAudioFile() {
         Exit: do {
-            var err: OSStatus = noErr
-            var theFileLengthInFrames: Int64 = 0
-            var theFileFormat: AudioStreamBasicDescription = AudioStreamBasicDescription()
-            var thePropertySize: UInt32 = UInt32(MemoryLayout.stride(ofValue: theFileFormat))
-            var extRef: ExtAudioFileRef?
-            var theData: UnsafeMutablePointer<CChar>?
-            var theOutputFormat: AudioStreamBasicDescription = AudioStreamBasicDescription()
+            var error: NSError?
 
-            err = ExtAudioFileOpenURL(impulseResponseFileURL, &extRef)
-            if err != 0 { Log("ExtAudioFileOpenURL FAILED, Error = \(err)"); break Exit }
-
-            guard let externalAudioFileRef = extRef else {
+            guard let file = try? AVAudioFile(forReading: impulseResponseFileURL as URL) else {
+                Log("Error = Reading impulse file")
                 break Exit
             }
 
-            // Get the audio data format
-            err = ExtAudioFileGetProperty(externalAudioFileRef,
-                                          kExtAudioFileProperty_FileDataFormat,
-                                          &thePropertySize,
-                                          &theFileFormat)
-            if err != 0 {
-                Log("ExtAudioFileGetProperty(kExtAudioFileProperty_FileDataFormat) FAILED, Error = \(err)")
-                break Exit
-            }
-            if theFileFormat.mChannelsPerFrame > 2 {
-                Log("Unsupported Format, channel count is greater than stereo")
+            guard let inputBuffer = try? AVAudioPCMBuffer(file: file) else {
+                Log("Error = Reading impulse response file")
                 break Exit
             }
 
-            theOutputFormat.mSampleRate = Settings.sampleRate
-            theOutputFormat.mFormatID = kAudioFormatLinearPCM
-            theOutputFormat.mFormatFlags = kLinearPCMFormatFlagIsFloat
-            theOutputFormat.mBitsPerChannel = UInt32(MemoryLayout<Float>.stride) * 8
-            theOutputFormat.mChannelsPerFrame = 1 // Mono
-            theOutputFormat.mBytesPerFrame = theOutputFormat.mChannelsPerFrame * UInt32(MemoryLayout<Float>.stride)
-            theOutputFormat.mFramesPerPacket = 1
-            theOutputFormat.mBytesPerPacket = theOutputFormat.mFramesPerPacket * theOutputFormat.mBytesPerFrame
-
-            // Set the desired client (output) data format
-            err = ExtAudioFileSetProperty(externalAudioFileRef,
-                                          kExtAudioFileProperty_ClientDataFormat,
-                                          UInt32(MemoryLayout.stride(ofValue: theOutputFormat)),
-                                          &theOutputFormat)
-            if err != 0 {
-                Log("ExtAudioFileSetProperty(kExtAudioFileProperty_ClientDataFormat) FAILED, Error = \(err)")
+            // Output Format
+            guard let clientFormat = AVAudioFormat(
+                commonFormat: .pcmFormatFloat32,
+                sampleRate: Settings.sampleRate,
+                channels: file.fileFormat.channelCount,
+                interleaved: false
+            ) else {
+                Log("Error = Output format error")
                 break Exit
             }
 
-            // Get the total frame count
-            thePropertySize = UInt32(MemoryLayout.stride(ofValue: theFileLengthInFrames))
-            err = ExtAudioFileGetProperty(externalAudioFileRef,
-                                          kExtAudioFileProperty_FileLengthFrames,
-                                          &thePropertySize,
-                                          &theFileLengthInFrames)
-            if err != 0 {
-                Log("ExtAudioFileGetProperty(kExtAudioFileProperty_FileLengthFrames) FAILED, Error = \(err)")
+            let frameCapacity = Double(file.length) / file.processingFormat.sampleRate * Settings.sampleRate
+            guard let outputBuffer = AVAudioPCMBuffer(pcmFormat: clientFormat, frameCapacity: AVAudioFrameCount(frameCapacity)) else {
+                Log("Error = Output buffer creation error")
                 break Exit
             }
 
-            // Read all the data into memory
-            let dataSize = UInt32(theFileLengthInFrames) * theOutputFormat.mBytesPerFrame
-            theData = UnsafeMutablePointer.allocate(capacity: Int(dataSize))
-            if theData != nil {
-                var bufferList: AudioBufferList = AudioBufferList()
-                bufferList.mNumberBuffers = 1
-                bufferList.mBuffers.mDataByteSize = dataSize
-                bufferList.mBuffers.mNumberChannels = theOutputFormat.mChannelsPerFrame
-                bufferList.mBuffers.mData = UnsafeMutableRawPointer(theData)
+            guard let converter = AVAudioConverter(from: file.processingFormat, to: clientFormat) else {
+                Log("Error = Converter initialization error")
+                break Exit
+            }
 
-                // Read the data into an AudioBufferList
-                var ioNumberFrames: UInt32 = UInt32(theFileLengthInFrames)
-                err = ExtAudioFileRead(externalAudioFileRef, &ioNumberFrames, &bufferList)
-                if err == noErr {
-                    // success
-                    let data = UnsafeMutablePointer<Float>(
-                        bufferList.mBuffers.mData?.assumingMemoryBound(to: Float.self)
-                    )
-                    au.setWavetable(data: data, size: Int(ioNumberFrames))
-                    ExtAudioFileDispose(externalAudioFileRef)
-                } else {
-                    // failure
-                    theData?.deallocate()
-                    theData = nil // make sure to return NULL
-                    Log("Error = \(err)"); break Exit
-                }
+            let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
+                outStatus.pointee = AVAudioConverterInputStatus.haveData
+                return inputBuffer
+            }
+
+            converter.convert(to: outputBuffer, error: &error, withInputFrom: inputBlock)
+
+            if error != nil {
+                Log(error!.localizedDescription)
+                break Exit
+            }
+
+            let samples = outputBuffer.toFloatChannelData()!
+
+            for (index, data) in samples.enumerated() {
+                au.setWavetable(data: data, size: data.count, index: index)
             }
         }
     }

@@ -105,7 +105,6 @@ int sp_auxdata_free(sp_auxdata *aux)
     return SP_OK;
 }
 
-
 SPFLOAT sp_midi2cps(SPFLOAT nn)
 {
     return pow(2, (nn - 69.0) / 12.0) * 440.0;

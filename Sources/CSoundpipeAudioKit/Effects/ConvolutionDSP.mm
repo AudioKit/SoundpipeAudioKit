@@ -13,30 +13,43 @@ class ConvolutionDSP : public SoundpipeDSPBase {
 private:
     sp_conv *conv0;
     sp_conv *conv1;
-    sp_ftbl *ftbl;
-    std::vector<float> wavetable;
+    sp_ftbl *ftbl[2];
+    std::vector<float> wavetable[2];
     int partitionLength = 2048;
-
+    int irChannels = 0;
+    
 public:
     ConvolutionDSP() {}
 
+    void setIrChannels(int ch){
+        irChannels = ch;
+    }
+    
     void setWavetable(const float *table, size_t length, int index) override {
-        wavetable = std::vector<float>(table, table + length);
+        irChannels++;
+        wavetable[index] = std::vector<float>(table, table + length);
+
         if (!isInitialized) return;
-        sp_ftbl_destroy(&ftbl);
-        sp_ftbl_create(sp, &ftbl, wavetable.size());
-        std::copy(wavetable.cbegin(), wavetable.cend(), ftbl->tbl);
+        
+        sp_ftbl_destroy(&ftbl[index]);
+        sp_ftbl_create(sp, &ftbl[index], wavetable[index].size());
+        std::copy(wavetable[index].cbegin(), wavetable[index].cend(), ftbl[index]->tbl);
         reset();
     }
 
     void init(int channelCount, double sampleRate) override {
         SoundpipeDSPBase::init(channelCount, sampleRate);
-        sp_ftbl_create(sp, &ftbl, wavetable.size());
-        std::copy(wavetable.cbegin(), wavetable.cend(), ftbl->tbl);
+        
+        for(int i = 0; i < irChannels; i++) {
+            int size = wavetable[i].size();
+            sp_ftbl_create(sp, &ftbl[i], wavetable[i].size());
+            std::copy(wavetable[i].cbegin(), wavetable[i].cend(), ftbl[i]->tbl);
+        }
+        
         sp_conv_create(&conv0);
-        sp_conv_init(sp, conv0, ftbl, (float)partitionLength);
+        sp_conv_init(sp, conv0, ftbl[0], (float)partitionLength);
         sp_conv_create(&conv1);
-        sp_conv_init(sp, conv1, ftbl, (float)partitionLength);
+        sp_conv_init(sp, conv1, ftbl[irChannels-1], (float)partitionLength); 
     }
 
     void setPartitionLength(int partLength) {
@@ -53,8 +66,8 @@ public:
     void reset() override {
         SoundpipeDSPBase::reset();
         if (!isInitialized) return;
-        sp_conv_init(sp, conv0, ftbl, (float)partitionLength);
-        sp_conv_init(sp, conv1, ftbl, (float)partitionLength);
+        sp_conv_init(sp, conv0, ftbl[0], (float)partitionLength);
+        sp_conv_init(sp, conv1, ftbl[irChannels-1], (float)partitionLength);
     }
 
     void process(FrameRange range) override {
