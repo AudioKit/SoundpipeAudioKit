@@ -5,7 +5,6 @@ import SoundpipeAudioKit
 import XCTest
 
 class FlatFrequencyResponseReverbTests: XCTestCase {
-
     func testLoopDuration() {
         let engine = AudioEngine()
         let input = Oscillator(waveform: Table(.triangle))

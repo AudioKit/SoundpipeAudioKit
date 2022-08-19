@@ -1,13 +1,12 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
 import AudioKit
-import XCTest
+import AVFoundation
 import CAudioKitEX
 import SoundpipeAudioKit
-import AVFoundation
+import XCTest
 
 class OscillatorAutomationTests: XCTestCase {
-
     func testNewAutomationFrequency() {
         let engine = AudioEngine()
         let oscillator = Oscillator(waveform: Table(.square), frequency: 400, amplitude: 0.5)
@@ -42,10 +41,10 @@ class OscillatorAutomationTests: XCTestCase {
 
         oscillator.start()
         let audio = engine.startTest(totalDuration: 1.0)
-        
+
         let frequencyEvent = AutomationEvent(targetValue: 880, startTime: 0, rampDuration: 1.0)
         oscillator.$frequency.automate(events: [frequencyEvent])
-        
+
         let amplitudeEvent = AutomationEvent(targetValue: 1.0, startTime: 0, rampDuration: 1.0)
         oscillator.$amplitude.automate(events: [amplitudeEvent])
         audio.append(engine.render(duration: 1.0))
@@ -89,7 +88,6 @@ class OscillatorAutomationTests: XCTestCase {
         audio.append(engine.render(duration: 1.0))
         testMD5(audio)
     }
-
 
     func testDelayedAutomation() throws {
         let engine = AudioEngine()

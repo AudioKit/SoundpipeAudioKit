@@ -1,13 +1,11 @@
 import AudioKit
-import SoundpipeAudioKit
 import AVFoundation
+import SoundpipeAudioKit
 import XCTest
 
 class PhaseLockedVocoderTests: XCTestCase {
-
     // Because SPM doesn't support resources yet, render out a test file.
     func generateTestFile() -> URL {
-
         let osc = Oscillator(waveform: Table(.triangle))
         let engine = AudioEngine()
         engine.output = osc

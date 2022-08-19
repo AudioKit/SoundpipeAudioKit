@@ -6,8 +6,7 @@ import XCTest
 
 // The drum synths utilize "sine" which computes differently on M1 Macs, so this not testable in CI right now.
 
-
-//class DrumSynthTests: XCTestCase {
+// class DrumSynthTests: XCTestCase {
 //    func testSynthKick() {
 //        let engine = AudioEngine()
 //        let synthKick = SynthKick()
@@ -33,4 +32,4 @@ import XCTest
 //        audio.append(engine.render(duration: 1.0))
 //        testMD5(audio)
 //    }
-//}
+// }

@@ -20,7 +20,7 @@ let package = Package(
                     .headerSearchPath("lib/inih"),
                     .headerSearchPath("Sources/soundpipe/lib/inih"),
                     .headerSearchPath("modules"),
-                    .headerSearchPath("external")
+                    .headerSearchPath("external"),
                 ]),
         .target(name: "SoundpipeAudioKit", dependencies: ["AudioKit", "AudioKitEX", "CSoundpipeAudioKit"]),
         .target(name: "CSoundpipeAudioKit", dependencies: ["AudioKit", "AudioKitEX", "Soundpipe"]),

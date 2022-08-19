@@ -1,14 +1,13 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
-import Foundation
 @testable import AudioKit
-import SoundpipeAudioKit
-import GameplayKit
 import AVFoundation
+import Foundation
+import GameplayKit
+import SoundpipeAudioKit
 import XCTest
 
 func setParams(node: Node, rng: GKRandomSource) {
-
     for param in node.parameters {
         let def = param.def
         let size = def.range.upperBound - def.range.lowerBound
@@ -16,22 +15,18 @@ func setParams(node: Node, rng: GKRandomSource) {
         print("setting parameter \(def.name) to \(value)")
         param.value = value
     }
-
 }
 
 class GenericNodeTests: XCTestCase {
-
-    func nodeRandomizedTest(md5: String, factory: ()->Node, audition: Bool = false) {
-
+    func nodeRandomizedTest(md5: String, factory: () -> Node, audition: Bool = false) {
         // We want determinism.
         let rng = GKMersenneTwisterRandomSource(seed: 0)
 
         let duration = 10
         let engine = AudioEngine()
-        var bigBuffer: AVAudioPCMBuffer? = nil
+        var bigBuffer: AVAudioPCMBuffer?
 
         for _ in 0 ..< duration {
-
             let node = factory()
             engine.output = node
 
@@ -42,7 +37,7 @@ class GenericNodeTests: XCTestCase {
             audio.append(engine.render(duration: 1.0))
 
             if bigBuffer == nil {
-                bigBuffer = AVAudioPCMBuffer(pcmFormat: audio.format, frameCapacity: audio.frameLength*UInt32(duration))
+                bigBuffer = AVAudioPCMBuffer(pcmFormat: audio.format, frameCapacity: audio.frameLength * UInt32(duration))
             }
 
             bigBuffer?.append(audio)
@@ -55,16 +50,15 @@ class GenericNodeTests: XCTestCase {
         XCTAssertEqual(bigBuffer!.md5, md5)
     }
 
-    func nodeParameterTest(md5: String, factory: ()->Node, m1MD5: String = "", audition: Bool = false) {
-
+    func nodeParameterTest(md5: String, factory: () -> Node, m1MD5: String = "", audition: Bool = false) {
         let duration = factory().parameters.count + 1
 
         let engine = AudioEngine()
-        var bigBuffer: AVAudioPCMBuffer? = nil
+        var bigBuffer: AVAudioPCMBuffer?
 
         let node = factory()
         engine.output = node
-        
+
         /// Do the default parameters first
         if bigBuffer == nil {
             let audio = engine.startTest(totalDuration: 1.0)
@@ -73,9 +67,8 @@ class GenericNodeTests: XCTestCase {
 
             bigBuffer?.append(audio)
         }
-        
-        for i in 0 ..< factory().parameters.count {
 
+        for i in 0 ..< factory().parameters.count {
             let node = factory()
             engine.output = node
 
@@ -90,7 +83,6 @@ class GenericNodeTests: XCTestCase {
             audio.append(engine.render(duration: 1.0))
 
             bigBuffer?.append(audio)
-
         }
 
         XCTAssertFalse(bigBuffer!.isSilent)
@@ -114,9 +106,9 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "afdce4990f72e668f088765fabc90f0a", factory: { PinkNoise() })
         nodeParameterTest(md5: "25da4d13733e7c50e3b9706e028c452d", factory: { VocalTract() })
         nodeParameterTest(md5: "6fc97b719ed8138c53464db8f09f937e", factory: { WhiteNoise() })
-        
+
         #if os(macOS)
-        nodeRandomizedTest(md5: "999a7c4d39edf55550b2b4ef01ae1860", factory: { BrownianNoise() })
+            nodeRandomizedTest(md5: "999a7c4d39edf55550b2b4ef01ae1860", factory: { BrownianNoise() })
         #endif
     }
 
@@ -144,11 +136,9 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "6a54cda833433325a5bd885c1375c6e2", factory: { Tremolo(input) }, m1MD5: "bb704255aad8df505d427fea08d57246")
         nodeParameterTest(md5: "17b152691ddaca9a74a5ab086db0e546", factory: { VariableDelay(input) })
         nodeParameterTest(md5: "88abdd2849431c26dab746666fcc7dbc", factory: { ZitaReverb(input) }, m1MD5: "489a410a70b87390bdc84f9f881bd260")
-
     }
 
-    func nodeParameterTest2(md5: String, factory: (Node)->Node, m1MD5: String = "", audition: Bool = false) {
-
+    func nodeParameterTest2(md5: String, factory: (Node) -> Node, m1MD5: String = "", audition: Bool = false) {
         let bundle = Bundle.module
         let url = bundle.url(forResource: "12345", withExtension: "wav", subdirectory: "TestResources")!
         let player = AudioPlayer(url: url)!
@@ -157,7 +147,7 @@ class GenericNodeTests: XCTestCase {
         let duration = node.parameters.count + 1
 
         let engine = AudioEngine()
-        var bigBuffer: AVAudioPCMBuffer? = nil
+        var bigBuffer: AVAudioPCMBuffer?
 
         engine.output = node
 
@@ -173,7 +163,6 @@ class GenericNodeTests: XCTestCase {
         }
 
         for i in 0 ..< node.parameters.count {
-
             let node = factory(player)
             engine.output = node
 
@@ -188,7 +177,6 @@ class GenericNodeTests: XCTestCase {
             audio.append(engine.render(duration: 1.0))
 
             bigBuffer?.append(audio)
-
         }
 
         XCTAssertFalse(bigBuffer!.isSilent)
@@ -200,17 +188,15 @@ class GenericNodeTests: XCTestCase {
     }
 
     func test2() {
-        
         #if os(iOS)
-        nodeParameterTest2(md5: "28d2cb7a5c1e369ca66efa8931d31d4d", factory: { player in Reverb(player) })
+            nodeParameterTest2(md5: "28d2cb7a5c1e369ca66efa8931d31d4d", factory: { player in Reverb(player) })
         #endif
-        
+
         #if os(macOS)
-        nodeParameterTest2(md5: "bff0b5fa57e589f5192b17194d9a43cb", factory: { player in Reverb(player) })
+            nodeParameterTest2(md5: "bff0b5fa57e589f5192b17194d9a43cb", factory: { player in Reverb(player) })
         #endif
-        
     }
-    
+
     func testFilters() {
         let input = Oscillator(waveform: Table(.triangle))
         input.start()
@@ -235,6 +221,5 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "44273d78d701be87ec9613ace6a179cd", factory: { ThreePoleLowpassFilter(input) })
         nodeParameterTest(md5: "84c3dcb52f76610e0c0ed9b567248fa1", factory: { ToneComplementFilter(input) })
         nodeParameterTest(md5: "f4b3774bdc83f2220b33ed7de360a184", factory: { ToneFilter(input) })
-
     }
 }

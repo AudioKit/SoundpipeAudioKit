@@ -2,13 +2,12 @@
 
 import AudioKit
 import AudioKitEX
+import AVFoundation
 import CAudioKitEX
 import SoundpipeAudioKit
-import AVFoundation
 import XCTest
 
 class RenderTests: XCTestCase {
-
     func runWith(feedback: Float, silenceThreshold: Float = 0.05) -> Float {
         let engine = AudioEngine()
         let input = Oscillator(waveform: Table(.triangle))
@@ -23,16 +22,17 @@ class RenderTests: XCTestCase {
         let file = try! AVAudioFile(forWriting: url, settings: Settings.audioFormat.settings)
 
         try? engine.avEngine.render(to: file,
-                               maximumFrameCount: 1_024,
-                               duration: 1.0,
-                               renderUntilSilent: true,
-                               silenceThreshold: silenceThreshold)
+                                    maximumFrameCount: 1024,
+                                    duration: 1.0,
+                                    renderUntilSilent: true,
+                                    silenceThreshold: silenceThreshold)
         return Float(file.duration)
     }
 
     func testShortTail() {
         XCTAssertEqual(runWith(feedback: 0.1), 1.06, accuracy: 0.01)
     }
+
     func testMidTail() {
         XCTAssertEqual(runWith(feedback: 0.5), 1.16, accuracy: 0.01)
     }
@@ -76,8 +76,5 @@ class RenderTests: XCTestCase {
 
         Settings.sampleRate = 44100
 //        audio2.audition()
-
-
     }
 }
-

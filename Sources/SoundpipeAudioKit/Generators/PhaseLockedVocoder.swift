@@ -1,8 +1,8 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
-import AVFoundation
 import AudioKit
 import AudioKitEX
+import AVFoundation
 import CAudioKitEX
 
 /// This is a phase locked vocoder. It has the ability to play back an audio
@@ -10,13 +10,12 @@ import CAudioKitEX
 /// mincer allows time and pitch to be controlled separately.
 ///
 public class PhaseLockedVocoder: Node {
-    
     /// Connected nodes
     public var connections: [Node] { [] }
 
     /// Underlying AVAudioNode
     public var avAudioNode = instantiate(instrument: "minc")
-    
+
     /// Specification for position
     public static let positionDef = NodeParameterDef(
         identifier: "position",
@@ -24,7 +23,8 @@ public class PhaseLockedVocoder: Node {
         address: akGetParameterAddress("PhaseLockedVocoderParameterPosition"),
         defaultValue: 0,
         range: 0 ... 100_000,
-        unit: .generic)
+        unit: .generic
+    )
 
     /// Position in time. When non-changing it will do a spectral freeze of a the current point in time.
     @Parameter(positionDef) public var position: AUValue
@@ -36,7 +36,8 @@ public class PhaseLockedVocoder: Node {
         address: akGetParameterAddress("PhaseLockedVocoderParameterAmplitude"),
         defaultValue: 1,
         range: 0 ... 1,
-        unit: .generic)
+        unit: .generic
+    )
 
     /// Amplitude.
     @Parameter(amplitudeDef) public var amplitude: AUValue
@@ -47,8 +48,9 @@ public class PhaseLockedVocoder: Node {
         name: "Pitch ratio. A value of. 1  normal, 2 is double speed, 0.5 is halfspeed, etc.",
         address: akGetParameterAddress("PhaseLockedVocoderParameterPitchRatio"),
         defaultValue: 1,
-        range: 0 ... 1_000,
-        unit: .hertz)
+        range: 0 ... 1000,
+        unit: .hertz
+    )
 
     /// Pitch ratio. A value of. 1  normal, 2 is double speed, 0.5 is halfspeed, etc.
     @Parameter(pitchRatioDef) public var pitchRatio: AUValue
@@ -70,9 +72,9 @@ public class PhaseLockedVocoder: Node {
         pitchRatio: AUValue = pitchRatioDef.defaultValue
     ) {
         setupParameters()
-        
+
         loadFile(file)
-        
+
         self.position = position
         self.amplitude = amplitude
         self.pitchRatio = pitchRatio
@@ -83,7 +85,7 @@ public class PhaseLockedVocoder: Node {
             var err: OSStatus = noErr
             var theFileLengthInFrames: Int64 = 0
             var theFileFormat = AudioStreamBasicDescription()
-            var thePropertySize: UInt32 = UInt32(MemoryLayout.stride(ofValue: theFileFormat))
+            var thePropertySize: UInt32 = .init(MemoryLayout.stride(ofValue: theFileFormat))
             var extRef: ExtAudioFileRef?
             var theData: UnsafeMutablePointer<CChar>?
             var theOutputFormat = AudioStreamBasicDescription()
@@ -141,14 +143,14 @@ public class PhaseLockedVocoder: Node {
             let dataSize = UInt32(theFileLengthInFrames) * theOutputFormat.mBytesPerFrame
             theData = UnsafeMutablePointer.allocate(capacity: Int(dataSize))
             if theData != nil {
-                var bufferList: AudioBufferList = AudioBufferList()
+                var bufferList = AudioBufferList()
                 bufferList.mNumberBuffers = 1
                 bufferList.mBuffers.mDataByteSize = dataSize
                 bufferList.mBuffers.mNumberChannels = theOutputFormat.mChannelsPerFrame
                 bufferList.mBuffers.mData = UnsafeMutableRawPointer(theData)
 
                 // Read the data into an AudioBufferList
-                var ioNumberFrames: UInt32 = UInt32(theFileLengthInFrames)
+                var ioNumberFrames = UInt32(theFileLengthInFrames)
                 err = ExtAudioFileRead(externalAudioFileRef, &ioNumberFrames, &bufferList)
                 if err == noErr {
                     // success
@@ -165,5 +167,4 @@ public class PhaseLockedVocoder: Node {
             }
         }
     }
-
 }

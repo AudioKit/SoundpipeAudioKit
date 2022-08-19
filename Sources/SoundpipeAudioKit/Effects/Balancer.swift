@@ -1,8 +1,8 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
-import AVFoundation
 import AudioKit
 import AudioKitEX
+import AVFoundation
 import CAudioKitEX
 
 /// This node outputs a version of the audio source, amplitude-modified so
@@ -13,16 +13,15 @@ import CAudioKitEX
 /// altered in any other respect.
 ///
 public class Balancer: Node {
-
     let input: Node
     let comparator: Node
-    
+
     /// Conneced nodes
     public var connections: [Node] { [input, comparator] }
 
     /// Underlying AVAudioNode
     public var avAudioNode = instantiate(effect: "blnc")
-    
+
     // MARK: - Initialization
 
     /// Initialize this balance node

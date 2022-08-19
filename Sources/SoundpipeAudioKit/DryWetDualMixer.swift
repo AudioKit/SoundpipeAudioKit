@@ -1,14 +1,13 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
-import AVFoundation
 import AudioKit
 import AudioKitEX
+import AVFoundation
 import CAudioKitEX
 
 /// Mix between two signals, usually used for a dry signal and wet signal
 /// Allows for independent control of dry and wet signal
 public class DryWetDualMixer: Node {
-
     let input1: Node
     let input2: Node
 
@@ -25,7 +24,7 @@ public class DryWetDualMixer: Node {
         name: "Dry Mix",
         address: akGetParameterAddress("DryWetDualMixerParameterDry"),
         defaultValue: 0.5,
-        range: 0.0...1.0,
+        range: 0.0 ... 1.0,
         unit: .generic
     )
 
@@ -37,7 +36,7 @@ public class DryWetDualMixer: Node {
         name: "Wet Mix",
         address: akGetParameterAddress("DryWetDualMixerParameterWet"),
         defaultValue: 0.5,
-        range: 0.0...1.0,
+        range: 0.0 ... 1.0,
         unit: .generic
     )
 
@@ -54,13 +53,14 @@ public class DryWetDualMixer: Node {
     public init(_ input1: Node,
                 _ input2: Node,
                 dryAmount: AUValue = dryDef.defaultValue,
-                wetAmount: AUValue = wetDef.defaultValue) {
+                wetAmount: AUValue = wetDef.defaultValue)
+    {
         self.input1 = input1
         self.input2 = input2
 
         setupParameters()
 
-        self.dry = dryAmount
-        self.wet = wetAmount
+        dry = dryAmount
+        wet = wetAmount
     }
 }

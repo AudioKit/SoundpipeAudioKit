@@ -5,7 +5,6 @@ import SoundpipeAudioKit
 import XCTest
 
 class MetalBarTests: XCTestCase {
-
     func testDefault() {
         let engine = AudioEngine()
         let metalBar = MetalBar()
@@ -17,5 +16,4 @@ class MetalBarTests: XCTestCase {
         audio.append(engine.render(duration: 1.0))
         testMD5(audio)
     }
-
 }

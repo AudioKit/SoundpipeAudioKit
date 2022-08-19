@@ -5,7 +5,6 @@ import SoundpipeAudioKit
 import XCTest
 
 class PluckedStringTests: XCTestCase {
-
     func testDefault() {
         let engine = AudioEngine()
         let pluck = PluckedString()
@@ -19,5 +18,4 @@ class PluckedStringTests: XCTestCase {
         audio.append(engine.render(duration: 1.0))
         testMD5(audio)
     }
-
 }

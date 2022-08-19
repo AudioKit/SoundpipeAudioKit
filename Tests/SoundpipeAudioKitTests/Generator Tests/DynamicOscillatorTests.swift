@@ -1,15 +1,12 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
 import AudioKit
+import AVFoundation
+import CAudioKitEX
 import SoundpipeAudioKit
 import XCTest
-import AudioKit
-import SoundpipeAudioKit
-import CAudioKitEX
-import AVFoundation
 
 class DynamicOscillatorTests: XCTestCase {
-
     func testNewAutomationFrequency() {
         let engine = AudioEngine()
         let oscillator = DynamicOscillator(waveform: Table(.square), frequency: 400, amplitude: 0.5)
@@ -17,8 +14,8 @@ class DynamicOscillatorTests: XCTestCase {
         oscillator.start()
         let audio = engine.startTest(totalDuration: 1.0)
         oscillator.$frequency.automate(events: [AutomationEvent(targetValue: 880,
-                                                             startTime: 0,
-                                                             rampDuration: 1.0)])
+                                                                startTime: 0,
+                                                                rampDuration: 1.0)])
         audio.append(engine.render(duration: 1.0))
         testMD5(audio)
     }
@@ -32,8 +29,8 @@ class DynamicOscillatorTests: XCTestCase {
         oscillator.start()
         let audio = engine.startTest(totalDuration: 1.0)
         oscillator.$amplitude.automate(events: [AutomationEvent(targetValue: 1.0,
-                                                             startTime: 0,
-                                                             rampDuration: 1.0)])
+                                                                startTime: 0,
+                                                                rampDuration: 1.0)])
         audio.append(engine.render(duration: 1.0))
         testMD5(audio)
     }
@@ -47,11 +44,11 @@ class DynamicOscillatorTests: XCTestCase {
         oscillator.start()
         let audio = engine.startTest(totalDuration: 1.0)
         oscillator.$frequency.automate(events: [AutomationEvent(targetValue: 880,
-                                                             startTime: 0,
-                                                             rampDuration: 1.0)])
+                                                                startTime: 0,
+                                                                rampDuration: 1.0)])
         oscillator.$amplitude.automate(events: [AutomationEvent(targetValue: 1.0,
-                                                             startTime: 0,
-                                                             rampDuration: 1.0)])
+                                                                startTime: 0,
+                                                                rampDuration: 1.0)])
         audio.append(engine.render(duration: 1.0))
         testMD5(audio)
     }
@@ -68,9 +65,9 @@ class DynamicOscillatorTests: XCTestCase {
         let startTime = AVAudioTime(sampleTime: 44100, atRate: 41000)
 
         oscillator.$frequency.automate(events: [AutomationEvent(targetValue: 880,
-                                                             startTime: 0,
-                                                             rampDuration: 1.0)],
-                                  startTime: startTime)
+                                                                startTime: 0,
+                                                                rampDuration: 1.0)],
+        startTime: startTime)
 
         audio.append(engine.render(duration: 2.0))
         testMD5(audio)

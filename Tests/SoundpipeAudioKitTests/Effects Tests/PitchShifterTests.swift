@@ -5,7 +5,6 @@ import SoundpipeAudioKit
 import XCTest
 
 class PitchShifterTests: XCTestCase {
-
     func testResetPitchShifter() {
         let engine = AudioEngine()
         let input = Oscillator(waveform: Table([1, 1]))

@@ -5,7 +5,6 @@ import SoundpipeAudioKit
 import XCTest
 
 class BalancerTests: XCTestCase {
-
     func testDefault() {
         let engine = AudioEngine()
         let input = Oscillator(waveform: Table(.triangle))

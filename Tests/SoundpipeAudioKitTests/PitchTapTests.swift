@@ -5,7 +5,6 @@ import SoundpipeAudioKit
 import XCTest
 
 class PitchTapTests: XCTestCase {
-
     func testBasic() {
         let engine = AudioEngine()
 
@@ -19,7 +18,7 @@ class PitchTapTests: XCTestCase {
 
         let expect = expectation(description: "wait for amplitudes")
 
-        let tap = PitchTap(oscillator) {  (tapPitches, _) in
+        let tap = PitchTap(oscillator) { tapPitches, _ in
             pitches.append(tapPitches[0])
 
             if pitches.count == knownValues.count {
@@ -34,9 +33,8 @@ class PitchTapTests: XCTestCase {
 
         wait(for: [expect], timeout: 5.0)
 
-        for i in 0..<knownValues.count {
+        for i in 0 ..< knownValues.count {
             XCTAssertEqual(pitches[i], knownValues[i], accuracy: 0.001)
         }
     }
-
 }

@@ -1,14 +1,13 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 
-import AVFoundation
 import AudioKit
 import AudioKitEX
+import AVFoundation
 import CAudioKitEX
 
 /// Balanceable Mix between two signals, usually used for a dry signal and wet signal
 ///
 public class DryWetMixer: Node {
-
     let input1: Node
     let input2: Node
 
@@ -26,8 +25,9 @@ public class DryWetMixer: Node {
         name: "Balance",
         address: akGetParameterAddress("DryWetMixerParameterBalance"),
         defaultValue: 0.5,
-        range: 0.0...1.0,
-        unit: .generic)
+        range: 0.0 ... 1.0,
+        unit: .generic
+    )
 
     /// Balance between input signals
     @Parameter(balanceDef) public var balance: AUValue
@@ -56,5 +56,4 @@ public class DryWetMixer: Node {
     public convenience init(dry: Node, wet: Node, balance: AUValue = 0.5) {
         self.init(dry, wet, balance: balance)
     }
-
 }
