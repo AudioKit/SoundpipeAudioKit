@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         xcode_version: ['13.1']
-    runs-on: macos-latest
+    runs-on: macos-12
     env:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
     steps:
@@ -24,7 +24,7 @@ jobs:
       - name: Run Tests (ASAN)
         run: |
           set -euo pipefail
-          xcodebuild -scheme SoundpipeAudioKit -enableAddressSanitizer YES test | xcpretty
+          xcodebuild -destination 'platform=OS X,arch=x86_64' -scheme SoundpipeAudioKit -enableAddressSanitizer YES test | xcpretty
 
   # Generate Wiki docs on release
   docs:
