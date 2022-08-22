@@ -39,7 +39,6 @@ You can AudioKit and any of the other AudioKit libraries using Collections
 ## Generators / Instruments
 
 * [Brownian Noise](https://github.com/AudioKit/SoundpipeAudioKit/wiki/BrownianNoise)
-* [Drip](https://github.com/AudioKit/SoundpipeAudioKit/wiki/Drip)
 * [Dynamic Oscillator](https://github.com/AudioKit/SoundpipeAudioKit/wiki/DynamicOscillator)
 * [FM Oscillator](https://github.com/AudioKit/SoundpipeAudioKit/wiki/FMOscillator)
 * [Metal Bar](https://github.com/AudioKit/SoundpipeAudioKit/wiki/MetalBar)
