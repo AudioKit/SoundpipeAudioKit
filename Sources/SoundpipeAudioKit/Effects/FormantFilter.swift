@@ -23,7 +23,7 @@ public class FormantFilter: Node {
     /// Specification details for centerFrequency
     public static let centerFrequencyDef = NodeParameterDef(
         identifier: "centerFrequency",
-        name: "Center Frequency (Hz)",
+        name: "Center Frequency",
         address: akGetParameterAddress("FormantFilterParameterCenterFrequency"),
         defaultValue: 1000,
         range: 12.0 ... 20000.0,
@@ -36,7 +36,7 @@ public class FormantFilter: Node {
     /// Specification details for attackDuration
     public static let attackDurationDef = NodeParameterDef(
         identifier: "attackDuration",
-        name: "Impulse response attack time (Seconds)",
+        name: "Attack duration",
         address: akGetParameterAddress("FormantFilterParameterAttackDuration"),
         defaultValue: 0.007,
         range: 0.0 ... 0.1,
@@ -49,7 +49,7 @@ public class FormantFilter: Node {
     /// Specification details for decayDuration
     public static let decayDurationDef = NodeParameterDef(
         identifier: "decayDuration",
-        name: "Impulse response decay time (Seconds)",
+        name: "Decay duration",
         address: akGetParameterAddress("FormantFilterParameterDecayDuration"),
         defaultValue: 0.04,
         range: 0.0 ... 0.1,

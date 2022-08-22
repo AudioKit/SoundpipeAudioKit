@@ -21,7 +21,7 @@ public class Panner: Node {
     /// Specification details for pan
     public static let panDef = NodeParameterDef(
         identifier: "pan",
-        name: "Panning. A value of -1 is hard left, and a value of 1 is hard right, and 0 is center.",
+        name: "Pan",
         address: akGetParameterAddress("PannerParameterPan"),
         defaultValue: 0,
         range: -1 ... 1,

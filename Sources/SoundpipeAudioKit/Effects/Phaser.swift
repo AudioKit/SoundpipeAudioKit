@@ -21,7 +21,7 @@ public class Phaser: Node {
     /// Specification details for notchMinimumFrequency
     public static let notchMinimumFrequencyDef = NodeParameterDef(
         identifier: "notchMinimumFrequency",
-        name: "Notch Minimum Frequency",
+        name: "Min notch frequency",
         address: akGetParameterAddress("PhaserParameterNotchMinimumFrequency"),
         defaultValue: 100,
         range: 20 ... 5000,
@@ -34,7 +34,7 @@ public class Phaser: Node {
     /// Specification details for notchMaximumFrequency
     public static let notchMaximumFrequencyDef = NodeParameterDef(
         identifier: "notchMaximumFrequency",
-        name: "Notch Maximum Frequency",
+        name: "Max notch frequency",
         address: akGetParameterAddress("PhaserParameterNotchMaximumFrequency"),
         defaultValue: 800,
         range: 20 ... 10000,
@@ -47,7 +47,7 @@ public class Phaser: Node {
     /// Specification details for notchWidth
     public static let notchWidthDef = NodeParameterDef(
         identifier: "notchWidth",
-        name: "Between 10 and 5000",
+        name: "Notch width",
         address: akGetParameterAddress("PhaserParameterNotchWidth"),
         defaultValue: 1000,
         range: 10 ... 5000,
@@ -60,7 +60,7 @@ public class Phaser: Node {
     /// Specification details for notchFrequency
     public static let notchFrequencyDef = NodeParameterDef(
         identifier: "notchFrequency",
-        name: "Between 1.1 and 4",
+        name: "Notch frequency",
         address: akGetParameterAddress("PhaserParameterNotchFrequency"),
         defaultValue: 1.5,
         range: 1.1 ... 4.0,
@@ -73,7 +73,7 @@ public class Phaser: Node {
     /// Specification details for vibratoMode
     public static let vibratoModeDef = NodeParameterDef(
         identifier: "vibratoMode",
-        name: "Direct or Vibrato (default)",
+        name: "Vibrato mode",
         address: akGetParameterAddress("PhaserParameterVibratoMode"),
         defaultValue: 1,
         range: 0 ... 1,
@@ -86,7 +86,7 @@ public class Phaser: Node {
     /// Specification details for depth
     public static let depthDef = NodeParameterDef(
         identifier: "depth",
-        name: "Between 0 and 1",
+        name: "Depth",
         address: akGetParameterAddress("PhaserParameterDepth"),
         defaultValue: 1,
         range: 0 ... 1,
@@ -99,7 +99,7 @@ public class Phaser: Node {
     /// Specification details for feedback
     public static let feedbackDef = NodeParameterDef(
         identifier: "feedback",
-        name: "Between 0 and 1",
+        name: "Feedback",
         address: akGetParameterAddress("PhaserParameterFeedback"),
         defaultValue: 0,
         range: 0 ... 1,
@@ -112,7 +112,7 @@ public class Phaser: Node {
     /// Specification details for inverted
     public static let invertedDef = NodeParameterDef(
         identifier: "inverted",
-        name: "1 or 0",
+        name: "Inversion",
         address: akGetParameterAddress("PhaserParameterInverted"),
         defaultValue: 0,
         range: 0 ... 1,
@@ -125,11 +125,11 @@ public class Phaser: Node {
     /// Specification details for lfoBPM
     public static let lfoBPMDef = NodeParameterDef(
         identifier: "lfoBPM",
-        name: "Between 24 and 360",
+        name: "LFO Frequency",
         address: akGetParameterAddress("PhaserParameterLfoBPM"),
         defaultValue: 30,
         range: 24 ... 360,
-        unit: .generic
+        unit: .BPM
     )
 
     /// Between 24 and 360

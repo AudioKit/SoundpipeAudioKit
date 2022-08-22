@@ -18,7 +18,7 @@ public class MorphingOscillator: Node {
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
         identifier: "frequency",
-        name: "Frequency (in Hz)",
+        name: "Frequency",
         address: akGetParameterAddress("MorphingOscillatorParameterFrequency"),
         defaultValue: 440,
         range: 0.0 ... 22050.0,
@@ -31,7 +31,7 @@ public class MorphingOscillator: Node {
     /// Specification details for amplitude
     public static let amplitudeDef = NodeParameterDef(
         identifier: "amplitude",
-        name: "Amplitude (typically a value between 0 and 1).",
+        name: "Amplitude",
         address: akGetParameterAddress("MorphingOscillatorParameterAmplitude"),
         defaultValue: 0.5,
         range: 0.0 ... 1.0,
@@ -44,7 +44,7 @@ public class MorphingOscillator: Node {
     /// Specification details for index
     public static let indexDef = NodeParameterDef(
         identifier: "index",
-        name: "Index of the wavetable to use (fractional are okay).",
+        name: "Index",
         address: akGetParameterAddress("MorphingOscillatorParameterIndex"),
         defaultValue: 0.0,
         range: 0.0 ... 3.0,
@@ -57,7 +57,7 @@ public class MorphingOscillator: Node {
     /// Specification details for detuningOffset
     public static let detuningOffsetDef = NodeParameterDef(
         identifier: "detuningOffset",
-        name: "Frequency offset (Hz)",
+        name: "Detuning offset",
         address: akGetParameterAddress("MorphingOscillatorParameterDetuningOffset"),
         defaultValue: 0,
         range: -1000.0 ... 1000.0,
@@ -70,7 +70,7 @@ public class MorphingOscillator: Node {
     /// Specification details for detuningMultiplier
     public static let detuningMultiplierDef = NodeParameterDef(
         identifier: "detuningMultiplier",
-        name: "Frequency detuning multiplier",
+        name: "Detuning multiplier",
         address: akGetParameterAddress("MorphingOscillatorParameterDetuningMultiplier"),
         defaultValue: 1,
         range: 0.9 ... 1.11,

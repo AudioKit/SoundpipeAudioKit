@@ -21,7 +21,7 @@ public class PhaseDistortionOscillator: Node {
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
         identifier: "frequency",
-        name: "Frequency (Hz)",
+        name: "Frequency",
         address: akGetParameterAddress("PhaseDistortionOscillatorParameterFrequency"),
         defaultValue: 440,
         range: 0 ... 20000,
@@ -47,7 +47,7 @@ public class PhaseDistortionOscillator: Node {
     /// Specification details for phaseDistortion
     public static let phaseDistortionDef = NodeParameterDef(
         identifier: "phaseDistortion",
-        name: "Amount of distortion, within the range [-1, 1]. 0 is no distortion.",
+        name: "Phase distortion",
         address: akGetParameterAddress("PhaseDistortionOscillatorParameterPhaseDistortion"),
         defaultValue: 0,
         range: -1 ... 1,
@@ -60,7 +60,7 @@ public class PhaseDistortionOscillator: Node {
     /// Specification details for detuningOffset
     public static let detuningOffsetDef = NodeParameterDef(
         identifier: "detuningOffset",
-        name: "Frequency offset (Hz)",
+        name: "Frequency offset",
         address: akGetParameterAddress("PhaseDistortionOscillatorParameterDetuningOffset"),
         defaultValue: 0,
         range: -1000 ... 1000,
@@ -73,7 +73,7 @@ public class PhaseDistortionOscillator: Node {
     /// Specification details for detuningMultiplier
     public static let detuningMultiplierDef = NodeParameterDef(
         identifier: "detuningMultiplier",
-        name: "Frequency detuning multiplier",
+        name: "Detuning multiplier",
         address: akGetParameterAddress("PhaseDistortionOscillatorParameterDetuningMultiplier"),
         defaultValue: 1,
         range: 0.9 ... 1.11,

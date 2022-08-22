@@ -18,7 +18,7 @@ public class Oscillator: Node {
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
         identifier: "frequency",
-        name: "Frequency (Hz)",
+        name: "Frequency",
         address: akGetParameterAddress("OscillatorParameterFrequency"),
         defaultValue: 440.0,
         range: 0.0 ... 20000.0,
@@ -44,7 +44,7 @@ public class Oscillator: Node {
     /// Specification details for detuningOffset
     public static let detuningOffsetDef = NodeParameterDef(
         identifier: "detuningOffset",
-        name: "Frequency offset (Hz)",
+        name: "Frequency offset",
         address: akGetParameterAddress("OscillatorParameterDetuningOffset"),
         defaultValue: 0.0,
         range: -1000.0 ... 1000.0,

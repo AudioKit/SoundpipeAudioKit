@@ -23,7 +23,7 @@ public class ModalResonanceFilter: Node {
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
         identifier: "frequency",
-        name: "Resonant Frequency (Hz)",
+        name: "Resonant Frequency",
         address: akGetParameterAddress("ModalResonanceFilterParameterFrequency"),
         defaultValue: 500.0,
         range: 12.0 ... 20000.0,

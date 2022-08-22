@@ -21,7 +21,7 @@ public class RolandTB303Filter: Node {
     /// Specification details for cutoffFrequency
     public static let cutoffFrequencyDef = NodeParameterDef(
         identifier: "cutoffFrequency",
-        name: "Cutoff Frequency (Hz)",
+        name: "Cutoff Frequency",
         address: akGetParameterAddress("RolandTB303FilterParameterCutoffFrequency"),
         defaultValue: 500,
         range: 12.0 ... 20000.0,

@@ -34,7 +34,7 @@ public class BitCrusher: Node {
     /// Specification details for sampleRate
     public static let sampleRateDef = NodeParameterDef(
         identifier: "sampleRate",
-        name: "Sample Rate (Hz)",
+        name: "Sample Rate",
         address: akGetParameterAddress("BitCrusherParameterSampleRate"),
         defaultValue: 10000,
         range: 0.0 ... 20000.0,

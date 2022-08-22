@@ -19,7 +19,7 @@ public class VocalTract: Node {
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
         identifier: "frequency",
-        name: "Glottal frequency.",
+        name: "Glottal frequency",
         address: akGetParameterAddress("VocalTractParameterFrequency"),
         defaultValue: 160.0,
         range: 0.0 ... 22050.0,
@@ -32,7 +32,7 @@ public class VocalTract: Node {
     /// Specification details for tonguePosition
     public static let tonguePositionDef = NodeParameterDef(
         identifier: "tonguePosition",
-        name: "Tongue position (0-1)",
+        name: "Tongue position",
         address: akGetParameterAddress("VocalTractParameterTonguePosition"),
         defaultValue: 0.5,
         range: 0.0 ... 1.0,
@@ -45,7 +45,7 @@ public class VocalTract: Node {
     /// Specification details for tongueDiameter
     public static let tongueDiameterDef = NodeParameterDef(
         identifier: "tongueDiameter",
-        name: "Tongue diameter (0-1)",
+        name: "Tongue diameter",
         address: akGetParameterAddress("VocalTractParameterTongueDiameter"),
         defaultValue: 1.0,
         range: 0.0 ... 1.0,
@@ -58,7 +58,7 @@ public class VocalTract: Node {
     /// Specification details for tenseness
     public static let tensenessDef = NodeParameterDef(
         identifier: "tenseness",
-        name: "Vocal tenseness. 0 = all breath. 1=fully saturated.",
+        name: "Vocal tenseness",
         address: akGetParameterAddress("VocalTractParameterTenseness"),
         defaultValue: 0.6,
         range: 0.0 ... 1.0,
@@ -71,7 +71,7 @@ public class VocalTract: Node {
     /// Specification details for nasality
     public static let nasalityDef = NodeParameterDef(
         identifier: "nasality",
-        name: "Sets the velum size. Larger values of this creates more nasally sounds.",
+        name: "Nasality",
         address: akGetParameterAddress("VocalTractParameterNasality"),
         defaultValue: 0.0,
         range: 0.0 ... 1.0,

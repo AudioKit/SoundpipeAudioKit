@@ -26,7 +26,7 @@ public class CombFilterReverb: Node {
     /// Specification details for reverbDuration
     public static let reverbDurationDef = NodeParameterDef(
         identifier: "reverbDuration",
-        name: "Reverb Duration (Seconds)",
+        name: "Reverb duration",
         address: akGetParameterAddress("CombFilterReverbParameterReverbDuration"),
         defaultValue: 1.0,
         range: 0.0 ... 10.0,

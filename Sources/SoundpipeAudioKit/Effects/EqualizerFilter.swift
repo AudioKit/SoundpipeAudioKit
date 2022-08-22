@@ -26,7 +26,7 @@ public class EqualizerFilter: Node {
     /// Specification details for centerFrequency
     public static let centerFrequencyDef = NodeParameterDef(
         identifier: "centerFrequency",
-        name: "Center Frequency (Hz)",
+        name: "Center Frequency",
         address: akGetParameterAddress("EqualizerFilterParameterCenterFrequency"),
         defaultValue: 1000.0,
         range: 12.0 ... 20000.0,
@@ -39,7 +39,7 @@ public class EqualizerFilter: Node {
     /// Specification details for bandwidth
     public static let bandwidthDef = NodeParameterDef(
         identifier: "bandwidth",
-        name: "Bandwidth (Hz)",
+        name: "Bandwidth",
         address: akGetParameterAddress("EqualizerFilterParameterBandwidth"),
         defaultValue: 100.0,
         range: 0.0 ... 20000.0,
@@ -52,7 +52,7 @@ public class EqualizerFilter: Node {
     /// Specification details for gain
     public static let gainDef = NodeParameterDef(
         identifier: "gain",
-        name: "Gain (%)",
+        name: "Gain",
         address: akGetParameterAddress("EqualizerFilterParameterGain"),
         defaultValue: 10.0,
         range: -100.0 ... 100.0,

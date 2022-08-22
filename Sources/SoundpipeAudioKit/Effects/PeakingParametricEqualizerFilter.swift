@@ -21,7 +21,7 @@ public class PeakingParametricEqualizerFilter: Node {
     /// Specification details for centerFrequency
     public static let centerFrequencyDef = NodeParameterDef(
         identifier: "centerFrequency",
-        name: "Center Frequency (Hz)",
+        name: "Center Frequency",
         address: akGetParameterAddress("PeakingParametricEqualizerFilterParameterCenterFrequency"),
         defaultValue: 1000,
         range: 12.0 ... 20000.0,

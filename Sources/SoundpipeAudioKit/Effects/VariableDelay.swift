@@ -21,7 +21,7 @@ public class VariableDelay: Node {
     /// Specification details for time
     public static let timeDef = NodeParameterDef(
         identifier: "time",
-        name: "Delay time (Seconds)",
+        name: "Delay time",
         address: akGetParameterAddress("VariableDelayParameterTime"),
         defaultValue: 0,
         range: 0 ... 10,
@@ -34,7 +34,7 @@ public class VariableDelay: Node {
     /// Specification details for feedback
     public static let feedbackDef = NodeParameterDef(
         identifier: "feedback",
-        name: "Feedback (%)",
+        name: "Feedback",
         address: akGetParameterAddress("VariableDelayParameterFeedback"),
         defaultValue: 0,
         range: 0 ... 1,

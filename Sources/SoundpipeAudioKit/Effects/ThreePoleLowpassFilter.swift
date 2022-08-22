@@ -21,7 +21,7 @@ public class ThreePoleLowpassFilter: Node {
     /// Specification details for distortion
     public static let distortionDef = NodeParameterDef(
         identifier: "distortion",
-        name: "Distortion (%)",
+        name: "Distortion",
         address: akGetParameterAddress("ThreePoleLowpassFilterParameterDistortion"),
         defaultValue: 0.5,
         range: 0.0 ... 2.0,
@@ -34,7 +34,7 @@ public class ThreePoleLowpassFilter: Node {
     /// Specification details for cutoffFrequency
     public static let cutoffFrequencyDef = NodeParameterDef(
         identifier: "cutoffFrequency",
-        name: "Cutoff Frequency (Hz)",
+        name: "Cutoff Frequency",
         address: akGetParameterAddress("ThreePoleLowpassFilterParameterCutoffFrequency"),
         defaultValue: 1500,
         range: 12.0 ... 20000.0,
@@ -47,7 +47,7 @@ public class ThreePoleLowpassFilter: Node {
     /// Specification details for resonance
     public static let resonanceDef = NodeParameterDef(
         identifier: "resonance",
-        name: "Resonance (%)",
+        name: "Resonance",
         address: akGetParameterAddress("ThreePoleLowpassFilterParameterResonance"),
         defaultValue: 0.5,
         range: 0.0 ... 2.0,

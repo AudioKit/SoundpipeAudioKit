@@ -21,7 +21,7 @@ public class ResonantFilter: Node {
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
         identifier: "frequency",
-        name: "Center frequency of the filter, or frequency position of the peak response.",
+        name: "Frequency",
         address: akGetParameterAddress("ResonantFilterParameterFrequency"),
         defaultValue: 4000.0,
         range: 100.0 ... 20000.0,

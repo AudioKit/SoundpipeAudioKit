@@ -26,7 +26,7 @@ public class StringResonator: Node {
     /// Specification details for fundamentalFrequency
     public static let fundamentalFrequencyDef = NodeParameterDef(
         identifier: "fundamentalFrequency",
-        name: "Fundamental Frequency (Hz)",
+        name: "Fundamental Frequency",
         address: akGetParameterAddress("StringResonatorParameterFundamentalFrequency"),
         defaultValue: 100,
         range: 12.0 ... 10000.0,
@@ -39,7 +39,7 @@ public class StringResonator: Node {
     /// Specification details for feedback
     public static let feedbackDef = NodeParameterDef(
         identifier: "feedback",
-        name: "Feedback (%)",
+        name: "Feedback",
         address: akGetParameterAddress("StringResonatorParameterFeedback"),
         defaultValue: 0.95,
         range: 0.0 ... 1.0,

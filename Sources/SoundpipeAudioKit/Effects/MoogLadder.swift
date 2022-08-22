@@ -25,7 +25,7 @@ public class MoogLadder: Node {
     /// Specification details for cutoffFrequency
     public static let cutoffFrequencyDef = NodeParameterDef(
         identifier: "cutoffFrequency",
-        name: "Cutoff Frequency (Hz)",
+        name: "Cutoff Frequency",
         address: akGetParameterAddress("MoogLadderParameterCutoffFrequency"),
         defaultValue: 1000,
         range: 12.0 ... 20000.0,
@@ -38,7 +38,7 @@ public class MoogLadder: Node {
     /// Specification details for resonance
     public static let resonanceDef = NodeParameterDef(
         identifier: "resonance",
-        name: "Resonance (%)",
+        name: "Resonance",
         address: akGetParameterAddress("MoogLadderParameterResonance"),
         defaultValue: 0.5,
         range: 0.0 ... 2.0,

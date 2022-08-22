@@ -21,7 +21,7 @@ public class LowShelfParametricEqualizerFilter: Node {
     /// Specification details for cornerFrequency
     public static let cornerFrequencyDef = NodeParameterDef(
         identifier: "cornerFrequency",
-        name: "Corner Frequency (Hz)",
+        name: "Corner Frequency",
         address: akGetParameterAddress("LowShelfParametricEqualizerFilterParameterCornerFrequency"),
         defaultValue: 1000,
         range: 12.0 ... 20000.0,

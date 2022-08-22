@@ -21,7 +21,7 @@ public class ZitaReverb: Node {
     /// Specification details for predelay
     public static let predelayDef = NodeParameterDef(
         identifier: "predelay",
-        name: "Delay in ms before reverberation begins.",
+        name: "PreDelay",
         address: akGetParameterAddress("ZitaReverbParameterPredelay"),
         defaultValue: 60.0,
         range: 10.0 ... 100.0,
@@ -34,7 +34,7 @@ public class ZitaReverb: Node {
     /// Specification details for crossoverFrequency
     public static let crossoverFrequencyDef = NodeParameterDef(
         identifier: "crossoverFrequency",
-        name: "Crossover frequency separating low and middle frequencies (Hz).",
+        name: "Crossover frequency",
         address: akGetParameterAddress("ZitaReverbParameterCrossoverFrequency"),
         defaultValue: 200.0,
         range: 50.0 ... 1000.0,
@@ -47,7 +47,7 @@ public class ZitaReverb: Node {
     /// Specification details for lowReleaseTime
     public static let lowReleaseTimeDef = NodeParameterDef(
         identifier: "lowReleaseTime",
-        name: "Time (in seconds) to decay 60db in low-frequency band.",
+        name: "Low release time",
         address: akGetParameterAddress("ZitaReverbParameterLowReleaseTime"),
         defaultValue: 3.0,
         range: 1.0 ... 8.0,
@@ -60,7 +60,7 @@ public class ZitaReverb: Node {
     /// Specification details for midReleaseTime
     public static let midReleaseTimeDef = NodeParameterDef(
         identifier: "midReleaseTime",
-        name: "Time (in seconds) to decay 60db in mid-frequency band.",
+        name: "Mid Release Time",
         address: akGetParameterAddress("ZitaReverbParameterMidReleaseTime"),
         defaultValue: 2.0,
         range: 1.0 ... 8.0,
@@ -73,7 +73,7 @@ public class ZitaReverb: Node {
     /// Specification details for dampingFrequency
     public static let dampingFrequencyDef = NodeParameterDef(
         identifier: "dampingFrequency",
-        name: "Frequency (Hz) at which the high-frequency T60 is half the middle-band's T60.",
+        name: "Damping Frequency",
         address: akGetParameterAddress("ZitaReverbParameterDampingFrequency"),
         defaultValue: 6000.0,
         range: 1500.0 ... 47040.0,
@@ -86,7 +86,7 @@ public class ZitaReverb: Node {
     /// Specification details for equalizerFrequency1
     public static let equalizerFrequency1Def = NodeParameterDef(
         identifier: "equalizerFrequency1",
-        name: "Center frequency of second-order Regalia Mitra peaking equalizer section 1.",
+        name: "EQ Frequency 1",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerFrequency1"),
         defaultValue: 315.0,
         range: 40.0 ... 2500.0,
@@ -99,7 +99,7 @@ public class ZitaReverb: Node {
     /// Specification details for equalizerLevel1
     public static let equalizerLevel1Def = NodeParameterDef(
         identifier: "equalizerLevel1",
-        name: "Peak level in dB of second-order Regalia-Mitra peaking equalizer section 1",
+        name: "EQ Level 1",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerLevel1"),
         defaultValue: 0.0,
         range: -15.0 ... 15.0,
@@ -111,7 +111,7 @@ public class ZitaReverb: Node {
 
     /// Specification details for equalizerFrequency2
     public static let equalizerFrequency2Def = NodeParameterDef(
-        identifier: "equalizerFrequency2",
+        identifier: "EQ Frequency 2",
         name: "Center frequency of second-order Regalia Mitra peaking equalizer section 2.",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerFrequency2"),
         defaultValue: 1500.0,
@@ -125,7 +125,7 @@ public class ZitaReverb: Node {
     /// Specification details for equalizerLevel2
     public static let equalizerLevel2Def = NodeParameterDef(
         identifier: "equalizerLevel2",
-        name: "Peak level in dB of second-order Regalia-Mitra peaking equalizer section 2",
+        name: "EQ Level 2",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerLevel2"),
         defaultValue: 0.0,
         range: -15.0 ... 15.0,
@@ -138,7 +138,7 @@ public class ZitaReverb: Node {
     /// Specification details for dryWetMix
     public static let dryWetMixDef = NodeParameterDef(
         identifier: "dryWetMix",
-        name: "0 = all dry, 1 = all wet",
+        name: "Dry Wet Mix",
         address: akGetParameterAddress("ZitaReverbParameterDryWetMix"),
         defaultValue: 1.0,
         range: 0.0 ... 1.0,

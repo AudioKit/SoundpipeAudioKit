@@ -27,7 +27,7 @@ public class Tremolo: DynamicWaveformNode {
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
         identifier: "frequency",
-        name: "Frequency (Hz)",
+        name: "Frequency",
         address: akGetParameterAddress("TremoloParameterFrequency"),
         defaultValue: 10.0,
         range: 0.0 ... 100.0,

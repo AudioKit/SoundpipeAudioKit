@@ -21,7 +21,7 @@ public class PitchShifter: Node {
     /// Specification details for shift
     public static let shiftDef = NodeParameterDef(
         identifier: "shift",
-        name: "Pitch shift (in semitones)",
+        name: "Shift",
         address: akGetParameterAddress("PitchShifterParameterShift"),
         defaultValue: 0,
         range: -24.0 ... 24.0,
@@ -34,11 +34,11 @@ public class PitchShifter: Node {
     /// Specification details for windowSize
     public static let windowSizeDef = NodeParameterDef(
         identifier: "windowSize",
-        name: "Window size (in samples)",
+        name: "Window size",
         address: akGetParameterAddress("PitchShifterParameterWindowSize"),
         defaultValue: 1024,
         range: 0.0 ... 10000.0,
-        unit: .hertz
+        unit: .sampleFrames
     )
 
     /// Window size (in samples)
@@ -47,11 +47,11 @@ public class PitchShifter: Node {
     /// Specification details for crossfade
     public static let crossfadeDef = NodeParameterDef(
         identifier: "crossfade",
-        name: "Crossfade (in samples)",
+        name: "Crossfade",
         address: akGetParameterAddress("PitchShifterParameterCrossfade"),
         defaultValue: 512,
         range: 0.0 ... 10000.0,
-        unit: .hertz
+        unit: .sampleFrames
     )
 
     /// Crossfade (in samples)

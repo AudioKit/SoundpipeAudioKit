@@ -16,7 +16,7 @@ public class FMOscillator: Node {
     /// Specification details for baseFrequency
     public static let baseFrequencyDef = NodeParameterDef(
         identifier: "baseFrequency",
-        name: "Base Frequency (Hz)",
+        name: "Base Frequency",
         address: akGetParameterAddress("FMOscillatorParameterBaseFrequency"),
         defaultValue: 440.0,
         range: 0.0 ... 20000.0,

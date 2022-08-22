@@ -21,7 +21,7 @@ public class ToneFilter: Node {
     /// Specification details for halfPowerPoint
     public static let halfPowerPointDef = NodeParameterDef(
         identifier: "halfPowerPoint",
-        name: "Half-Power Point (Hz)",
+        name: "Half-Power Point",
         address: akGetParameterAddress("ToneFilterParameterHalfPowerPoint"),
         defaultValue: 1000.0,
         range: 12.0 ... 20000.0,

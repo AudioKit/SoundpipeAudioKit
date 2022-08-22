@@ -21,7 +21,7 @@ public class HighShelfParametricEqualizerFilter: Node {
     /// Specification details for centerFrequency
     public static let centerFrequencyDef = NodeParameterDef(
         identifier: "centerFrequency",
-        name: "Corner Frequency (Hz)",
+        name: "Corner Frequency",
         address: akGetParameterAddress("HighShelfParametricEqualizerFilterParameterCenterFrequency"),
         defaultValue: 1000,
         range: 12.0 ... 20000.0,

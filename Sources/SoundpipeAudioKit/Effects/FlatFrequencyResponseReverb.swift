@@ -24,7 +24,7 @@ public class FlatFrequencyResponseReverb: Node {
     /// Specification details for reverbDuration
     public static let reverbDurationDef = NodeParameterDef(
         identifier: "reverbDuration",
-        name: "Reverb Duration (Seconds)",
+        name: "Reverb duration",
         address: akGetParameterAddress("FlatFrequencyResponseReverbParameterReverbDuration"),
         defaultValue: 0.5,
         range: 0 ... 10,

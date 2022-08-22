@@ -21,7 +21,7 @@ public class DynamicRangeCompressor: Node {
     /// Specification details for ratio
     public static let ratioDef = NodeParameterDef(
         identifier: "ratio",
-        name: "Ratio to compress with, a value > 1 will compress",
+        name: "Ratio",
         address: akGetParameterAddress("DynamicRangeCompressorParameterRatio"),
         defaultValue: 1,
         range: 0.01 ... 100.0,
@@ -34,7 +34,7 @@ public class DynamicRangeCompressor: Node {
     /// Specification details for threshold
     public static let thresholdDef = NodeParameterDef(
         identifier: "threshold",
-        name: "Threshold (in dB) 0 = max",
+        name: "Threshold",
         address: akGetParameterAddress("DynamicRangeCompressorParameterThreshold"),
         defaultValue: 0.0,
         range: -100.0 ... 0.0,

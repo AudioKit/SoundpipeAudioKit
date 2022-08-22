@@ -23,7 +23,7 @@ public class BandRejectButterworthFilter: Node {
     /// Specification details for centerFrequency
     public static let centerFrequencyDef = NodeParameterDef(
         identifier: "centerFrequency",
-        name: "Center Frequency (Hz)",
+        name: "Center Frequency",
         address: akGetParameterAddress("BandRejectButterworthFilterParameterCenterFrequency"),
         defaultValue: 3000.0,
         range: 12.0 ... 20000.0,
@@ -36,7 +36,7 @@ public class BandRejectButterworthFilter: Node {
     /// Specification details for bandwidth
     public static let bandwidthDef = NodeParameterDef(
         identifier: "bandwidth",
-        name: "Bandwidth (Hz)",
+        name: "Bandwidth",
         address: akGetParameterAddress("BandRejectButterworthFilterParameterBandwidth"),
         defaultValue: 2000.0,
         range: 0.0 ... 20000.0,

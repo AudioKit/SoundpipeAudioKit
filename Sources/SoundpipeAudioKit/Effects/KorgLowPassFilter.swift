@@ -34,7 +34,7 @@ public class KorgLowPassFilter: Node {
     /// Specification details for resonance
     public static let resonanceDef = NodeParameterDef(
         identifier: "resonance",
-        name: "Filter resonance (should be between 0-2)",
+        name: "Resonance",
         address: akGetParameterAddress("KorgLowPassFilterParameterResonance"),
         defaultValue: 1.0,
         range: 0.0 ... 2.0,
@@ -47,7 +47,7 @@ public class KorgLowPassFilter: Node {
     /// Specification details for saturation
     public static let saturationDef = NodeParameterDef(
         identifier: "saturation",
-        name: "Filter saturation.",
+        name: "Saturation",
         address: akGetParameterAddress("KorgLowPassFilterParameterSaturation"),
         defaultValue: 0.0,
         range: 0.0 ... 10.0,

@@ -23,7 +23,7 @@ public class LowPassButterworthFilter: Node {
     /// Specification details for cutoffFrequency
     public static let cutoffFrequencyDef = NodeParameterDef(
         identifier: "cutoffFrequency",
-        name: "Cutoff Frequency (Hz)",
+        name: "Cutoff Frequency",
         address: akGetParameterAddress("LowPassButterworthFilterParameterCutoffFrequency"),
         defaultValue: 1000.0,
         range: 12.0 ... 20000.0,
