@@ -112,7 +112,7 @@ public class ZitaReverb: Node {
     /// Specification details for equalizerFrequency2
     public static let equalizerFrequency2Def = NodeParameterDef(
         identifier: "EQ Frequency 2",
-        name: "Center frequency of second-order Regalia Mitra peaking equalizer section 2.",
+        name: "EQ Frequency 2",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerFrequency2"),
         defaultValue: 1500.0,
         range: 160.0 ... 1000.0,
