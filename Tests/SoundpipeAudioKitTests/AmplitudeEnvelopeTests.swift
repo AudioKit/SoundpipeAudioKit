@@ -1,5 +1,5 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
-
+#if !os(tvOS)
 import AudioKit
 import SoundpipeAudioKit
 import XCTest
@@ -102,3 +102,4 @@ class AmplitudeEnvelopeTests: XCTestCase {
         testMD5(audio)
     }
 }
+#endif
