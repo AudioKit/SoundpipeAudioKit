@@ -13,7 +13,7 @@ jobs:
     uses: AudioKit/ci/.github/workflows/swift_test.yml@main
     with:
       scheme: SoundpipeAudioKit
-      platforms: iOS macOS
+      platforms: iOS macOS tvOS
       swift-versions: 5.5 5.6
 
   # Send notification to Discord on failure.
