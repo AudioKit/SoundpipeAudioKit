@@ -202,7 +202,7 @@ class GenericNodeTests: XCTestCase {
         input.start()
         nodeParameterTest(md5: "e21144303552ef8ba518582788c3ea1f", factory: { BandPassButterworthFilter(input) })
         nodeParameterTest(md5: "cbc23ff6ee40c12b0348866402d9fac3", factory: { BandRejectButterworthFilter(input) })
-        nodeParameterTest(md5: "8eca17f8e436de978afc7250edd765fe", factory: { EqualizerFilter(input) })
+        nodeParameterTest(md5: "c4cdd5def1fe407e5251053921e87f72", factory: { EqualizerFilter(input) })
         nodeParameterTest(md5: "433c45f0211948ecaa8bfd404963af7b", factory: { FormantFilter(input) })
         nodeParameterTest(md5: "9b38c130c6faf04b5b168d6979557a3f", factory: { HighPassButterworthFilter(input) })
         nodeParameterTest(md5: "4120a8fefb4efe8f455bc8c001ab1538", factory: { HighPassFilter(input) })

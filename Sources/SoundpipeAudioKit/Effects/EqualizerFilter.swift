@@ -54,9 +54,9 @@ public class EqualizerFilter: Node {
         identifier: "gain",
         name: "Gain",
         address: akGetParameterAddress("EqualizerFilterParameterGain"),
-        defaultValue: 10.0,
-        range: -100.0 ... 100.0,
-        unit: .percent
+        defaultValue: 1.0,
+        range: 0.0 ... 20.0,
+        unit: .generic
     )
 
     /// The peak/notch gain
