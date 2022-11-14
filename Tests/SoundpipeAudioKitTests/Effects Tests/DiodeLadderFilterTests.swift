@@ -110,6 +110,7 @@ class DiodeLadderFilterTests: XCTestCase {
         filter.$resonance.ramp(from: initialRes, to: finalRes, duration: duration)
 
         audio.append(engine.render(duration: 0.02))
+        wait(for: 0.02)
 
         XCTAssertEqual(filter.cutoffFrequency, initialFreq)
         XCTAssertEqual(cutoffFrequencyParam.value, initialFreq)
@@ -196,5 +197,14 @@ class DiodeLadderFilterTests: XCTestCase {
         XCTAssertEqual(audio.toFloatChannelData()?[0].count, Int(sampleRate) + Int(newSampleRate))
 
         testMD5(audio)
+        Settings.sampleRate = 44100 // Put this back to default for other tests
+    }
+    // for waiting in the background for realtime testing
+    func wait(for interval: TimeInterval) {
+        let delayExpectation = XCTestExpectation(description: "delayExpectation")
+        DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
+            delayExpectation.fulfill()
+        }
+        wait(for: [delayExpectation], timeout: interval + 1)
     }
 }
