@@ -46,6 +46,19 @@ public class CostelloReverb: Node {
     /// Low-pass cutoff frequency.
     @Parameter(cutoffFrequencyDef) public var cutoffFrequency: AUValue
 
+    /// Dry/wet mix.
+    public static let balanceDef = NodeParameterDef(
+        identifier: "balance",
+        name: "Balance",
+        address: akGetParameterAddress("CostelloReverbParameterBalance"),
+        defaultValue: 1,
+        range: 0 ... 1,
+        unit: .percent
+    )
+
+    /// Dry/wet mix. Should be a value between 0-1.
+    @Parameter(balanceDef) public var balance: AUValue
+
     // MARK: - Initialization
 
     /// Initialize this reverb node
