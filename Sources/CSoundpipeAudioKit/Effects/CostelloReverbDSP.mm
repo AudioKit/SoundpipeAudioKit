@@ -7,6 +7,7 @@
 enum CostelloReverbParameter : AUParameterAddress {
     CostelloReverbParameterFeedback,
     CostelloReverbParameterCutoffFrequency,
+    CostelloReverbParameterBalance,
 };
 
 class CostelloReverbDSP : public SoundpipeDSPBase {
@@ -14,11 +15,13 @@ private:
     sp_revsc *revsc;
     ParameterRamper feedbackRamp;
     ParameterRamper cutoffFrequencyRamp;
+    ParameterRamper balanceRamp{1.0};
 
 public:
     CostelloReverbDSP() {
         parameters[CostelloReverbParameterFeedback] = &feedbackRamp;
         parameters[CostelloReverbParameterCutoffFrequency] = &cutoffFrequencyRamp;
+        parameters[CostelloReverbParameterBalance] = &balanceRamp;
     }
 
     void init(int channelCount, double sampleRate) override {
@@ -47,10 +50,15 @@ public:
             float leftIn = inputSample(0, i);
             float rightIn = inputSample(1, i);
 
-            float &leftOut = outputSample(0, i);
-            float &rightOut = outputSample(1, i);
+            float leftWet;
+            float rightWet;
             
-            sp_revsc_compute(sp, revsc, &leftIn, &rightIn, &leftOut, &rightOut);
+            sp_revsc_compute(sp, revsc, &leftIn, &rightIn, &leftWet, &rightWet);
+
+            float bal = balanceRamp.getAndStep();
+
+            outputSample(0, i) = bal * leftWet + (1-bal) * leftIn;
+            outputSample(1, i) = bal * rightWet + (1-bal) * rightIn;
         }
     }
 };
@@ -58,3 +66,4 @@ public:
 AK_REGISTER_DSP(CostelloReverbDSP, "rvsc")
 AK_REGISTER_PARAMETER(CostelloReverbParameterFeedback)
 AK_REGISTER_PARAMETER(CostelloReverbParameterCutoffFrequency)
+AK_REGISTER_PARAMETER(CostelloReverbParameterBalance)

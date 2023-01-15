@@ -121,7 +121,7 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "ffd48f502e2a5b2a7027d42b917a6667", factory: { ChowningReverb(input) })
         nodeParameterTest(md5: "56e76b5bd1d59d77ad4bd670f605f191", factory: { Clipper(input) })
         nodeParameterTest(md5: "c9ab35b7818db6a9af4edfbe2cb83927", factory: { CombFilterReverb(input) })
-        nodeParameterTest(md5: "1d47a6a4a24667064b747cd6571d0874", factory: { CostelloReverb(input) })
+        nodeParameterTest(md5: "bfdb04ada04582bac1c59626207726c2", factory: { CostelloReverb(input) })
         nodeParameterTest(md5: "6d17509eee0059105454f3cad4499586", factory: { DCBlock(input) })
         nodeParameterTest(md5: "fd4e315defe463bd643dd0c797cfd1f2", factory: { Decimator(input) })
         nodeParameterTest(md5: "4e240310041e20bdc886dd5eb285e89c", factory: { Distortion(input) })
