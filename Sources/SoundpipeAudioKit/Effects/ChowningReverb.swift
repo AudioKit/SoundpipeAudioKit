@@ -26,18 +26,36 @@ public class ChowningReverb: Node {
 
     // MARK: - Parameters
 
+    /// Dry/wet mix.
+    public static let balanceDef = NodeParameterDef(
+        identifier: "balance",
+        name: "Balance",
+        address: akGetParameterAddress("CostelloReverbParameterBalance"),
+        defaultValue: 1,
+        range: 0 ... 1,
+        unit: .percent
+    )
+
+    /// Dry/wet mix. Should be a value between 0-1.
+    @Parameter(balanceDef) public var balance: AUValue
+
+
     // MARK: - Initialization
 
     /// Initialize this reverb node
     ///
     /// - Parameters:
     ///   - input: Input node to process
+    ///   - balance: dry wet mix
     ///
     public init(
-        _ input: Node
+        _ input: Node,
+        balance: AUValue = balanceDef.defaultValue
     ) {
         self.input = input
 
         setupParameters()
+        
+        self.balance = balance
     }
 }
