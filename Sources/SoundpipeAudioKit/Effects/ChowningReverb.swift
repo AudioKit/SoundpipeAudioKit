@@ -30,7 +30,7 @@ public class ChowningReverb: Node {
     public static let balanceDef = NodeParameterDef(
         identifier: "balance",
         name: "Balance",
-        address: akGetParameterAddress("CostelloReverbParameterBalance"),
+        address: akGetParameterAddress("ChowningReverbParameterBalance"),
         defaultValue: 1,
         range: 0 ... 1,
         unit: .percent
@@ -55,7 +55,7 @@ public class ChowningReverb: Node {
         self.input = input
 
         setupParameters()
-        
+
         self.balance = balance
     }
 }
