@@ -39,7 +39,7 @@ public class PitchTap: BaseTap {
     ///   - handler: Callback to call on each analysis pass
     public init(_ input: Node, bufferSize: UInt32 = 4096, handler: @escaping Handler) {
         self.handler = handler
-        super.init(input, bufferSize: bufferSize)
+        super.init(input, bufferSize: bufferSize, callbackQueue: DispatchQueue.main)
     }
 
     deinit {
