@@ -62,13 +62,19 @@ public:
         sp_oscmorph_init(sp, oscmorph, ft_array, 4, 0);
     }
 
+    float clamp(float x) {
+        if (x > 1) { x = 1; }
+        if (x < 0) { x = 0; }
+        return x;
+    }
+
     void process(FrameRange range) override {
 
         for (int i : range) {
 
             oscmorph->freq = frequencyRamp.getAndStep() * detuningMultiplierRamp.getAndStep() + detuningOffsetRamp.getAndStep();
             oscmorph->amp = amplitudeRamp.getAndStep();
-            oscmorph->wtpos = indexRamp.getAndStep() / 3.f;
+            oscmorph->wtpos = clamp(indexRamp.getAndStep() / 3.f);
 
             sp_oscmorph_compute(sp, oscmorph, nil, &outputSample(0, i));
         }
