@@ -19,7 +19,7 @@ public class EqualizerFilter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "eqfl"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(effect: "eqfl"))
 
     // MARK: - Parameters
 

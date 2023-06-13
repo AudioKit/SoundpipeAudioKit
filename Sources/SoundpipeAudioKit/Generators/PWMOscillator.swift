@@ -14,7 +14,7 @@ import CAudioKitEX
 ///
 public class PWMOscillator: Node {
     public var connections: [Node] { [] }
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "pwmo"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(instrument: "pwmo"))
 
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(

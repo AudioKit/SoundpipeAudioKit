@@ -14,7 +14,7 @@ public class VariableDelay: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "vdla"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(effect: "vdla"))
 
     // MARK: - Parameters
 

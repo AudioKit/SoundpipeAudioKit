@@ -14,7 +14,7 @@ public class RolandTB303Filter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying audio unit
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "tb3f"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(effect: "tb3f"))
 
     // MARK: - Parameters
 

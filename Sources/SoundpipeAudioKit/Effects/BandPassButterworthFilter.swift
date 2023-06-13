@@ -16,7 +16,7 @@ public class BandPassButterworthFilter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "btbp"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(effect: "btbp"))
 
     // MARK: - Parameters
 

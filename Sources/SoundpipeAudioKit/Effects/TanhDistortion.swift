@@ -14,7 +14,7 @@ public class TanhDistortion: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "dist"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(effect: "dist"))
 
     // MARK: - Parameters
 

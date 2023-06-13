@@ -14,7 +14,7 @@ public class ToneComplementFilter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "aton"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(effect: "aton"))
 
     // MARK: - Parameters
 

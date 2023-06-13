@@ -11,7 +11,7 @@ import CAudioKitEX
 ///
 public class MorphingOscillator: Node {
     public var connections: [Node] { [] }
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "morf"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(instrument: "morf"))
 
     fileprivate var waveformArray = [Table]()
 

@@ -14,7 +14,7 @@ public class DynamicOscillator: DynamicWaveformNode {
     public var connections: [Node] { [] }
 
     /// Underlying audio unit
-    public var auAudioUnit = instantiateAU(componentDescription: .init(instrument: "csto"))
+    public var auAudioUnit = registerAndInstantiateAU(componentDescription: .init(instrument: "csto"))
 
     fileprivate var waveform: Table?
 

@@ -9,7 +9,7 @@ import CAudioKitEX
 /// Classic FM Synthesis audio generation.
 public class FMOscillator: Node {
     public var connections: [Node] { [] }
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "fosc"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(instrument: "fosc"))
 
     fileprivate var waveform: Table?
 

@@ -15,7 +15,7 @@ public class Tremolo: DynamicWaveformNode {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "trem"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(effect: "trem"))
 
     fileprivate var waveform: Table?
 

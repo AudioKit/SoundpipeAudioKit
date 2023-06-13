@@ -9,7 +9,7 @@ import CAudioKitEX
 /// Faust-based pink noise generator
 public class PinkNoise: Node {
     public var connections: [Node] { [] }
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "pink"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(instrument: "pink"))
 
     /// Specification details for amplitude
     public static let amplitudeDef = NodeParameterDef(

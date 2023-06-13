@@ -11,7 +11,7 @@ import CAudioKitEX
 ///
 public class Oscillator: Node {
     public var connections: [Node] { [] }
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "oscl"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(instrument: "oscl"))
 
     fileprivate var waveform: Table?
 

@@ -14,7 +14,7 @@ public class PhaseLockedVocoder: Node {
     public var connections: [Node] { [] }
 
     /// Underlying AVAudioNode
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "minc"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(instrument: "minc"))
 
     /// Specification for position
     public static let positionDef = NodeParameterDef(

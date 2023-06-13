@@ -14,7 +14,7 @@ import CAudioKitEX
 ///
 public class PhaseDistortionOscillator: Node {
     public var connections: [Node] { [] }
-    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "pdho"))
+    public var auAudioUnit: AUAudioUnit = registerAndInstantiateAU(componentDescription: .init(instrument: "pdho"))
 
     fileprivate var waveform: Table?
 
