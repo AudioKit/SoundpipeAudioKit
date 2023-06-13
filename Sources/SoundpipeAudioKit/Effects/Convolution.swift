@@ -15,7 +15,7 @@ public class Convolution: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "conv")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "conv"))
 
     // MARK: - Parameters
 
@@ -39,7 +39,7 @@ public class Convolution: Node {
         self.partitionLength = partitionLength
 
         setupParameters()
-        akConvolutionSetPartitionLength(au.dsp, Int32(partitionLength))
+        akConvolutionSetPartitionLength(akau.dsp, Int32(partitionLength))
 
         readAudioFile()
         start()
@@ -62,7 +62,7 @@ public class Convolution: Node {
             // Output Format
             guard let clientFormat = AVAudioFormat(
                 commonFormat: .pcmFormatFloat32,
-                sampleRate: Settings.sampleRate,
+                sampleRate: 44100,
                 channels: file.fileFormat.channelCount,
                 interleaved: false
             ) else {
@@ -70,7 +70,7 @@ public class Convolution: Node {
                 break Exit
             }
 
-            let frameCapacity = Double(file.length) / file.processingFormat.sampleRate * Settings.sampleRate
+            let frameCapacity = Double(file.length) / file.processingFormat.sampleRate * 44100
             guard let outputBuffer = AVAudioPCMBuffer(pcmFormat: clientFormat, frameCapacity: AVAudioFrameCount(frameCapacity)) else {
                 Log("Error = Output buffer creation error")
                 break Exit
@@ -96,7 +96,7 @@ public class Convolution: Node {
             let samples = outputBuffer.toFloatChannelData()!
 
             for (index, data) in samples.enumerated() {
-                au.setWavetable(data: data, size: data.count, index: index)
+                akau.setWavetable(data: data, size: data.count, index: index)
             }
         }
     }

@@ -13,7 +13,7 @@ public class PluckedString: Node, Triggerable {
     public var connections: [Node] { [] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(instrument: "pluk")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "pluk"))
 
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(

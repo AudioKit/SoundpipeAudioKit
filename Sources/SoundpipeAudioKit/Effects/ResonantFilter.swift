@@ -14,7 +14,7 @@ public class ResonantFilter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "resn")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "resn"))
 
     // MARK: - Parameters
 

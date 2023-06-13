@@ -14,7 +14,7 @@ public class VariableDelay: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "vdla")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "vdla"))
 
     // MARK: - Parameters
 
@@ -64,7 +64,7 @@ public class VariableDelay: Node {
 
         setupParameters()
 
-        akVariableDelaySetMaximumTime(au.dsp, maximumTime)
+        akVariableDelaySetMaximumTime(akau.dsp, maximumTime)
 
         self.time = time
         self.feedback = feedback

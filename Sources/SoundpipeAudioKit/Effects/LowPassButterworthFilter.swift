@@ -16,7 +16,7 @@ public class LowPassButterworthFilter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "btlp")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "btlp"))
 
     // MARK: - Parameters
 

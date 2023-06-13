@@ -14,7 +14,7 @@ public class PhaseLockedVocoder: Node {
     public var connections: [Node] { [] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(instrument: "minc")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "minc"))
 
     /// Specification for position
     public static let positionDef = NodeParameterDef(
@@ -109,7 +109,7 @@ public class PhaseLockedVocoder: Node {
                 break Exit
             }
 
-            theOutputFormat.mSampleRate = Settings.sampleRate
+            theOutputFormat.mSampleRate = 44100
             theOutputFormat.mFormatID = kAudioFormatLinearPCM
             theOutputFormat.mFormatFlags = kLinearPCMFormatFlagIsFloat
             theOutputFormat.mBitsPerChannel = UInt32(MemoryLayout<Float>.stride) * 8
@@ -157,7 +157,7 @@ public class PhaseLockedVocoder: Node {
                     let data = UnsafeMutablePointer<Float>(
                         bufferList.mBuffers.mData?.assumingMemoryBound(to: Float.self)
                     )
-                    au.setWavetable(data: data, size: Int(ioNumberFrames))
+                    akau.setWavetable(data: data, size: Int(ioNumberFrames))
                 } else {
                     // failure
                     theData?.deallocate()

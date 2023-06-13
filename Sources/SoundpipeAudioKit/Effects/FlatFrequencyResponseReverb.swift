@@ -17,7 +17,7 @@ public class FlatFrequencyResponseReverb: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "alps")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "alps"))
 
     // MARK: - Parameters
 
@@ -52,7 +52,7 @@ public class FlatFrequencyResponseReverb: Node {
 
         setupParameters()
 
-        akFlatFrequencyResponseSetLoopDuration(au.dsp, loopDuration)
+        akFlatFrequencyResponseSetLoopDuration(akau.dsp, loopDuration)
 
         self.reverbDuration = reverbDuration
     }

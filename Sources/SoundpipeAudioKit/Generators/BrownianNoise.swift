@@ -9,7 +9,7 @@ import CAudioKitEX
 /// Brownian noise generator
 public class BrownianNoise: Node {
     public var connections: [Node] { [] }
-    public var avAudioNode = instantiate(instrument: "bron")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "bron"))
 
     /// Specification details for amplitude
     public static let amplitudeDef = NodeParameterDef(

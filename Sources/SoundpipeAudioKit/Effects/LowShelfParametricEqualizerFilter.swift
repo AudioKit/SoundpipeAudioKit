@@ -14,7 +14,7 @@ public class LowShelfParametricEqualizerFilter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "peq1")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "peq1"))
 
     // MARK: - Parameters
 

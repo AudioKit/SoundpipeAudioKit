@@ -14,7 +14,7 @@ import CAudioKitEX
 ///
 public class PhaseDistortionOscillator: Node {
     public var connections: [Node] { [] }
-    public var avAudioNode = instantiate(instrument: "pdho")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "pdho"))
 
     fileprivate var waveform: Table?
 
@@ -107,7 +107,7 @@ public class PhaseDistortionOscillator: Node {
 
         stop()
 
-        au.setWavetable(waveform.content)
+        akau.setWavetable(waveform.content)
 
         self.waveform = waveform
         self.frequency = frequency

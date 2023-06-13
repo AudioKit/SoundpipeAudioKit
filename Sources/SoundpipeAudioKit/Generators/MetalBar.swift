@@ -13,7 +13,7 @@ public class MetalBar: Node, Triggerable {
     public var connections: [Node] { [] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(instrument: "mbar")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "mbar"))
 
     /// Specification details for leftBoundaryCondition
     public static let leftBoundaryConditionDef = NodeParameterDef(

@@ -16,7 +16,7 @@ public class DiodeLadderFilter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "diod")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "diod"))
 
     // MARK: - Parameters
 

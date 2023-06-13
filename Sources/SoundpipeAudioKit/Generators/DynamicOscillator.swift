@@ -13,8 +13,8 @@ public class DynamicOscillator: DynamicWaveformNode {
     /// Connected nodes
     public var connections: [Node] { [] }
 
-    /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(instrument: "csto")
+    /// Underlying audio unit
+    public var auAudioUnit = instantiateAU(componentDescription: .init(instrument: "csto"))
 
     fileprivate var waveform: Table?
 
@@ -95,7 +95,7 @@ public class DynamicOscillator: DynamicWaveformNode {
 
         stop()
 
-        au.setWavetable(waveform.content)
+        akau.setWavetable(waveform.content)
 
         self.waveform = waveform
         self.frequency = frequency
@@ -109,7 +109,7 @@ public class DynamicOscillator: DynamicWaveformNode {
     /// Sets the wavetable of the oscillator node
     /// - Parameter waveform: The waveform of oscillation
     public func setWaveform(_ waveform: Table) {
-        au.setWavetable(waveform.content)
+        akau.setWavetable(waveform.content)
         self.waveform = waveform
         waveformUpdateHandler(waveform.content)
     }

@@ -9,7 +9,7 @@ import CAudioKitEX
 /// Classic FM Synthesis audio generation.
 public class FMOscillator: Node {
     public var connections: [Node] { [] }
-    public var avAudioNode = instantiate(instrument: "fosc")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "fosc"))
 
     fileprivate var waveform: Table?
 
@@ -102,7 +102,7 @@ public class FMOscillator: Node {
 
         stop()
 
-        au.setWavetable(waveform.content)
+        akau.setWavetable(waveform.content)
 
         self.waveform = waveform
         self.baseFrequency = baseFrequency

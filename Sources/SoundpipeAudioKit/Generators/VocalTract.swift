@@ -14,7 +14,7 @@ import CAudioKitEX
 ///
 public class VocalTract: Node {
     public var connections: [Node] { [] }
-    public var avAudioNode = instantiate(instrument: "vocw")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "vocw"))
 
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(

@@ -19,7 +19,7 @@ public class CombFilterReverb: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "comb")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "comb"))
 
     // MARK: - Parameters
 
@@ -54,7 +54,7 @@ public class CombFilterReverb: Node {
 
         setupParameters()
 
-        akCombFilterReverbSetLoopDuration(au.dsp, loopDuration)
+        akCombFilterReverbSetLoopDuration(akau.dsp, loopDuration)
 
         self.reverbDuration = reverbDuration
     }

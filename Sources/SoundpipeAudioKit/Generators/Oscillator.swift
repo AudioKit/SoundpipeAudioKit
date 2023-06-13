@@ -11,7 +11,7 @@ import CAudioKitEX
 ///
 public class Oscillator: Node {
     public var connections: [Node] { [] }
-    public var avAudioNode = instantiate(instrument: "oscl")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "oscl"))
 
     fileprivate var waveform: Table?
 
@@ -89,7 +89,7 @@ public class Oscillator: Node {
 
         stop()
 
-        au.setWavetable(waveform.content)
+        akau.setWavetable(waveform.content)
 
         self.waveform = waveform
         self.frequency = frequency

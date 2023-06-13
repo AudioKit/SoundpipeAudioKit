@@ -16,7 +16,7 @@ public class CostelloReverb: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "rvsc")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "rvsc"))
 
     // MARK: - Parameters
 

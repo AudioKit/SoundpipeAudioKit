@@ -9,7 +9,7 @@ import CAudioKitEX
 /// White noise generator
 public class WhiteNoise: Node {
     public var connections: [Node] { [] }
-    public var avAudioNode = instantiate(instrument: "wnoz")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "wnoz"))
 
     /// Specification details for amplitude
     public static let amplitudeDef = NodeParameterDef(

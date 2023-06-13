@@ -15,7 +15,7 @@ public class Tremolo: DynamicWaveformNode {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "trem")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "trem"))
 
     fileprivate var waveform: Table?
 
@@ -70,7 +70,7 @@ public class Tremolo: DynamicWaveformNode {
 
         setupParameters()
 
-        au.setWavetable(waveform.content)
+        akau.setWavetable(waveform.content)
 
         self.frequency = frequency
         self.depth = depth
@@ -82,7 +82,7 @@ public class Tremolo: DynamicWaveformNode {
     /// Sets the wavetable of the oscillator node
     /// - Parameter waveform: The waveform of oscillation
     public func setWaveform(_ waveform: Table) {
-        au.setWavetable(waveform.content)
+        akau.setWavetable(waveform.content)
         self.waveform = waveform
         waveformUpdateHandler(waveform.content)
     }

@@ -22,7 +22,7 @@ public class ChowningReverb: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "jcrv")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "jcrv"))
 
     // MARK: - Parameters
 

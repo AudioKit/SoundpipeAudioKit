@@ -14,7 +14,7 @@ public class AutoPanner: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "apan")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "apan"))
 
     // MARK: - Parameters
 
@@ -64,7 +64,7 @@ public class AutoPanner: Node {
 
         setupParameters()
 
-        au.setWavetable(waveform.content)
+        akau.setWavetable(waveform.content)
 
         self.frequency = frequency
         self.depth = depth

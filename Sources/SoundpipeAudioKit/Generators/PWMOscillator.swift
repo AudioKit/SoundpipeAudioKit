@@ -14,7 +14,7 @@ import CAudioKitEX
 ///
 public class PWMOscillator: Node {
     public var connections: [Node] { [] }
-    public var avAudioNode = instantiate(instrument: "pwmo")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(instrument: "pwmo"))
 
     /// Specification details for frequency
     public static let frequencyDef = NodeParameterDef(
@@ -100,7 +100,7 @@ public class PWMOscillator: Node {
         detuningMultiplier: AUValue = detuningMultiplierDef.defaultValue
     ) {
         setupParameters()
-
+        
         stop()
 
         self.frequency = frequency

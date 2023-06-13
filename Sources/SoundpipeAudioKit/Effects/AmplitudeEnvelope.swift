@@ -14,7 +14,7 @@ public class AmplitudeEnvelope: Node, Gated {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "adsr")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "adsr"))
 
     // MARK: - Parameters
 

@@ -16,7 +16,7 @@ public class FormantFilter: Node {
     public var connections: [Node] { [input] }
 
     /// Underlying AVAudioNode
-    public var avAudioNode = instantiate(effect: "fofi")
+    public var auAudioUnit: AUAudioUnit = instantiateAU(componentDescription: .init(effect: "fofi"))
 
     // MARK: - Parameters
 
