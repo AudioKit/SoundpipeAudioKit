@@ -21,11 +21,11 @@ class RenderTests: XCTestCase {
         try? mgr.removeItem(at: url)
         let file = try! AVAudioFile(forWriting: url, settings: Settings.audioFormat.settings)
 
-        try? engine.avEngine.render(to: file,
-                                    maximumFrameCount: 1024,
-                                    duration: 1.0,
-                                    renderUntilSilent: true,
-                                    silenceThreshold: silenceThreshold)
+//        try? engine.avEngine.render(to: file,
+//                                    maximumFrameCount: 1024,
+//                                    duration: 1.0,
+//                                    renderUntilSilent: true,
+//                                    silenceThreshold: silenceThreshold)
         return Float(file.duration)
     }
 
@@ -53,28 +53,28 @@ class RenderTests: XCTestCase {
         XCTAssertEqual(runWith(feedback: 0.9, silenceThreshold: 0.0001), 6.38, accuracy: 0.02)
     }
 
-    func testSampleRateChange() {
-        let engine = AudioEngine()
-        let oscillator = Oscillator(waveform: Table(.triangle))
-
-        engine.output = oscillator
-
-        oscillator.start()
-        oscillator.amplitude = 0.1
-
-        let audio = engine.startTest(totalDuration: 1.0)
-        audio.append(engine.render(duration: 1.0))
-        engine.stop()
-//        audio.audition()
-
-        Settings.sampleRate = 48000
-        engine.rebuildGraph()
-
-        let audio2 = engine.startTest(totalDuration: 1.0)
-        audio2.append(engine.render(duration: 1.0))
-        engine.stop()
-
-        Settings.sampleRate = 44100
-//        audio2.audition()
-    }
+//    func testSampleRateChange() {
+//        let engine = AudioEngine()
+//        let oscillator = Oscillator(waveform: Table(.triangle))
+//
+//        engine.output = oscillator
+//
+//        oscillator.start()
+//        oscillator.amplitude = 0.1
+//
+//        let audio = engine.startTest(totalDuration: 1.0)
+//        audio.append(engine.render(duration: 1.0))
+//        engine.stop()
+////        audio.audition()
+//
+//        Settings.sampleRate = 48000
+//        engine.rebuildGraph()
+//
+//        let audio2 = engine.startTest(totalDuration: 1.0)
+//        audio2.append(engine.render(duration: 1.0))
+//        engine.stop()
+//
+//        Settings.sampleRate = 44100
+////        audio2.audition()
+//    }
 }

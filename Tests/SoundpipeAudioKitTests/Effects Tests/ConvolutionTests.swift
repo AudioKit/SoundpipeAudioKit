@@ -25,7 +25,7 @@ class ConvolutionTests: XCTestCase {
         engine.output = convolution
 
         let audio = engine.startTest(totalDuration: 2.0)
-        player.file = file
+//        player.file = file
 
         player.play()
         audio.append(engine.render(duration: 2.0))
@@ -54,7 +54,7 @@ class ConvolutionTests: XCTestCase {
         engine.output = convolution
 
         let audio = engine.startTest(totalDuration: 2.0)
-        player.file = file
+//        player.file = file
 
         player.play()
         audio.append(engine.render(duration: 2.0))

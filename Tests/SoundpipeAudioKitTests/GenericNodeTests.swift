@@ -139,7 +139,7 @@ class GenericNodeTests: XCTestCase {
     func nodeParameterTest2(md5: String, factory: (Node) -> Node, m1MD5: String = "", audition: Bool = false) {
         let bundle = Bundle.module
         let url = bundle.url(forResource: "12345", withExtension: "wav", subdirectory: "TestResources")!
-        let player = AudioPlayer(url: url)!
+        let player = AudioPlayer()
         let node = factory(player)
 
         let duration = node.parameters.count + 1
@@ -152,7 +152,7 @@ class GenericNodeTests: XCTestCase {
         /// Do the default parameters first
         if bigBuffer == nil {
             let audio = engine.startTest(totalDuration: 1.0)
-            player.play()
+            player.play(url: url)
             player.isLooping = true
             audio.append(engine.render(duration: 1.0))
             bigBuffer = AVAudioPCMBuffer(pcmFormat: audio.format, frameCapacity: audio.frameLength * UInt32(duration))

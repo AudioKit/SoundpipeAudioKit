@@ -59,11 +59,8 @@ class OscillatorAutomationTests: XCTestCase {
         oscillator.start()
         let audio = engine.startTest(totalDuration: 2.0)
 
-        // Delay a second.
-        let startTime = AVAudioTime(sampleTime: 44100, atRate: 41000)
-
         let event = AutomationEvent(targetValue: 880, startTime: 0, rampDuration: 1.0)
-        oscillator.$frequency.automate(events: [event], startTime: startTime)
+        oscillator.$frequency.automate(events: [event], startTime: 44100)
 
         audio.append(engine.render(duration: 2.0))
         testMD5(audio)

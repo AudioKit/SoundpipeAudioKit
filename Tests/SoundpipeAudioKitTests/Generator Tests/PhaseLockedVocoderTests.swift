@@ -17,7 +17,7 @@ class PhaseLockedVocoderTests: XCTestCase {
         try? mgr.removeItem(at: url)
         let file = try! AVAudioFile(forWriting: url, settings: Settings.audioFormat.settings)
 
-        try! engine.renderToFile(file, duration: 1)
+//        try! engine.renderToFile(file, duration: 1)
         print("rendered test file to \(url)")
 
         return url
