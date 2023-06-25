@@ -7,13 +7,7 @@ import XCTest
 
 class ConvolutionTests: XCTestCase {
     func testConvolution() {
-        guard let url = Bundle.module.url(forResource: "TestResources/drumloop", withExtension: "wav"),
-              let file = try? AVAudioFile(forReading: url)
-        else {
-            XCTFail("Didn't generate test file")
-            return
-        }
-
+        let url = Bundle.module.url(forResource: "TestResources/drumloop", withExtension: "wav")!
         let engine = AudioEngine()
         let player = AudioPlayer()
 
@@ -25,21 +19,15 @@ class ConvolutionTests: XCTestCase {
         engine.output = convolution
 
         let audio = engine.startTest(totalDuration: 2.0)
-//        player.file = file
 
-        player.play()
+        player.play(url: url)
         audio.append(engine.render(duration: 2.0))
 
         testMD5(audio)
     }
 
     func testStereoConvolution() {
-        guard let url = Bundle.module.url(forResource: "TestResources/drumloop", withExtension: "wav"),
-              let file = try? AVAudioFile(forReading: url)
-        else {
-            XCTFail("Didn't generate test file")
-            return
-        }
+        let url = Bundle.module.url(forResource: "TestResources/drumloop", withExtension: "wav")!
 
         let engine = AudioEngine()
         let player = AudioPlayer()
@@ -54,11 +42,11 @@ class ConvolutionTests: XCTestCase {
         engine.output = convolution
 
         let audio = engine.startTest(totalDuration: 2.0)
-//        player.file = file
 
-        player.play()
+        player.play(url: url)
         audio.append(engine.render(duration: 2.0))
 
         testMD5(audio)
+        audio.audition()
     }
 }
