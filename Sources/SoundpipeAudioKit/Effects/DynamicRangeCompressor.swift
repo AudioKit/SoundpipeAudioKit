@@ -69,6 +69,32 @@ public class DynamicRangeCompressor: Node {
 
     /// Release Duration
     @Parameter(releaseDurationDef) public var releaseDuration: AUValue
+    
+    /// Specification details for gain
+    public static let gainDef = NodeParameterDef(
+        identifier: "gain",
+        name: "Makeup Gain",
+        address: akGetParameterAddress("DynamicRangeCompressorParameterGain"),
+        defaultValue: 1.0,
+        range: 0.0 ... 8.0,
+        unit: .linearGain
+    )
+
+    /// Makeup gain applied only to processed signal
+    @Parameter(gainDef) public var gain: AUValue
+
+    /// Specification details for dryWetMix
+    public static let dryWetMixDef = NodeParameterDef(
+        identifier: "dryWetMix",
+        name: "Dry/Wet Mix",
+        address: akGetParameterAddress("DynamicRangeCompressorParameterDryWetMix"),
+        defaultValue: 1.0,
+        range: 0.0 ... 1.0,
+        unit: .percent
+    )
+
+    /// Dry/Wet Mix
+    @Parameter(dryWetMixDef) public var dryWetMix: AUValue
 
     // MARK: - Initialization
 
@@ -80,13 +106,17 @@ public class DynamicRangeCompressor: Node {
     ///   - threshold: Threshold (in dB) 0 = max
     ///   - attackDuration: Attack duration
     ///   - releaseDuration: Release Duration
+    ///   - gain: Makeup gain (applied only to processing)
+    ///   - dryWetMix: Dry/Wet Mix
     ///
     public init(
         _ input: Node,
         ratio: AUValue = ratioDef.defaultValue,
         threshold: AUValue = thresholdDef.defaultValue,
         attackDuration: AUValue = attackDurationDef.defaultValue,
-        releaseDuration: AUValue = releaseDurationDef.defaultValue
+        releaseDuration: AUValue = releaseDurationDef.defaultValue,
+        gain: AUValue = gainDef.defaultValue,
+        dryWetMix: AUValue = dryWetMixDef.defaultValue
     ) {
         self.input = input
 
@@ -96,5 +126,7 @@ public class DynamicRangeCompressor: Node {
         self.threshold = threshold
         self.attackDuration = attackDuration
         self.releaseDuration = releaseDuration
+        self.gain = gain
+        self.dryWetMix = dryWetMix
     }
 }
