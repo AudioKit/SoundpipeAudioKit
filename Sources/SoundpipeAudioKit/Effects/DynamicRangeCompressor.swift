@@ -69,7 +69,7 @@ public class DynamicRangeCompressor: Node {
 
     /// Release Duration
     @Parameter(releaseDurationDef) public var releaseDuration: AUValue
-    
+
     /// Specification details for gain
     public static let gainDef = NodeParameterDef(
         identifier: "gain",
