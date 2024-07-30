@@ -70,6 +70,19 @@ public class TanhDistortion: Node {
     /// Like the positive shape parameter, only for the negative part.
     @Parameter(negativeShapeParameterDef) public var negativeShapeParameter: AUValue
 
+    /// Specification details for dryWetMix
+    public static let dryWetMixDef = NodeParameterDef(
+        identifier: "dryWetMix",
+        name: "Dry/Wet Mix",
+        address: akGetParameterAddress("TanhDistortionParameterDryWetMix"),
+        defaultValue: 1.0,
+        range: 0.0 ... 1.0,
+        unit: .percent
+    )
+
+    /// Dry/Wet Mix
+    @Parameter(dryWetMixDef) public var dryWetMix: AUValue
+
     // MARK: - Initialization
 
     /// Initialize this distortion node
@@ -77,16 +90,18 @@ public class TanhDistortion: Node {
     /// - Parameters:
     ///   - input: Input node to process
     ///   - pregain: Determines gain applied to the signal before waveshaping. A value of 1 gives slight distortion.
-    ///   - postgain: Gain applied after waveshaping
+    ///   - postgain: Gain applied after waveshaping (applied only to processed signal)
     ///   - positiveShapeParameter: Shape of the positive part of the signal. A value of 0 gets a flat clip.
     ///   - negativeShapeParameter: Like the positive shape parameter, only for the negative part.
+    ///   - dryWetMix: Dry/Wet Mix
     ///
     public init(
         _ input: Node,
         pregain: AUValue = pregainDef.defaultValue,
         postgain: AUValue = postgainDef.defaultValue,
         positiveShapeParameter: AUValue = positiveShapeParameterDef.defaultValue,
-        negativeShapeParameter: AUValue = negativeShapeParameterDef.defaultValue
+        negativeShapeParameter: AUValue = negativeShapeParameterDef.defaultValue,
+        dryWetMix: AUValue = dryWetMixDef.defaultValue
     ) {
         self.input = input
 
@@ -96,5 +111,6 @@ public class TanhDistortion: Node {
         self.postgain = postgain
         self.positiveShapeParameter = positiveShapeParameter
         self.negativeShapeParameter = negativeShapeParameter
+        self.dryWetMix = dryWetMix
     }
 }

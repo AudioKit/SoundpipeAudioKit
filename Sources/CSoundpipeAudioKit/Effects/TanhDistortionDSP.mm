@@ -9,6 +9,7 @@ enum TanhDistortionParameter : AUParameterAddress {
     TanhDistortionParameterPostgain,
     TanhDistortionParameterPositiveShapeParameter,
     TanhDistortionParameterNegativeShapeParameter,
+    TanhDistortionParameterDryWetMix,
 };
 
 class TanhDistortionDSP : public SoundpipeDSPBase {
@@ -19,6 +20,7 @@ private:
     ParameterRamper postgainRamp;
     ParameterRamper positiveShapeParameterRamp;
     ParameterRamper negativeShapeParameterRamp;
+    ParameterRamper dryWetMixRamp;
 
 public:
     TanhDistortionDSP() {
@@ -26,6 +28,7 @@ public:
         parameters[TanhDistortionParameterPostgain] = &postgainRamp;
         parameters[TanhDistortionParameterPositiveShapeParameter] = &positiveShapeParameterRamp;
         parameters[TanhDistortionParameterNegativeShapeParameter] = &negativeShapeParameterRamp;
+        parameters[TanhDistortionParameterDryWetMix] = &dryWetMixRamp;
     }
 
     void init(int channelCount, double sampleRate) override {
@@ -65,6 +68,10 @@ public:
 
             sp_dist_compute(sp, dist0, &leftIn, &leftOut);
             sp_dist_compute(sp, dist1, &rightIn, &rightOut);
+            
+            float dryWetMix = dryWetMixRamp.getAndStep();
+            outputSample(0, i) = dryWetMix * leftOut + (1.0f - dryWetMix) * leftIn;
+            outputSample(1, i) = dryWetMix * rightOut + (1.0f - dryWetMix) * rightIn;
         }
     }
 };
@@ -74,3 +81,4 @@ AK_REGISTER_PARAMETER(TanhDistortionParameterPregain)
 AK_REGISTER_PARAMETER(TanhDistortionParameterPostgain)
 AK_REGISTER_PARAMETER(TanhDistortionParameterPositiveShapeParameter)
 AK_REGISTER_PARAMETER(TanhDistortionParameterNegativeShapeParameter)
+AK_REGISTER_PARAMETER(TanhDistortionParameterDryWetMix)
