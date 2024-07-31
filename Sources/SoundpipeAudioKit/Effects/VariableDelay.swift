@@ -43,7 +43,7 @@ public class VariableDelay: Node {
 
     /// Feedback amount. Should be a value between 0-1.
     @Parameter(feedbackDef) public var feedback: AUValue
-    
+
     /// Specification details for dryWetMix
     public static let dryWetMixDef = NodeParameterDef(
         identifier: "dryWetMix",

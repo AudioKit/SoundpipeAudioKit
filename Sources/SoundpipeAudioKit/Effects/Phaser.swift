@@ -147,7 +147,7 @@ public class Phaser: Node {
 
     /// Dry/Wet Mix
     @Parameter(dryWetMixDef) public var dryWetMix: AUValue
-    
+
     // MARK: - Initialization
 
     /// Initialize this phaser node
