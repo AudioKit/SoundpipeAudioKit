@@ -43,6 +43,19 @@ public class VariableDelay: Node {
 
     /// Feedback amount. Should be a value between 0-1.
     @Parameter(feedbackDef) public var feedback: AUValue
+    
+    /// Specification details for dryWetMix
+    public static let dryWetMixDef = NodeParameterDef(
+        identifier: "dryWetMix",
+        name: "Dry/Wet Mix",
+        address: akGetParameterAddress("VariableDelayParameterDryWetMix"),
+        defaultValue: 1.0,
+        range: 0.0 ... 1.0,
+        unit: .percent
+    )
+
+    /// Dry/Wet Mix
+    @Parameter(dryWetMixDef) public var dryWetMix: AUValue
 
     // MARK: - Initialization
 
@@ -53,12 +66,14 @@ public class VariableDelay: Node {
     ///   - time: Delay time (in seconds) This value must not exceed the maximum delay time.
     ///   - feedback: Feedback amount. Should be a value between 0-1.
     ///   - maximumTime: The maximum delay time, in seconds.
+    ///   - dryWetMix: Dry/Wet Mix
     ///
     public init(
         _ input: Node,
         time: AUValue = timeDef.defaultValue,
         feedback: AUValue = feedbackDef.defaultValue,
-        maximumTime: AUValue = 5
+        maximumTime: AUValue = 5,
+        dryWetMix: AUValue = dryWetMixDef.defaultValue
     ) {
         self.input = input
 
@@ -68,5 +83,6 @@ public class VariableDelay: Node {
 
         self.time = time
         self.feedback = feedback
+        self.dryWetMix = dryWetMix
     }
 }

@@ -8,6 +8,7 @@
 enum VariableDelayParameter : AUParameterAddress {
     VariableDelayParameterTime,
     VariableDelayParameterFeedback,
+    VariableDelayParameterDryWetMix
 };
 
 class VariableDelayDSP : public SoundpipeDSPBase {
@@ -17,11 +18,13 @@ private:
     float maximumTime = 10.0;
     ParameterRamper timeRamp;
     ParameterRamper feedbackRamp;
+    ParameterRamper dryWetMixRamp;
 
 public:
     VariableDelayDSP() : SoundpipeDSPBase(1, false) {
         parameters[VariableDelayParameterTime] = &timeRamp;
         parameters[VariableDelayParameterFeedback] = &feedbackRamp;
+        parameters[VariableDelayParameterDryWetMix] = &dryWetMixRamp;
     }
 
     void setMaximumTime(float maxTime) {
@@ -68,6 +71,10 @@ public:
 
             sp_vdelay_compute(sp, vdelay0, &leftIn, &leftOut);
             sp_vdelay_compute(sp, vdelay1, &rightIn, &rightOut);
+
+            float dryWetMix = dryWetMixRamp.getAndStep();
+            outputSample(0, i) = dryWetMix * leftOut + (1.0f - dryWetMix) * leftIn;
+            outputSample(1, i) = dryWetMix * rightOut + (1.0f - dryWetMix) * rightIn;
         }
     }
 };
@@ -81,3 +88,4 @@ void akVariableDelaySetMaximumTime(DSPRef dspRef, float maximumTime) {
 AK_REGISTER_DSP(VariableDelayDSP, "vdla")
 AK_REGISTER_PARAMETER(VariableDelayParameterTime)
 AK_REGISTER_PARAMETER(VariableDelayParameterFeedback)
+AK_REGISTER_PARAMETER(VariableDelayParameterDryWetMix)
