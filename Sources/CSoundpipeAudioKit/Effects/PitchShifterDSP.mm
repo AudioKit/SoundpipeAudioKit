@@ -8,6 +8,7 @@ enum PitchShifterParameter : AUParameterAddress {
     PitchShifterParameterShift,
     PitchShifterParameterWindowSize,
     PitchShifterParameterCrossfade,
+    PitchShifterParameterDryWetMix
 };
 
 class PitchShifterDSP : public SoundpipeDSPBase {
@@ -17,12 +18,14 @@ private:
     ParameterRamper shiftRamp;
     ParameterRamper windowSizeRamp;
     ParameterRamper crossfadeRamp;
+    ParameterRamper dryWetMixRamp;
 
 public:
     PitchShifterDSP() {
         parameters[PitchShifterParameterShift] = &shiftRamp;
         parameters[PitchShifterParameterWindowSize] = &windowSizeRamp;
         parameters[PitchShifterParameterCrossfade] = &crossfadeRamp;
+        parameters[PitchShifterParameterDryWetMix] = &dryWetMixRamp;
     }
 
     void init(int channelCount, double sampleRate) override {
@@ -65,6 +68,10 @@ public:
 
             sp_pshift_compute(sp, pshift0, &leftIn, &leftOut);
             sp_pshift_compute(sp, pshift1, &rightIn, &rightOut);
+            
+            float dryWetMix = dryWetMixRamp.getAndStep();
+            outputSample(0, i) = dryWetMix * leftOut + (1.0f - dryWetMix) * leftIn;
+            outputSample(1, i) = dryWetMix * rightOut + (1.0f - dryWetMix) * rightIn;
         }
     }
 };
@@ -73,3 +80,4 @@ AK_REGISTER_DSP(PitchShifterDSP, "pshf")
 AK_REGISTER_PARAMETER(PitchShifterParameterShift)
 AK_REGISTER_PARAMETER(PitchShifterParameterWindowSize)
 AK_REGISTER_PARAMETER(PitchShifterParameterCrossfade)
+AK_REGISTER_PARAMETER(PitchShifterParameterDryWetMix)

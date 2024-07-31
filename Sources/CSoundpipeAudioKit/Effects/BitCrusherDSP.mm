@@ -7,6 +7,7 @@
 enum BitCrusherParameter : AUParameterAddress {
     BitCrusherParameterBitDepth,
     BitCrusherParameterSampleRate,
+    BitCrusherParameterDryWetMix
 };
 
 class BitCrusherDSP : public SoundpipeDSPBase {
@@ -15,11 +16,13 @@ private:
     sp_bitcrush *bitcrush1;
     ParameterRamper bitDepthRamp;
     ParameterRamper sampleRateRamp;
+    ParameterRamper dryWetMixRamp;
 
 public:
     BitCrusherDSP() {
         parameters[BitCrusherParameterBitDepth] = &bitDepthRamp;
         parameters[BitCrusherParameterSampleRate] = &sampleRateRamp;
+        parameters[BitCrusherParameterDryWetMix] = &dryWetMixRamp;
     }
 
     void init(int channelCount, double sampleRate) override {
@@ -57,6 +60,10 @@ public:
 
             sp_bitcrush_compute(sp, bitcrush0, &leftIn, &leftOut);
             sp_bitcrush_compute(sp, bitcrush1, &rightIn, &rightOut);
+
+            float dryWetMix = dryWetMixRamp.getAndStep();
+            outputSample(0, i) = dryWetMix * leftOut + (1.0f - dryWetMix) * leftIn;
+            outputSample(1, i) = dryWetMix * rightOut + (1.0f - dryWetMix) * rightIn;
         }
     }
 };
@@ -64,3 +71,4 @@ public:
 AK_REGISTER_DSP(BitCrusherDSP, "btcr")
 AK_REGISTER_PARAMETER(BitCrusherParameterBitDepth)
 AK_REGISTER_PARAMETER(BitCrusherParameterSampleRate)
+AK_REGISTER_PARAMETER(BitCrusherParameterDryWetMix)

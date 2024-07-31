@@ -57,6 +57,19 @@ public class PitchShifter: Node {
     /// Crossfade (in samples)
     @Parameter(crossfadeDef) public var crossfade: AUValue
 
+    /// Specification details for dryWetMix
+    public static let dryWetMixDef = NodeParameterDef(
+        identifier: "dryWetMix",
+        name: "Dry/Wet Mix",
+        address: akGetParameterAddress("PitchShifterParameterDryWetMix"),
+        defaultValue: 1.0,
+        range: 0.0 ... 1.0,
+        unit: .percent
+    )
+
+    /// Dry/Wet Mix
+    @Parameter(dryWetMixDef) public var dryWetMix: AUValue
+
     // MARK: - Initialization
 
     /// Initialize this pitchshifter node
@@ -66,12 +79,14 @@ public class PitchShifter: Node {
     ///   - shift: Pitch shift (in semitones)
     ///   - windowSize: Window size (in samples)
     ///   - crossfade: Crossfade (in samples)
+    ///   - dryWetMix: Dry/Wet Mix
     ///
     public init(
         _ input: Node,
         shift: AUValue = shiftDef.defaultValue,
         windowSize: AUValue = windowSizeDef.defaultValue,
-        crossfade: AUValue = crossfadeDef.defaultValue
+        crossfade: AUValue = crossfadeDef.defaultValue,
+        dryWetMix: AUValue = dryWetMixDef.defaultValue
     ) {
         self.input = input
 
@@ -80,5 +95,6 @@ public class PitchShifter: Node {
         self.shift = shift
         self.windowSize = windowSize
         self.crossfade = crossfade
+        self.dryWetMix = dryWetMix
     }
 }

@@ -44,6 +44,19 @@ public class BitCrusher: Node {
     /// The sample rate of signal output.
     @Parameter(sampleRateDef) public var sampleRate: AUValue
 
+    /// Specification details for dryWetMix
+    public static let dryWetMixDef = NodeParameterDef(
+        identifier: "dryWetMix",
+        name: "Dry/Wet Mix",
+        address: akGetParameterAddress("BitCrusherParameterDryWetMix"),
+        defaultValue: 1.0,
+        range: 0.0 ... 1.0,
+        unit: .percent
+    )
+
+    /// Dry/Wet Mix
+    @Parameter(dryWetMixDef) public var dryWetMix: AUValue
+
     // MARK: - Initialization
 
     /// Initialize this bitcrusher node
@@ -52,11 +65,13 @@ public class BitCrusher: Node {
     ///   - input: Input node to process
     ///   - bitDepth: The bit depth of signal output. Typically in range (1-24). Non-integer values are OK.
     ///   - sampleRate: The sample rate of signal output.
+    ///   - dryWetMix: Dry/Wet Mix
     ///
     public init(
         _ input: Node,
         bitDepth: AUValue = bitDepthDef.defaultValue,
-        sampleRate: AUValue = sampleRateDef.defaultValue
+        sampleRate: AUValue = sampleRateDef.defaultValue,
+        dryWetMix: AUValue = dryWetMixDef.defaultValue
     ) {
         self.input = input
 
@@ -64,5 +79,6 @@ public class BitCrusher: Node {
 
         self.bitDepth = bitDepth
         self.sampleRate = sampleRate
+        self.dryWetMix = dryWetMix
     }
 }
