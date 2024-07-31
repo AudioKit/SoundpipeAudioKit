@@ -9,6 +9,8 @@ enum DynamicRangeCompressorParameter : AUParameterAddress {
     DynamicRangeCompressorParameterThreshold,
     DynamicRangeCompressorParameterAttackDuration,
     DynamicRangeCompressorParameterReleaseDuration,
+    DynamicRangeCompressorParameterGain,
+    DynamicRangeCompressorParameterDryWetMix,
 };
 
 class DynamicRangeCompressorDSP : public SoundpipeDSPBase {
@@ -19,6 +21,8 @@ private:
     ParameterRamper thresholdRamp;
     ParameterRamper attackDurationRamp;
     ParameterRamper releaseDurationRamp;
+    ParameterRamper gainRamp;
+    ParameterRamper dryWetMixRamp;
 
 public:
     DynamicRangeCompressorDSP() {
@@ -26,6 +30,8 @@ public:
         parameters[DynamicRangeCompressorParameterThreshold] = &thresholdRamp;
         parameters[DynamicRangeCompressorParameterAttackDuration] = &attackDurationRamp;
         parameters[DynamicRangeCompressorParameterReleaseDuration] = &releaseDurationRamp;
+        parameters[DynamicRangeCompressorParameterGain] = &gainRamp;
+        parameters[DynamicRangeCompressorParameterDryWetMix] = &dryWetMixRamp;
     }
 
     void init(int channelCount, double sampleRate) override {
@@ -64,6 +70,14 @@ public:
 
             sp_compressor_compute(sp, compressor0, &leftIn, &leftOut);
             sp_compressor_compute(sp, compressor1, &rightIn, &rightOut);
+
+            float gain = gainRamp.getAndStep();
+            leftOut *= gain;
+            rightOut *= gain;
+
+            float dryWetMix = dryWetMixRamp.getAndStep();
+            outputSample(0, i) = dryWetMix * leftOut + (1.0f - dryWetMix) * leftIn;
+            outputSample(1, i) = dryWetMix * rightOut + (1.0f - dryWetMix) * rightIn;
         }
     }
 };
@@ -73,3 +87,5 @@ AK_REGISTER_PARAMETER(DynamicRangeCompressorParameterRatio)
 AK_REGISTER_PARAMETER(DynamicRangeCompressorParameterThreshold)
 AK_REGISTER_PARAMETER(DynamicRangeCompressorParameterAttackDuration)
 AK_REGISTER_PARAMETER(DynamicRangeCompressorParameterReleaseDuration)
+AK_REGISTER_PARAMETER(DynamicRangeCompressorParameterGain)
+AK_REGISTER_PARAMETER(DynamicRangeCompressorParameterDryWetMix)
