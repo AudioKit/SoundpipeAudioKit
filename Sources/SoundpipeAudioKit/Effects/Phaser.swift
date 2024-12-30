@@ -135,6 +135,19 @@ public class Phaser: Node {
     /// Between 24 and 360
     @Parameter(lfoBPMDef) public var lfoBPM: AUValue
 
+    /// Specification details for dryWetMix
+    public static let dryWetMixDef = NodeParameterDef(
+        identifier: "dryWetMix",
+        name: "Dry/Wet Mix",
+        address: akGetParameterAddress("PhaserParameterDryWetMix"),
+        defaultValue: 1.0,
+        range: 0.0 ... 1.0,
+        unit: .percent
+    )
+
+    /// Dry/Wet Mix
+    @Parameter(dryWetMixDef) public var dryWetMix: AUValue
+
     // MARK: - Initialization
 
     /// Initialize this phaser node
@@ -150,6 +163,7 @@ public class Phaser: Node {
     ///   - feedback: Between 0 and 1
     ///   - inverted: 1 or 0
     ///   - lfoBPM: Between 24 and 360
+    ///   - dryWetMix: Dry/Wet Mix
     ///
     public init(
         _ input: Node,
@@ -161,7 +175,8 @@ public class Phaser: Node {
         depth: AUValue = depthDef.defaultValue,
         feedback: AUValue = feedbackDef.defaultValue,
         inverted: AUValue = invertedDef.defaultValue,
-        lfoBPM: AUValue = lfoBPMDef.defaultValue
+        lfoBPM: AUValue = lfoBPMDef.defaultValue,
+        dryWetMix: AUValue = dryWetMixDef.defaultValue
     ) {
         self.input = input
 
@@ -176,5 +191,6 @@ public class Phaser: Node {
         self.feedback = feedback
         self.inverted = inverted
         self.lfoBPM = lfoBPM
+        self.dryWetMix = dryWetMix
     }
 }

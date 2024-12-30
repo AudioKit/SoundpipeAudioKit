@@ -14,6 +14,7 @@ enum PhaserParameter : AUParameterAddress {
     PhaserParameterFeedback,
     PhaserParameterInverted,
     PhaserParameterLfoBPM,
+    PhaserParameterDryWetMix
 };
 
 class PhaserDSP : public SoundpipeDSPBase {
@@ -28,6 +29,7 @@ private:
     ParameterRamper feedbackRamp;
     ParameterRamper invertedRamp;
     ParameterRamper lfoBPMRamp;
+    ParameterRamper dryWetMixRamp;
 
 public:
     PhaserDSP() {
@@ -40,6 +42,7 @@ public:
         parameters[PhaserParameterFeedback] = &feedbackRamp;
         parameters[PhaserParameterInverted] = &invertedRamp;
         parameters[PhaserParameterLfoBPM] = &lfoBPMRamp;
+        parameters[PhaserParameterDryWetMix] = &dryWetMixRamp;
     }
 
     void init(int channelCount, double sampleRate) override {
@@ -79,6 +82,10 @@ public:
             float &rightOut = outputSample(1, i);
             
             sp_phaser_compute(sp, phaser, &leftIn, &rightIn, &leftOut, &rightOut);
+
+            float dryWetMix = dryWetMixRamp.getAndStep();
+            outputSample(0, i) = dryWetMix * leftOut + (1.0f - dryWetMix) * leftIn;
+            outputSample(1, i) = dryWetMix * rightOut + (1.0f - dryWetMix) * rightIn;
         }
     }
 };
@@ -93,3 +100,4 @@ AK_REGISTER_PARAMETER(PhaserParameterDepth)
 AK_REGISTER_PARAMETER(PhaserParameterFeedback)
 AK_REGISTER_PARAMETER(PhaserParameterInverted)
 AK_REGISTER_PARAMETER(PhaserParameterLfoBPM)
+AK_REGISTER_PARAMETER(PhaserParameterDryWetMix)
