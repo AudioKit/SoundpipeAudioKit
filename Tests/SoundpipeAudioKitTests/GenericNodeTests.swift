@@ -135,7 +135,11 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "3838887f913f1f75cacca49f31096381", factory: { TanhDistortion(input) })
         nodeParameterTest(md5: "83c95cde57bf85e670e488e1ff2daece", factory: { Tremolo(input) })
         nodeParameterTest(md5: "4252aa6f4c43e7be1fbdb5a55de3d8f8", factory: { VariableDelay(input) })
+#if os(macOS)
         nodeParameterTest(md5: "9531a8b5ed754e891a33b9620e5e51d8", factory: { ZitaReverb(input) })
+#else
+        nodeParameterTest(md5: "587990a1506e4fbe08eba8e01f824260", factory: { ZitaReverb(input) })
+#endif
     }
 
     func nodeParameterTest2(md5: String, factory: (Node) -> Node, m1MD5: String = "", audition: Bool = false) {
