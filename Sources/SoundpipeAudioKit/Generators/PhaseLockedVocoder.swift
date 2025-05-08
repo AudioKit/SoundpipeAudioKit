@@ -158,15 +158,15 @@ public class PhaseLockedVocoder: Node {
                         bufferList.mBuffers.mData?.assumingMemoryBound(to: Float.self)
                     )
                     au.setWavetable(data: data, size: Int(ioNumberFrames))
-                    // Fixing a previous memory leak
-                    theData?.deallocate()
-                    theData = nil
                 } else {
                     // failure
                     theData?.deallocate()
                     theData = nil // make sure to return NULL
                     Log("Error = \(err)"); break Exit
                 }
+                // Fixing a previous memory leak
+                theData?.deallocate()
+                theData = nil
             }
         }
     }
