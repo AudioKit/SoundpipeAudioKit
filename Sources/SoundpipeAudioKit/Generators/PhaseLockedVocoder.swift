@@ -160,8 +160,6 @@ public class PhaseLockedVocoder: Node {
                     au.setWavetable(data: data, size: Int(ioNumberFrames))
                 } else {
                     // failure
-                    theData?.deallocate()
-                    theData = nil // make sure to return NULL
                     Log("Error = \(err)"); break Exit
                 }
                 // Fixing a previous memory leak
