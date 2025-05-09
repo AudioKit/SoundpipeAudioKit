@@ -49,7 +49,11 @@ class PhaseLockedVocoderTests: XCTestCase {
         let url = generateTestFile()
         XCTAssertNotNil(url)
 
-        let file = try! AVAudioFile(forReading: url)
+        guard let file = try? AVAudioFile(forReading: url) else {
+            XCTFail("Couldn't load test file")
+            return
+        }
+
         let engine = AudioEngine()
         let vocoder = PhaseLockedVocoder(file: file)
         engine.output = vocoder
