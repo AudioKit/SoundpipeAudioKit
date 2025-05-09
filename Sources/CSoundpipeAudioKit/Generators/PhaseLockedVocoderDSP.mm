@@ -54,6 +54,8 @@ public:
     void reset() override {
         SoundpipeDSPBase::reset();
         if (!isInitialized) return;
+        sp_mincer_destroy(&mincer);
+        sp_mincer_create(&mincer);
         sp_mincer_init(sp, mincer, ftbl, 2048);
     }
 
