@@ -30,6 +30,5 @@ class TalkboxTests: XCTestCase {
         audio.append(engine.render(duration: 5.0))
         
         testMD5(audio)
-        audio.audition()
     }
 }
