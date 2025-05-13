@@ -6,51 +6,58 @@ import AudioKitEX
 import AVFoundation
 import CAudioKitEX
 
-/// A digital effect of talk box. A talk box or talkbox is an effects unit that allows musicians to modify the sound 
-/// of a musical instrument by shaping the frequency content of the sound using their mouth. The effect can be used
-/// to make a musical instrument sound as if it's speaking, or to create other vocal-like effects.
+/// A high quality talkbox emulation, similar to a vocoder.
+/// This is the talkbox plugin ported from the MDA plugin suite. In many ways,
+/// this Talkbox functions like a vocoder: it takes in a source signal (usually
+/// speech), which then excites an excitation signal
+/// (usually a harmonically rich signal like a saw wave). This particular algorithm
+/// uses linear-predictive coding (LPC), making speech intelligibility better
+/// than most vocoder implementations.
 ///
 public class Talkbox: Node {
     let input: Node
+    let excitation: Node
 
     /// Connected nodes
-    public var connections: [Node] { [input] }
+    public var connections: [Node] { [input, excitation] }
 
     /// Underlying AVAudioNode
     public var avAudioNode = instantiate(effect: "tbox")
 
     // MARK: - Parameters
 
-    /// Dry/wet mix.
-    public static let balanceDef = NodeParameterDef(
-        identifier: "balance",
-        name: "Balance",
-        address: akGetParameterAddress("TalkboxParameterBalance"),
+    /// Quality of the talkbox sound. 0=lowest fidelity. 1=highest fidelity
+    public static let qualityDef = NodeParameterDef(
+        identifier: "quality",
+        name: "Quality",
+        address: akGetParameterAddress("TalkboxParameterQuality"),
         defaultValue: 1,
         range: 0 ... 1,
-        unit: .percent
+        unit: .generic
     )
 
-    /// Dry/wet mix. Should be a value between 0-1.
-    @Parameter(balanceDef) public var balance: AUValue
-
+    /// Quality parameter, from 0 (lowest fidelity) to 1 (highest fidelity)
+    @Parameter(qualityDef) public var quality: AUValue
 
     // MARK: - Initialization
 
     /// Initialize this talkbox node
     ///
     /// - Parameters:
-    ///   - input: Input node to process
-    ///   - balance: dry wet mix
+    ///   - input: Source signal that shapes the excitation (modulator)
+    ///   - excitation: The signal to be excited (carrier)
+    ///   - quality: Quality of the talkbox sound (0=lowest fidelity, 1=highest fidelity)
     ///
     public init(
         _ input: Node,
-        balance: AUValue = balanceDef.defaultValue
+        excitation: Node,
+        quality: AUValue = qualityDef.defaultValue
     ) {
         self.input = input
+        self.excitation = excitation
 
         setupParameters()
 
-        self.balance = balance
+        self.quality = quality
     }
 }
