@@ -17,13 +17,6 @@ private:
     ParameterRamper attackRamp{0.1};
     ParameterRamper releaseRamp{0.1};
     ParameterRamper bwRatioRamp{0.5};
-    
-    float attackTimeL = 0.1;
-    float releaseTimeL = 0.1;
-    float bwRatioL = 0.5;
-    float attackTimeR = 0.1;
-    float releaseTimeR = 0.1;
-    float bwRatioR = 0.5;
 
 public:
     VocoderDSP() {
@@ -35,9 +28,13 @@ public:
 
     void init(int channelCount, double sampleRate) override {
         SoundpipeDSPBase::init(channelCount, sampleRate);
+        
+        // Create and initialize vocoders first
         sp_vocoder_create(&vocoderL);
-        sp_vocoder_init(sp, vocoderL);
         sp_vocoder_create(&vocoderR);
+
+        // Initialize vocoders after setting parameters
+        sp_vocoder_init(sp, vocoderL);
         sp_vocoder_init(sp, vocoderR);
     }
 
@@ -50,6 +47,7 @@ public:
     void reset() override {
         SoundpipeDSPBase::reset();
         if (!isInitialized) return;
+        
         sp_vocoder_init(sp, vocoderL);
         sp_vocoder_init(sp, vocoderR);
     }
@@ -62,22 +60,11 @@ public:
             float excitationInR = input2Sample(1, i); // modulator input right
             float outSampleL;
             float outSampleR;
-
-            attackTimeL = attackRamp.getAndStep();
-            releaseTimeL = releaseRamp.getAndStep();
-            bwRatioL = bwRatioRamp.getAndStep();
             
-            attackTimeR = attackTimeL;
-            releaseTimeR = releaseTimeL;
-            bwRatioR = bwRatioL;
-
-            vocoderL->atk = &attackTimeL;
-            vocoderL->rel = &releaseTimeL;
-            vocoderL->bwratio = &bwRatioL;
-            vocoderR->atk = &attackTimeR;
-            vocoderR->rel = &releaseTimeR;
-            vocoderR->bwratio = &bwRatioR;
-
+            *vocoderL->atk = *vocoderR->atk = attackRamp.getAndStep();
+            *vocoderL->rel = *vocoderR->rel = releaseRamp.getAndStep();
+            *vocoderL->bwratio = *vocoderR->bwratio = bwRatioRamp.getAndStep();
+            
             sp_vocoder_compute(sp, vocoderL, &sourceInL, &excitationInL, &outSampleL);
             sp_vocoder_compute(sp, vocoderR, &sourceInR, &excitationInR, &outSampleR);
 

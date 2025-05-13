@@ -16,9 +16,9 @@ class VocoderTests: XCTestCase {
         excitation.$frequency.ramp(to: 440, duration: 5.0)
         
         // Create vocoder with both signals
-        let vocoder = Vocoder(source, excitation: excitation, attackTime: 0.123, releaseTime: 0.24, bandwidthRatio: 0.324)
-        vocoder.$attackTime.ramp(from: 0.01, to: 0.5, duration: 5.0)
-        vocoder.$releaseTime.ramp(from: 0.01, to: 0.5, duration: 5.0)
+        let vocoder = Vocoder(source, excitation: excitation)
+        vocoder.$attackTime.ramp(from: 0.1, to: 0.5, duration: 5.0)
+        vocoder.$releaseTime.ramp(from: 0.1, to: 0.5, duration: 5.0)
         vocoder.$bandwidthRatio.ramp(from: 0.1, to: 2.0, duration: 5.0)
 
         engine.output = vocoder
@@ -32,7 +32,5 @@ class VocoderTests: XCTestCase {
         audio.append(engine.render(duration: 5.0))
         
         testMD5(audio)
-//        audio.audition()
     }
 }
-
