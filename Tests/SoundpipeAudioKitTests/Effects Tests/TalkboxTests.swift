@@ -13,7 +13,8 @@ class TalkboxTests: XCTestCase {
         let source = AudioPlayer(url: url)!
         
         // Excitation/carrier (harmonically rich signal)
-        let excitation = DynamicOscillator(waveform: Table(.sawtooth), frequency: 220, amplitude: 1.0)
+        let excitation = DynamicOscillator(waveform: Table(.sawtooth), frequency: 110, amplitude: 1.0)
+        excitation.$frequency.ramp(to: 220, duration: 5.0)
         
         // Create talkbox with both signals
         let talkbox = Talkbox(source, excitation: excitation)
@@ -29,5 +30,6 @@ class TalkboxTests: XCTestCase {
         audio.append(engine.render(duration: 5.0))
         
         testMD5(audio)
+        audio.audition()
     }
 }

@@ -50,5 +50,5 @@ let validatedMD5s: [String: String] = [
     "-[PhaseLockedVocoderTests testDefault]": "eb9fe2d8ee2e3b3d6527a4e139c2686e",
     "-[PitchTapTests testBasic]": "5b6ae6252df77df298996a7367a00a9e",
     "-[PluckedStringTests testDefault]": "3f13907e6e916b7a4bf6046a4cbf0764",
-    "-[TalkboxTests testTalkbox]": "3ce43649658faa30bdb46124e48d00fb",
+    "-[TalkboxTests testTalkbox]": "316ef6638793f5fb6ec43fae1919ccff",
 ]
