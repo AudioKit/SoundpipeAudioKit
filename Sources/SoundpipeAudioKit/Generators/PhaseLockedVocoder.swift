@@ -79,7 +79,12 @@ public class PhaseLockedVocoder: Node {
         self.amplitude = amplitude
         self.pitchRatio = pitchRatio
     }
-
+    
+    /// Call this function after you are done with the node, to reset the au wavetable to prevent memory leaks
+    public func dispose() {
+        au.setWaveTable([0.0])
+    }
+    
     internal func loadFile(_ avAudioFile: AVAudioFile) {
         Exit: do {
             var err: OSStatus = noErr

@@ -114,7 +114,7 @@ public class ZitaReverb: Node {
         identifier: "EQ Frequency 2",
         name: "EQ Frequency 2",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerFrequency2"),
-        defaultValue: 1500.0,
+        defaultValue: 1000.0,
         range: 160.0 ... 1000.0,
         unit: .hertz
     )
