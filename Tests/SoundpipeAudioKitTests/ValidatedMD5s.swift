@@ -52,4 +52,6 @@ let validatedMD5s: [String: String] = [
     "-[PluckedStringTests testDefault]": "3f13907e6e916b7a4bf6046a4cbf0764",
     "-[TalkboxTests testTalkbox]": "316ef6638793f5fb6ec43fae1919ccff",
     "-[VocoderTests testVocoder]": "3836def448fed8ac901b179e943e6922",
+    "-[VibratoTests testVibrato]": "4bad4a6d951683cf6745a79b96b6aae2",
+    "-[VibratoTests testParameterSweep]": "cc3613847ed31d6566bbd4f6907e26e5",
 ]
