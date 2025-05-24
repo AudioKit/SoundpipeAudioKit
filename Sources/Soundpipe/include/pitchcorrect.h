@@ -1,5 +1,5 @@
-#ifndef autotune_h
-#define autotune_h
+#ifndef pitchcorrect_h
+#define pitchcorrect_h
 
 #ifdef __cplusplus
 extern "C" {
@@ -8,7 +8,7 @@ extern "C" {
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "soundpipe.h"
+#include "Soundpipe.h"
 #include "Yin.h"
 #include "circular_buffer.h"
 #include "pitchshift.h"
@@ -41,23 +41,23 @@ typedef struct {
     bool should_smooth_target_freq;
 
     bool should_update_scale_freqs;
-    float *autotune_scale_freqs;
-    int autotune_scale_freqs_count;
+    float *pitchcorrect_scale_freqs;
+    int pitchcorrect_scale_freqs_count;
     float *tmp_scale_freqs;
     int tmp_scale_freqs_count;
-} autotune;
+} pitchcorrect;
 
-int autotune_create(autotune **p);
-int autotune_init(sp_data *sp, autotune *p);
-int autotune_compute(sp_data *sp, autotune *p, float *in, float *out, float rms);
-int autotune_set_scale_freqs(autotune *p, float *frequencies, int count);
-int autotune_set_amount(autotune *p, float amount);
-int autotune_set_speed(autotune *p, float speed);
+int pitchcorrect_create(pitchcorrect **p);
+int pitchcorrect_init(sp_data *sp, pitchcorrect *p);
+int pitchcorrect_compute(sp_data *sp, pitchcorrect *p, float *in, float *out, float rms);
+int pitchcorrect_set_scale_freqs(pitchcorrect *p, float *frequencies, int count);
+int pitchcorrect_set_amount(pitchcorrect *p, float amount);
+int pitchcorrect_set_speed(pitchcorrect *p, float speed);
 
 #ifdef __cplusplus
 }
 #endif
 
 
-#endif /* autotune_h */
+#endif /* pitchcorrect_h */
 

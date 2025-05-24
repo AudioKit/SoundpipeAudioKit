@@ -21,7 +21,7 @@ int arp_init(sp_data *sp, arp *p) {
     return SP_OK;
 }
 
-int arp_compute(sp_data *sp, arp *p, float *in, float autotune_freq, float *out) {
+int arp_compute(sp_data *sp, arp *p, float *in, float pitchcorrect_freq, float *out) {
     float del_out = 0.0;
     float pshift_out = 0.0;
 
@@ -32,8 +32,8 @@ int arp_compute(sp_data *sp, arp *p, float *in, float autotune_freq, float *out)
     for (int i = 0; i < p->num_steps; i++) {
         sp_delay_compute(sp, &p->dels[i], in, &del_out);
         if (del_out != 0.0) {
-            if (autotune_freq > 0) {
-                *p->pshifts[i].window = (1.0 / autotune_freq) * (float)sp->sr;
+            if (pitchcorrect_freq > 0) {
+                *p->pshifts[i].window = (1.0 / pitchcorrect_freq) * (float)sp->sr;
                 *p->pshifts[i].xfade = *p->pshifts[i].window / 2.0f;
             }
 

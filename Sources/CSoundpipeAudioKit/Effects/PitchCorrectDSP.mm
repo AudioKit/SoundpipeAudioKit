@@ -3,7 +3,7 @@
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
-#include "autotune.h"
+#include "pitchcorrect.h"
 
 enum PitchCorrectParameter : AUParameterAddress {
     PitchCorrectParameterSpeed,
@@ -14,8 +14,8 @@ class PitchCorrectDSP : public SoundpipeDSPBase {
 private:
     sp_rms *rms_l;
     sp_rms *rms_r;
-    autotune *autotune_l;
-    autotune *autotune_r;
+    pitchcorrect *pitchcorrect_l;
+    pitchcorrect *pitchcorrect_r;
     ParameterRamper speedRamp;
     ParameterRamper amountRamp;
 
@@ -31,10 +31,10 @@ public:
         sp_rms_init(sp, rms_l);
         sp_rms_create(&rms_r);
         sp_rms_init(sp, rms_r);
-        autotune_create(&autotune_l);
-        autotune_init(sp, autotune_l);
-        autotune_create(&autotune_r);
-        autotune_init(sp, autotune_r);
+        pitchcorrect_create(&pitchcorrect_l);
+        pitchcorrect_init(sp, pitchcorrect_l);
+        pitchcorrect_create(&pitchcorrect_r);
+        pitchcorrect_init(sp, pitchcorrect_r);
         
         // Create chromatic scale from A220 to A440
         float scale[13] = {
@@ -53,8 +53,8 @@ public:
             440.00  // A
         };
         
-        autotune_set_scale_freqs(autotune_l, scale, 13);
-        autotune_set_scale_freqs(autotune_r, scale, 13);
+        pitchcorrect_set_scale_freqs(pitchcorrect_l, scale, 13);
+        pitchcorrect_set_scale_freqs(pitchcorrect_r, scale, 13);
     }
 
     void deinit() override {
@@ -83,17 +83,17 @@ public:
             
             float leftOut = 0, rightOut = 0;
             
-            autotune_set_speed(autotune_l, speed);
-            autotune_set_amount(autotune_l, amount);
+            pitchcorrect_set_speed(pitchcorrect_l, speed);
+            pitchcorrect_set_amount(pitchcorrect_l, amount);
 
-            autotune_set_speed(autotune_r, speed);
-            autotune_set_amount(autotune_r, amount);
+            pitchcorrect_set_speed(pitchcorrect_r, speed);
+            pitchcorrect_set_amount(pitchcorrect_r, amount);
         
             sp_rms_compute(sp, rms_l, &leftIn, &rms_l_out);
-            autotune_compute(sp, autotune_l, &leftIn, &leftOut, rms_l_out);
+            pitchcorrect_compute(sp, pitchcorrect_l, &leftIn, &leftOut, rms_l_out);
             
             sp_rms_compute(sp, rms_r, &rightIn, &rms_r_out);
-            autotune_compute(sp, autotune_r, &rightIn, &rightOut, rms_r_out);
+            pitchcorrect_compute(sp, pitchcorrect_r, &rightIn, &rightOut, rms_r_out);
             
             outputSample(0, i) = leftOut;
             outputSample(1, i) = rightOut;

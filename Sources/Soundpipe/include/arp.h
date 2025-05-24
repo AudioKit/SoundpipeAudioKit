@@ -16,6 +16,6 @@ typedef struct {
 
 int arp_create(arp **p);
 int arp_init(sp_data *sp, arp *p);
-int arp_compute(sp_data *sp, arp *p, float *in, float autotune_freq, float *out);
+int arp_compute(sp_data *sp, arp *p, float *in, float pitchcorrect_freq, float *out);
 
 #endif /* arp_h */

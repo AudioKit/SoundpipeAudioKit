@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include "autotune.h"
+#include "pitchcorrect.h"
 #include "Yin.h"
 #include "circular_buffer.h"
 
@@ -11,12 +11,12 @@
 float min_freq = 20.0;
 float max_freq = 3000.0;
 
-int autotune_create(autotune **p) {
-    *p = malloc(sizeof(autotune));
+int pitchcorrect_create(pitchcorrect **p) {
+    *p = malloc(sizeof(pitchcorrect));
     return SP_OK;
 }
 
-int autotune_init(sp_data *sp, autotune *p) {
+int pitchcorrect_init(sp_data *sp, pitchcorrect *p) {
     pitchshift2_create(&p->pshift2);
     pitchshift2_init(sp, p->pshift2, min_freq, max_freq);
     pitchcalculate_create(&p->pcalc);
@@ -46,7 +46,7 @@ int autotune_init(sp_data *sp, autotune *p) {
     return SP_OK;
 }
 
-float nearest_scale_freq_index(autotune *p, float freq) {
+float nearest_scale_freq_index(pitchcorrect *p, float freq) {
     if (freq < 0) {
         return 0.0;
     }
@@ -54,11 +54,11 @@ float nearest_scale_freq_index(autotune *p, float freq) {
     float nearest_difference = 10000.0;
     float nearest = 10.0;
     float nearest_index = -1;
-    for (int i = 0; i < p->autotune_scale_freqs_count; i++) {
-        float diff = fabs(p->autotune_scale_freqs[i] - freq);
+    for (int i = 0; i < p->pitchcorrect_scale_freqs_count; i++) {
+        float diff = fabs(p->pitchcorrect_scale_freqs[i] - freq);
         if (diff < nearest_difference) {
             nearest_difference = diff;
-            nearest = p->autotune_scale_freqs[i];
+            nearest = p->pitchcorrect_scale_freqs[i];
             nearest_index = (float)i;
         } else if (diff > nearest_difference) {
             break;
@@ -78,7 +78,7 @@ float semitone_ratio(float scale_freq, float detected_freq) {
     return 1.0;
 }
 
-int yin_add_to_buff(sp_data *sp, autotune *p, float *in) {
+int yin_add_to_buff(sp_data *sp, pitchcorrect *p, float *in) {
     float lpf_out;
     sp_butlp_compute(sp, p->lpf, in, &lpf_out);
 
@@ -93,7 +93,7 @@ int yin_add_to_buff(sp_data *sp, autotune *p, float *in) {
     return SP_OK;
 }
 
-int compute_yin_pitch(sp_data *sp, autotune *p) {
+int compute_yin_pitch(sp_data *sp, pitchcorrect *p) {
     if (p->buff->count >= p->yin->bufferSize) {
         cb_pop_multiple(p->buff, p->intBuffer, p->yin->bufferSize, 16);
         float freq = Yin_getPitch(p->yin, p->intBuffer);
@@ -111,7 +111,7 @@ int compute_yin_pitch(sp_data *sp, autotune *p) {
     return SP_OK;
 }
 
-int compute_nearest_scale_freq_index(sp_data *sp, autotune *p) {
+int compute_nearest_scale_freq_index(sp_data *sp, pitchcorrect *p) {
     p->scale_freq_index_acc++;
 
     float freq = p->detected_freq;
@@ -130,8 +130,8 @@ int compute_nearest_scale_freq_index(sp_data *sp, autotune *p) {
         }
 
         int integerScaleIndex = (int)roundf(p->nearest_scale_freq_index);
-        if (integerScaleIndex >= 0 && integerScaleIndex < p->autotune_scale_freqs_count) {
-            p->target_freq = p->autotune_scale_freqs[integerScaleIndex];
+        if (integerScaleIndex >= 0 && integerScaleIndex < p->pitchcorrect_scale_freqs_count) {
+            p->target_freq = p->pitchcorrect_scale_freqs[integerScaleIndex];
         }
     }
 
@@ -153,10 +153,10 @@ int compute_nearest_scale_freq_index(sp_data *sp, autotune *p) {
     return SP_OK;
 }
 
-int autotune_compute(sp_data *sp, autotune *p, float *in, float *out, float rms) {
+int pitchcorrect_compute(sp_data *sp, pitchcorrect *p, float *in, float *out, float rms) {
     if (p->should_update_scale_freqs) {
-        p->autotune_scale_freqs = p->tmp_scale_freqs;
-        p->autotune_scale_freqs_count = p->tmp_scale_freqs_count;
+        p->pitchcorrect_scale_freqs = p->tmp_scale_freqs;
+        p->pitchcorrect_scale_freqs_count = p->tmp_scale_freqs_count;
         p->should_update_scale_freqs = false;
         p->scale_freq_index_acc = 128;
         p->should_smooth_scale_idx = false;
@@ -224,7 +224,7 @@ int autotune_compute(sp_data *sp, autotune *p, float *in, float *out, float rms)
     return SP_OK;
 }
 
-int autotune_set_scale_freqs(autotune *p, float *frequencies, int count) {
+int pitchcorrect_set_scale_freqs(pitchcorrect *p, float *frequencies, int count) {
     float *new_freqs = malloc(sizeof(float) * count);
     memcpy(new_freqs, frequencies, sizeof(float) * count);
     p->tmp_scale_freqs = new_freqs;
@@ -233,12 +233,12 @@ int autotune_set_scale_freqs(autotune *p, float *frequencies, int count) {
     return SP_OK;
 }
 
-int autotune_set_amount(autotune *p, float amount) {
+int pitchcorrect_set_amount(pitchcorrect *p, float amount) {
     p->amount = amount;
     return SP_OK;
 }
 
-int autotune_set_speed(autotune *p, float speed) {
+int pitchcorrect_set_speed(pitchcorrect *p, float speed) {
     p->speed = speed;
     p->scale_freq_port->htime = -0.05 * speed + 0.05;
     return SP_OK;
