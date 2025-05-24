@@ -50,11 +50,10 @@ public:
             369.99, // F#/Gb
             392.00, // G
             415.30, // G#/Ab
-            440.00  // A
         };
         
-        pitchcorrect_set_scale_freqs(pitchcorrect_l, scale, 13);
-        pitchcorrect_set_scale_freqs(pitchcorrect_r, scale, 13);
+        pitchcorrect_set_scale_freqs(pitchcorrect_l, scale, 12);
+        pitchcorrect_set_scale_freqs(pitchcorrect_r, scale, 12);
     }
 
     void deinit() override {
