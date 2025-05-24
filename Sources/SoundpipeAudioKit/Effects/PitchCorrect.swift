@@ -64,4 +64,10 @@ public class PitchCorrect: Node {
         self.speed = speed
         self.amount = amount
     }
+    
+    /// Set the scale frequencies for pitch correction
+    /// - Parameter frequencies: Array of frequencies in Hz
+    public func setScaleFrequencies(_ frequencies: [Float]) {
+        au.setWavetable(frequencies)
+    }
 }
