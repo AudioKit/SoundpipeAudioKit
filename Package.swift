@@ -11,6 +11,7 @@ let package = Package(
         .package(url: "https://github.com/AudioKit/KissFFT", from: "1.0.0"),
         .package(url: "https://github.com/AudioKit/AudioKit", from: "5.6.0"),
         .package(url: "https://github.com/AudioKit/AudioKitEX", from: "5.5.0"),
+        .package(url: "https://github.com/AudioKit/Tonic", from: "2.0.0"),
     ],
     targets: [
         .target(name: "Soundpipe",
@@ -22,9 +23,9 @@ let package = Package(
                     .headerSearchPath("modules"),
                     .headerSearchPath("external"),
                 ]),
-        .target(name: "SoundpipeAudioKit", dependencies: ["AudioKit", "AudioKitEX", "CSoundpipeAudioKit"]),
+        .target(name: "SoundpipeAudioKit", dependencies: ["AudioKit", "AudioKitEX", "CSoundpipeAudioKit", "Tonic"]),
         .target(name: "CSoundpipeAudioKit", dependencies: ["AudioKit", "AudioKitEX", "Soundpipe"]),
-        .testTarget(name: "SoundpipeAudioKitTests", dependencies: ["SoundpipeAudioKit"], resources: [.copy("TestResources/")]),
+        .testTarget(name: "SoundpipeAudioKitTests", dependencies: ["SoundpipeAudioKit", "Tonic"], resources: [.copy("TestResources/")]),
         .testTarget(name: "CSoundpipeAudioKitTests", dependencies: ["CSoundpipeAudioKit"]),
     ],
     cxxLanguageStandard: .cxx14

@@ -4,6 +4,7 @@ import AudioKit
 import SoundpipeAudioKit
 import XCTest
 import AVFoundation
+import Tonic
 
 class PitchCorrectTests: XCTestCase {
     func testPitchCorrect() {
@@ -15,7 +16,7 @@ class PitchCorrectTests: XCTestCase {
         oscillator.amplitude = 0.5
         
         // Create pitch correction
-        let pitchCorrect = PitchCorrect(oscillator, speed: 1.0, amount: 1.0)
+        let pitchCorrect = PitchCorrect(oscillator, key: .A, speed: 1.0, amount: 1.0)
         
         engine.output = pitchCorrect
         
@@ -27,8 +28,14 @@ class PitchCorrectTests: XCTestCase {
         // Ramp frequency from 110 to 880 over 10 seconds
         oscillator.$frequency.ramp(to: 440, duration: 5.0)
         
+//        pitchCorrect.setScaleFrequencies([220,245,350,395])
+//        pitchCorrect.setValidNotes(root: .C, scale: .major)
+//        pitchCorrect.setValidNotes(.C, .Dsharp, .E)
+
+        
         audio.append(engine.render(duration: 5.0))
         
         testMD5(audio)
+        audio.audition()
     }
 }

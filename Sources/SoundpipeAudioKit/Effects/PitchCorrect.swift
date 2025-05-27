@@ -4,11 +4,14 @@ import AudioKit
 import AudioKitEX
 import AVFoundation
 import CAudioKitEX
+import Tonic
 
 /// Pitch correction
 public class PitchCorrect: Node {
     let input: Node
-
+    
+    var key: Key
+    
     /// Connected nodes
     public var connections: [Node] { [input] }
 
@@ -49,25 +52,56 @@ public class PitchCorrect: Node {
     ///
     /// - Parameters:
     ///   - input: Input node to process
+    ///   - key: Key to tune to
+    ///   - scale: Scale to use (default: major)
     ///   - speed: Speed of pitch correction (0-1)
     ///   - amount: Amount of pitch correction (0-1)
     ///
     public init(
         _ input: Node,
+        key: Key = .C,
         speed: AUValue = speedDef.defaultValue,
         amount: AUValue = amountDef.defaultValue
     ) {
         self.input = input
-
+        self.key = key
+        
+        updateScaleFrequencies()
+        
         setupParameters()
 
         self.speed = speed
         self.amount = amount
+        
+        updateScaleFrequencies()
     }
     
-    /// Set the scale frequencies for pitch correction
-    /// - Parameter frequencies: Array of frequencies in Hz
-    public func setScaleFrequencies(_ frequencies: [Float]) {
+    /// Update the scale frequencies based on current key and scale
+    private func updateScaleFrequencies() {
+        var frequencies: [Float] = []
+        
+        // Generate notes for octaves 0 through 7
+        for octave in 0...7 {
+            for noteClass in key.noteSet.noteClassSet.array {
+                let noteWithOctave = Note(noteClass.letter, accidental: noteClass.accidental, octave: octave)
+                print(noteClass)
+                frequencies.append(Float(noteWithOctave.pitch.frequency))
+            }
+        }
+        
+        // Sort frequencies in ascending order
+        frequencies.sort()
+        print(frequencies)
+        print(frequencies.count)
+        
+        // Set the frequencies in the DSP
         au.setWavetable(frequencies)
+    }
+
+}
+
+extension Pitch {
+    var frequency: Double {
+        return Double(UInt8(midiNoteNumber).midiNoteToFrequency())
     }
 }
