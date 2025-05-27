@@ -10,7 +10,11 @@ import Tonic
 public class PitchCorrect: Node {
     let input: Node
     
-    var key: Key
+    public var key: Key {
+        didSet {
+            updateScaleFrequencies()
+        }
+    }
     
     /// Connected nodes
     public var connections: [Node] { [input] }
@@ -84,24 +88,20 @@ public class PitchCorrect: Node {
         for octave in 0...7 {
             for noteClass in key.noteSet.noteClassSet.array {
                 let noteWithOctave = Note(noteClass.letter, accidental: noteClass.accidental, octave: octave)
-                print(noteClass)
-                frequencies.append(Float(noteWithOctave.pitch.frequency))
+                frequencies.append(UInt8(noteWithOctave.pitch.midiNoteNumber).midiNoteToFrequency())
             }
         }
         
         // Sort frequencies in ascending order
         frequencies.sort()
-        print(frequencies)
-        print(frequencies.count)
         
         // Set the frequencies in the DSP
-        au.setWavetable(frequencies)
+        setScaleFrequencies(frequencies)
     }
-
-}
-
-extension Pitch {
-    var frequency: Double {
-        return Double(UInt8(midiNoteNumber).midiNoteToFrequency())
+    
+    /// Set the scale frequencies for pitch correction
+    /// - Parameter frequencies: Array of frequencies in Hz
+    public func setScaleFrequencies(_ frequencies: [Float]) {
+        au.setWavetable(frequencies)
     }
 }

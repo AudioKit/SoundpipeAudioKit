@@ -54,5 +54,5 @@ let validatedMD5s: [String: String] = [
     "-[VocoderTests testVocoder]": "3836def448fed8ac901b179e943e6922",
     "-[VibratoTests testVibrato]": "4bad4a6d951683cf6745a79b96b6aae2",
     "-[VibratoTests testParameterSweep]": "cc3613847ed31d6566bbd4f6907e26e5",
-    "-[PitchCorrectTests testPitchCorrect]": "7585bf87d60d73a700da0921cbc72981"
+    "-[PitchCorrectTests testPitchCorrect]": "9128a5a1eb68d491af693028fcbc9668"
 ]

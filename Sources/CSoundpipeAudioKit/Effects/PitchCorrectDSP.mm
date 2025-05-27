@@ -44,9 +44,6 @@ public:
         pitchcorrect_create(&pitchcorrect_r);
         pitchcorrect_init(sp, pitchcorrect_r);
         
-        // Default chromatic scale from A1 (55Hz) to A6 (1760Hz)
-        float defaultScale[1] = {440.00};
-        setWavetable(defaultScale, 1, 0);
     }
 
     void deinit() override {
@@ -82,6 +79,7 @@ public:
             pitchcorrect_set_scale_freqs(pitchcorrect_l, scale, scaleCount);
             pitchcorrect_set_scale_freqs(pitchcorrect_r, scale, scaleCount);
 
+
             pitchcorrect_set_speed(pitchcorrect_l, speed);
             pitchcorrect_set_amount(pitchcorrect_l, amount);
 
@@ -103,4 +101,3 @@ public:
 AK_REGISTER_DSP(PitchCorrectDSP, "pcrt")
 AK_REGISTER_PARAMETER(PitchCorrectParameterSpeed)
 AK_REGISTER_PARAMETER(PitchCorrectParameterAmount)
-

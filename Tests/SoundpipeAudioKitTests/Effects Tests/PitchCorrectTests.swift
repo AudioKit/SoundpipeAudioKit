@@ -27,15 +27,9 @@ class PitchCorrectTests: XCTestCase {
         
         // Ramp frequency from 110 to 880 over 10 seconds
         oscillator.$frequency.ramp(to: 440, duration: 5.0)
-        
-//        pitchCorrect.setScaleFrequencies([220,245,350,395])
-//        pitchCorrect.setValidNotes(root: .C, scale: .major)
-//        pitchCorrect.setValidNotes(.C, .Dsharp, .E)
-
-        
+                
         audio.append(engine.render(duration: 5.0))
         
         testMD5(audio)
-        audio.audition()
     }
 }
