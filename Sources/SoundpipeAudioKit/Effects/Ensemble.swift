@@ -252,6 +252,19 @@ public class Ensemble: Node {
     /// Pan position 9 (-1 = left, 0 = center, 1 = right)
     @Parameter(pan9Def) public var pan9: AUValue
 
+    /// Specification details for numberOfVoices
+    public static let numberOfVoicesDef = NodeParameterDef(
+        identifier: "numberOfVoices",
+        name: "Number of Voices",
+        address: akGetParameterAddress("EnsembleParameterNumberOfVoices"),
+        defaultValue: 1,
+        range: 1.0 ... 9.0,
+        unit: .generic
+    )
+
+    /// Number of voices to use (1-9)
+    @Parameter(numberOfVoicesDef) public var numberOfVoices: AUValue
+
     /// Specification details for dryWetMix
     public static let dryWetMixDef = NodeParameterDef(
         identifier: "dryWetMix",
@@ -306,6 +319,9 @@ public class Ensemble: Node {
         self.pan7 = pans.count > 6 ? pans[6] : Self.pan7Def.defaultValue
         self.pan8 = pans.count > 7 ? pans[7] : Self.pan8Def.defaultValue
         self.pan9 = pans.count > 8 ? pans[8] : Self.pan9Def.defaultValue
+        
+        // Set number of voices based on the shifts array length, clamped to 1-9
+        self.numberOfVoices = AUValue(max(1, min(9, shifts.count)))
         
         self.dryWetMix = dryWetMix
     }

@@ -23,6 +23,7 @@ enum EnsembleParameter : AUParameterAddress {
     EnsembleParameterPan7,
     EnsembleParameterPan8,
     EnsembleParameterPan9,
+    EnsembleParameterNumberOfVoices,
     EnsembleParameterDryWetMix
 };
 
@@ -37,6 +38,7 @@ private:
     
     ParameterRamper shiftRamps[9];
     ParameterRamper panRamps[9];
+    ParameterRamper numberOfVoicesRamp;
     ParameterRamper dryWetMixRamp;
 
 public:
@@ -59,6 +61,7 @@ public:
         parameters[EnsembleParameterPan7] = &panRamps[6];
         parameters[EnsembleParameterPan8] = &panRamps[7];
         parameters[EnsembleParameterPan9] = &panRamps[8];
+        parameters[EnsembleParameterNumberOfVoices] = &numberOfVoicesRamp;
         parameters[EnsembleParameterDryWetMix] = &dryWetMixRamp;
     }
 
@@ -112,6 +115,10 @@ public:
     void process(FrameRange range) override {
         for (int i : range) {
             float dryWetMix = dryWetMixRamp.getAndStep();
+            int numVoices = (int)numberOfVoicesRamp.getAndStep();
+            
+            // Clamp number of voices between 1 and 9
+            numVoices = std::max(1, std::min(9, numVoices));
             
             float leftIn = inputSample(0, i);
             float rightIn = inputSample(1, i);
@@ -119,8 +126,8 @@ public:
             float leftSum = 0.0f;
             float rightSum = 0.0f;
             
-            // Process through all 9 pitch shifters
-            for (int voice = 0; voice < 9; voice++) {
+            // Process through the specified number of pitch shifters
+            for (int voice = 0; voice < numVoices; voice++) {
                 float shift = shiftRamps[voice].getAndStep();
                 float pan = panRamps[voice].getAndStep();
                 
@@ -139,9 +146,9 @@ public:
                 float pannedLeft, pannedRight;
                 sp_panst_compute(sp, panst[voice], &leftOut, &rightOut, &pannedLeft, &pannedRight);
                 
-                // Add to sum with appropriate gain (divide by 9 to prevent clipping)
-                leftSum += pannedLeft / 9.0f;
-                rightSum += pannedRight / 9.0f;
+                // Add to sum with appropriate gain (divide by numVoices to prevent clipping)
+                leftSum += pannedLeft / numVoices;
+                rightSum += pannedRight / numVoices;
             }
             
             // Apply dry/wet mix
@@ -170,4 +177,5 @@ AK_REGISTER_PARAMETER(EnsembleParameterPan6)
 AK_REGISTER_PARAMETER(EnsembleParameterPan7)
 AK_REGISTER_PARAMETER(EnsembleParameterPan8)
 AK_REGISTER_PARAMETER(EnsembleParameterPan9)
+AK_REGISTER_PARAMETER(EnsembleParameterNumberOfVoices)
 AK_REGISTER_PARAMETER(EnsembleParameterDryWetMix)

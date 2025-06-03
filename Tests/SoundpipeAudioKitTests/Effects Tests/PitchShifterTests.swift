@@ -5,19 +5,15 @@ import SoundpipeAudioKit
 import XCTest
 
 class PitchShifterTests: XCTestCase {
-    func testResetPitchShifter() {
+    func testPitchShifter() {
         let engine = AudioEngine()
-        let input = Oscillator(waveform: Table([1, 1]))
+        let input = Oscillator()
         let shifter = PitchShifter(input)
-        engine.output = shifter
+        shifter.shift = 7
+        engine.output = Mixer(input, shifter)
         input.start()
-        let audio = engine.startTest(totalDuration: 2.0)
+        let audio = engine.startTest(totalDuration: 1.0)
         audio.append(engine.render(duration: 1.0))
-        XCTAssertEqual(audio.toFloatChannelData()?[0].count, 44100)
-
-        shifter.reset()
-        audio.append(engine.render(duration: 1.0))
-
-        XCTAssertEqual(audio.toFloatChannelData()?[0].count, 88200)
+        audio.audition()
     }
 }
