@@ -54,5 +54,14 @@ let validatedMD5s: [String: String] = [
     "-[VocoderTests testVocoder]": "3836def448fed8ac901b179e943e6922",
     "-[VibratoTests testVibrato]": "4bad4a6d951683cf6745a79b96b6aae2",
     "-[VibratoTests testParameterSweep]": "cc3613847ed31d6566bbd4f6907e26e5",
-    "-[PitchCorrectTests testPitchCorrect]": "9128a5a1eb68d491af693028fcbc9668"
+    "-[PitchCorrectTests testPitchCorrect]": "9128a5a1eb68d491af693028fcbc9668",
+    "-[EnsembleTests testAllVoicesActive]": "524b59ceb689d76e0ec5af4d8c2cddeb",
+    "-[EnsembleTests testArrayInitializer]": "7ea6bf4e50e6463b468df5984fff4042",
+    "-[EnsembleTests testDominantSeventhChord]": "254dede98cc20371240a0e0a74741db5",
+    "-[EnsembleTests testDrySignalOnly]": "f0096d990a5621665c5378ce39c104b5",
+    "-[EnsembleTests testEmptyArrays]": "68938c8097d4347c6acbe7b7f18fd6b6",
+    "-[EnsembleTests testMajorChord]": "f8bb616ea1b9e7caffd3e7ff3d3da163",
+    "-[EnsembleTests testMicrotones]": "e1b58fcb2e37b5108f1a53a07a0d122c",
+    "-[EnsembleTests testParameterAutomation]": "9071f70f9536ecf746e810aa676d8544",
+    "-[EnsembleTests testSingleVoice]": "8d3e03cd3ff04f5d299f0399e1bdd4e7"
 ]
