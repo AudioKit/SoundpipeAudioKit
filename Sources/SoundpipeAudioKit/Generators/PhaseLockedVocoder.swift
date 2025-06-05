@@ -26,7 +26,7 @@ public class PhaseLockedVocoder: Node {
         range: 0 ... 100_000,
         unit: .generic
     )
-    
+
     /// Position in time. When non-changing it will do a spectral freeze of a the current point in time.
     @Parameter(positionDef) public var position: AUValue
 
@@ -76,7 +76,7 @@ public class PhaseLockedVocoder: Node {
         setupParameters()
 
         loadFile(file)
-        
+
         let safeGrainSize = roundUpToPowerOfTwo(grainSize)
         akPhaseLockedVocoderSetMincerSize(au.dsp, safeGrainSize)
 
@@ -85,7 +85,8 @@ public class PhaseLockedVocoder: Node {
         self.pitchRatio = pitchRatio
     }
 
-    /// The grain size range is 128 - 8192 and it must be a power of two. If it isn't one already, this function will round it up to the next power of two
+    /// The grain size range is 128 - 8192 and it must be a power of two.
+    /// If it isn't one already, this function will round it up to the next power of two
     /// (should we warn the user if they submit a value which is not in that range or is not a power of two?)
     func roundUpToPowerOfTwo(_ value: Int32) -> Int32 {
         let range: ClosedRange<Int32> = 128...8192
