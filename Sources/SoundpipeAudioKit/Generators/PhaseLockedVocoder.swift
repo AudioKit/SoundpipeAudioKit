@@ -4,6 +4,7 @@ import AudioKit
 import AudioKitEX
 import AVFoundation
 import CAudioKitEX
+import CSoundpipeAudioKit
 
 /// This is a phase locked vocoder. It has the ability to play back an audio
 /// file loaded into an ftable like a sampler would. Unlike a typical sampler,
@@ -69,15 +70,35 @@ public class PhaseLockedVocoder: Node {
         file: AVAudioFile,
         position: AUValue = positionDef.defaultValue,
         amplitude: AUValue = amplitudeDef.defaultValue,
-        pitchRatio: AUValue = pitchRatioDef.defaultValue
+        pitchRatio: AUValue = pitchRatioDef.defaultValue,
+        grainSize: Int32 = 2048
     ) {
         setupParameters()
 
         loadFile(file)
 
+        let safeGrainSize = roundUpToPowerOfTwo(grainSize)
+        akPhaseLockedVocoderSetMincerSize(au.dsp, safeGrainSize)
+
         self.position = position
         self.amplitude = amplitude
         self.pitchRatio = pitchRatio
+    }
+
+    /// The grain size range is 128 - 8192 and it must be a power of two.
+    /// If it isn't one already, this function will round it up to the next power of two
+    /// (should we warn the user if they submit a value which is not in that range or is not a power of two?)
+    func roundUpToPowerOfTwo(_ value: Int32) -> Int32 {
+        let range: ClosedRange<Int32> = 128...8192
+        guard range.contains(value) else { return min(max(value, range.lowerBound), range.upperBound) }
+        var result = value - 1
+        result |= result >> 1
+        result |= result >> 2
+        result |= result >> 4
+        result |= result >> 8
+        result |= result >> 16
+        result += 1
+        return result
     }
     
     /// Call this function after you are done with the node, to reset the au wavetable to prevent memory leaks
