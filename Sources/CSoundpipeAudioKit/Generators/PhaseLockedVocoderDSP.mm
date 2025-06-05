@@ -3,6 +3,7 @@
 #include "SoundpipeDSPBase.h"
 #include "ParameterRamper.h"
 #include "Soundpipe.h"
+#include "CSoundpipeAudioKit.h"
 #include <vector>
 
 enum PhaseLockedVocoderParameter : AUParameterAddress {
@@ -16,6 +17,7 @@ private:
     sp_mincer *mincer;
     sp_ftbl *ftbl;
     std::vector<float> wavetable;
+    int mincerSize = 2048;
 
     ParameterRamper positionRamp;
     ParameterRamper amplitudeRamp;
@@ -42,7 +44,7 @@ public:
         sp_ftbl_create(sp, &ftbl, wavetable.size());
         std::copy(wavetable.cbegin(), wavetable.cend(), ftbl->tbl);
         sp_mincer_create(&mincer);
-        sp_mincer_init(sp, mincer, ftbl, 2048);
+        sp_mincer_init(sp, mincer, ftbl, mincerSize);
     }
 
     void deinit() override {
@@ -56,7 +58,12 @@ public:
         if (!isInitialized) return;
         sp_mincer_destroy(&mincer);
         sp_mincer_create(&mincer);
-        sp_mincer_init(sp, mincer, ftbl, 2048);
+        sp_mincer_init(sp, mincer, ftbl, mincerSize);
+    }
+    
+    void setMincerSize(int size) {
+        mincerSize = size;
+        reset();
     }
 
     void process(FrameRange range) override {
@@ -72,6 +79,12 @@ public:
         cloneFirstChannel(range);
     }
 };
+
+void akPhaseLockedVocoderSetMincerSize(DSPRef dspRef, int size) {
+    auto dsp = dynamic_cast<PhaseLockedVocoderDSP *>(dspRef);
+    assert(dsp);
+    dsp->setMincerSize(size);
+}
 
 AK_REGISTER_DSP(PhaseLockedVocoderDSP, "minc")
 AK_REGISTER_PARAMETER(PhaseLockedVocoderParameterPosition)

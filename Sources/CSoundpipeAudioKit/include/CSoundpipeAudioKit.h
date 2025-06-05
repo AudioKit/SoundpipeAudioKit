@@ -13,4 +13,5 @@ void akCombFilterReverbSetLoopDuration(DSPRef dsp, float duration);
 void akConvolutionSetPartitionLength(DSPRef dsp, int length);
 void akFlatFrequencyResponseSetLoopDuration(DSPRef dsp, float duration);
 void akVariableDelaySetMaximumTime(DSPRef dsp, float maximumTime);
+void akPhaseLockedVocoderSetMincerSize(DSPRef dspRef, int size);
 CF_EXTERN_C_END
