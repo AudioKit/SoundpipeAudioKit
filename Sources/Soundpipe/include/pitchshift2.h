@@ -2,7 +2,7 @@
 #define pitchshift2_h
 
 #include <stdio.h>
-#include "soundpipe.h"
+#include "Soundpipe.h"
 #include "circular_buffer.h"
 
 typedef struct pitchshift2 {
