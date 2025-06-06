@@ -65,6 +65,7 @@ public class PhaseLockedVocoder: Node {
     ///   - position: Position in time. When non-changing it will do a spectral freeze of a the current point in time.
     ///   - amplitude: Amplitude.
     ///   - pitchRatio: Pitch ratio. A value of. 1  normal, 2 is double speed, 0.5 is halfspeed, etc.
+    ///   - grainSize: The size in samples (power of 2) of the spectral freeze. Lower sizes make for a crisper sound when moving the playhead.
     ///
     public init(
         file: AVAudioFile,
