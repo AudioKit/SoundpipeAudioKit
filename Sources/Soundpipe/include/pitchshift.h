@@ -6,7 +6,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdio.h>
-#include "soundpipe.h"
+#include "Soundpipe.h"
 
 #define MAX_FRAME_LENGTH 8192
 

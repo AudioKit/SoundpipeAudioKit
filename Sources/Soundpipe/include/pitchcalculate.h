@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "soundpipe.h"
+#include "Soundpipe.h"
 #include "circular_buffer.h"
 
 typedef struct pitchcalculate {
