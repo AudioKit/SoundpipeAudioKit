@@ -6,7 +6,10 @@ import PackageDescription
 let package = Package(
     name: "SoundpipeAudioKit",
     platforms: [.macOS(.v12), .iOS(.v13), .tvOS(.v13)],
-    products: [.library(name: "SoundpipeAudioKit", targets: ["SoundpipeAudioKit"])],
+    products: [
+        .library(name: "SoundpipeAudioKit", targets: ["SoundpipeAudioKit"]),
+        .library(name: "CSoundpipeAudioKit", targets: ["CSoundpipeAudioKit"])
+    ],
     dependencies: [
         .package(url: "https://github.com/AudioKit/KissFFT", from: "1.0.0"),
         .package(url: "https://github.com/AudioKit/AudioKit", from: "5.6.0"),
