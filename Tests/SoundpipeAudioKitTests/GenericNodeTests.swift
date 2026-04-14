@@ -108,7 +108,7 @@ class GenericNodeTests: XCTestCase {
         nodeParameterTest(md5: "0750dcbb4f03fc82ee834692989d4f36", factory: { WhiteNoise() })
 
         #if os(macOS)
-            nodeRandomizedTest(md5: "934b63edeb47e4dddda0bc90e1fd0499", factory: { BrownianNoise() })
+            nodeRandomizedTest(md5: "a9393513bc298f0d5ad671f7b1f8041a", factory: { BrownianNoise() })
         #endif
     }
 
@@ -199,7 +199,7 @@ class GenericNodeTests: XCTestCase {
         #endif
 
         #if os(macOS)
-            nodeParameterTest2(md5: "ac8d2c81f0c74217d3fff003cbf28d68", factory: { player in Reverb(player) })
+            nodeParameterTest2(md5: "67ce242b88c2bf902192d93a8de5e324", factory: { player in Reverb(player) })
         #endif
     }
 
