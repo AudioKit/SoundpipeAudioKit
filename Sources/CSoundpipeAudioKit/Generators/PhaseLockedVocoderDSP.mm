@@ -24,7 +24,7 @@ private:
     ParameterRamper pitchRatioRamp;
 
 public:
-    PhaseLockedVocoderDSP() {
+    PhaseLockedVocoderDSP() : SoundpipeDSPBase(/*inputBusCount*/0) {
         parameters[PhaseLockedVocoderParameterPosition] = &positionRamp;
         parameters[PhaseLockedVocoderParameterAmplitude] = &amplitudeRamp;
         parameters[PhaseLockedVocoderParameterPitchRatio] = &pitchRatioRamp;
