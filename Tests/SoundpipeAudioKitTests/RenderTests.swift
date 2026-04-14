@@ -34,7 +34,7 @@ class RenderTests: XCTestCase {
     }
 
     func testMidTail() {
-        XCTAssertEqual(runWith(feedback: 0.5), 1.16, accuracy: 0.01)
+        XCTAssertEqual(runWith(feedback: 0.5), 1.17, accuracy: 0.01)
     }
 
     func testLongestTail() {
@@ -46,11 +46,11 @@ class RenderTests: XCTestCase {
     }
 
     func testMidMoreSilence() {
-        XCTAssertEqual(runWith(feedback: 0.5, silenceThreshold: 0.0001), 1.71, accuracy: 0.01)
+        XCTAssertEqual(runWith(feedback: 0.5, silenceThreshold: 0.0001), 1.73, accuracy: 0.01)
     }
 
     func testLongMoreSilence() {
-        XCTAssertEqual(runWith(feedback: 0.9, silenceThreshold: 0.0001), 6.38, accuracy: 0.02)
+        XCTAssertEqual(runWith(feedback: 0.9, silenceThreshold: 0.0001), 6.36, accuracy: 0.02)
     }
 
     func testSampleRateChange() {

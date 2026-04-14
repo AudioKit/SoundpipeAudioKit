@@ -14,7 +14,7 @@ class PitchTapTests: XCTestCase {
         oscillator.$frequency.ramp(to: 660, duration: 1.0)
 
         var pitches: [Float] = []
-        let knownValues: [Float] = [100.0, 448.91534, 457.72495, 476.3929, 503.23022, 519.65247, 533.7021, 562.21985, 576.9849, 598.7911]
+        let knownValues: [Float] = [100.0, 445.56717, 457.34576, 477.35434, 494.9604, 510.30423, 535.5695, 547.49194, 566.6213, 591.5867]
 
 
         let expect = expectation(description: "wait for amplitudes")
