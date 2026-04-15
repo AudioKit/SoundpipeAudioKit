@@ -7,7 +7,10 @@
 #include <stdio.h>
 
 int pitchcalculate_create(pitchcalculate **p) {
-    *p = malloc(sizeof(pitchcalculate));
+    // calloc: pitchcalculate_init does not set asdf_offset or cur_period;
+    // pitchcalculate_compute reads them before initial_freq is ever valid,
+    // so zeroing avoids allocator-state-dependent output across tests.
+    *p = calloc(1, sizeof(pitchcalculate));
     return SP_OK;
 }
 

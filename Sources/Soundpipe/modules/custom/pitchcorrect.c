@@ -12,7 +12,11 @@ float min_freq = 20.0;
 float max_freq = 3000.0;
 
 int pitchcorrect_create(pitchcorrect **p) {
-    *p = malloc(sizeof(pitchcorrect));
+    // calloc: pitchcorrect_init does not assign every field (e.g.
+    // should_update_scale_freqs, should_smooth_target_freq,
+    // nearest_scale_freq_index, target_freq, tmp_scale_freqs*), and the
+    // compute path reads them. Zeroing here avoids order-dependent output.
+    *p = calloc(1, sizeof(pitchcorrect));
     return SP_OK;
 }
 

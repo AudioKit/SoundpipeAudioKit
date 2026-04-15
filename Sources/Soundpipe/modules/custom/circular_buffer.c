@@ -4,7 +4,10 @@
 #include "circular_buffer.h"
 
 void cb_init(circular_buffer *cb, size_t capacity, size_t sz) {
-    cb->buffer = malloc(capacity * sz);
+    // calloc: pitchcalculate/pitchcorrect read via cb_read_at_index_behind_write
+    // before the buffer has been fully populated; zeroing prevents those early
+    // reads from returning allocator-state-dependent garbage.
+    cb->buffer = calloc(capacity, sz);
     if(cb->buffer == NULL)
         // handle error
     cb->buffer_end = (char *)cb->buffer + capacity * sz;

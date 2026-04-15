@@ -9,7 +9,9 @@ float delay_window = 75.;
 float pi = 3.1415926535;
 
 int pitchshift2_create(pitchshift2 **p) {
-    *p = malloc(sizeof(pitchshift2));
+    // calloc: pitchshift2_init leaves several fields unset (e.g. playhead_incr,
+    // window_advance, fader_target). Zeroing avoids heap-state-dependent output.
+    *p = calloc(1, sizeof(pitchshift2));
     return SP_OK;
 }
 

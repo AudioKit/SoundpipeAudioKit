@@ -14,6 +14,5 @@ class PitchShifterTests: XCTestCase {
         input.start()
         let audio = engine.startTest(totalDuration: 1.0)
         audio.append(engine.render(duration: 1.0))
-        audio.audition()
     }
 }
