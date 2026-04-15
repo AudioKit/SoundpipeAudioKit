@@ -111,11 +111,11 @@ public class ZitaReverb: Node {
 
     /// Specification details for equalizerFrequency2
     public static let equalizerFrequency2Def = NodeParameterDef(
-        identifier: "EQ Frequency 2",
+        identifier: "equalizerFrequency2",
         name: "EQ Frequency 2",
         address: akGetParameterAddress("ZitaReverbParameterEqualizerFrequency2"),
-        defaultValue: 1000.0,
-        range: 160.0 ... 1000.0,
+        defaultValue: 1500.0,
+        range: 160.0 ... 10000.0,
         unit: .hertz
     )
 
