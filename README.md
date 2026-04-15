@@ -3,7 +3,7 @@
 
 # Soundpipe AudioKit
 
-[![Build Status](https://github.com/AudioKit/SoundpipeAudioKit/workflows/CI/badge.svg)](https://github.com/AudioKit/SoundpipeAudioKit/actions?query=workflow%3ACI)
+[![](https://github.com/AudioKit/SoundpipeAudioKit/actions/workflows/swift.yml/badge.svg)](https://github.com/AudioKit/SoundpipeAudioKit/actions?query=workflow%3ACI) 
 [![License](https://img.shields.io/github/license/AudioKit/SoundpipeAudioKit)](https://github.com/AudioKit/SoundpipeAudioKit/blob/main/LICENSE)
 [![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FAudioKit%2FSoundpipeAudioKit%2Fbadge%3Ftype%3Dswift-versions&label=)](https://swiftpackageindex.com/AudioKit/SoundpipeAudioKit)
  [![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FAudioKit%2FSoundpipeAudioKit%2Fbadge%3Ftype%3Dplatforms&label=)](https://swiftpackageindex.com/AudioKit/SoundpipeAudioKit)
